@@ -44,14 +44,20 @@
     <div class="actions">
       <a class="btn primary" href="https://hotel-ops-assistant.streamlit.app">Try the live demo</a>
       <a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant">View the code</a>
-      <!-- VIDEO: after recording, put the video URL here and remove this comment's markers.
-      <a class="btn" href="VIDEO-URL">Watch the 2-minute walkthrough</a>
-      -->
+      <a class="btn" href="https://vamsialladev.github.io/videos/hotel-ops-demo.mp4">Watch the 2-minute demo</a>
     </div>
     <p class="note">This is a simulated client engagement: a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. Quality, speed and cost are measured; the business value figures are projections from stated assumptions.</p>
+    <div class="demo-video" id="demo" role="region" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the 2-minute demo</h2>
+      <video controls playsinline preload="metadata" poster="../videos/hotel-ops-demo.jpg" width="1280" height="720">
+        <source src="../videos/hotel-ops-demo.mp4" type="video/mp4">
+        <a href="https://vamsialladev.github.io/videos/hotel-ops-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Recorded from the live app with real answers: the same question at both hotels, a property rule overriding a loyalty perk, a "check with a manager" answer, a refusal, and the Insights, Document library and How it works pages. Captions are part of the video; there is no sound.</p>
+    </div>
     <figure class="shot">
-      <img src="../assets/hotel-assistant-demo.gif" alt="A front-desk agent asks what time breakfast is served and the cited answer streams in, with its source chip" width="735" height="675">
-      <figcaption>The real app: a question at Beach Resort, answered from the restaurant menu PDF with a citation.</figcaption>
+      <img src="../assets/hotel-assistant-demo.gif" alt="A front-desk agent asks whether a guest can bring their dog at Beach Resort, and the answer streams in with its source chip and a caption" width="960" height="540">
+      <figcaption>The real app: the dog question at Beach Resort, answered from the hotel's policy with a citation.</figcaption>
     </figure>
   </div>
 
@@ -135,7 +141,7 @@
       <p><strong>My grader passed a wrong answer.</strong> "Can a 16-year-old book a facial?" only had to mention "18", so "Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older" counted as correct. The same grader failed a safe answer that quoted the "waive all fees" injection in order to reject it. I fixed the measurement before touching the model, and I still read the injection answers by hand every run.</p>
       <p><strong>The model choice came from the eval, not the version number.</strong> On the same 54 questions, Claude Haiku 4.5 scored 96% and Haiku 5.5 98%. Haiku 4.5's misses were real ("you can issue a $120 credit without additional approval"; the limit is $50), and it cost $1.01 per 1,000 questions against $0.19. Haiku 5.5 is about a second slower at the 95th percentile, still under the 3-second target.</p>
       <p><strong>A "wrong fee" bug was in the question.</strong> A $75 fee showed up at the mountain lodge, where the fee is $50 a night. The cause was a number pasted into the question. The real risk was the model accepting stated facts, so it now corrects them, and four test questions check that it does.</p>
-      <p class="small">205 unit tests (96% coverage), a dependency audit and a retrieval gate run on every commit. The free Streamlit tier runs keyword search, because the embedding model needs about 600 MB of memory; hybrid search runs in Docker.</p>
+      <p class="small">208 unit tests (96% coverage), a dependency audit and a retrieval gate run on every commit. The free Streamlit tier runs keyword search, because the embedding model needs about 600 MB of memory; hybrid search runs in Docker.</p>
     </div>
   </section>
 

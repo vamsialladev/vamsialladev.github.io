@@ -123,6 +123,11 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 }
 
 /* Screenshots in case studies (real captures from the app) */
+/* Demo video on case studies: native controls, poster, no autoplay */
+.demo-video{margin:36px 0 12px}
+.demo-video h2{margin:0 0 14px}
+.demo-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid var(--line);border-radius:14px;background:#111}
+.demo-video .small{margin-top:10px}
 .shot{margin:22px 0 8px}
 .shot img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .shot figcaption{font-size:14px;color:var(--muted);margin-top:8px}
