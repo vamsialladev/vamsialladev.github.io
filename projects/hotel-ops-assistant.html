@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hotel Operations Knowledge Assistant · Vamsi Alla</title>
-<meta name="description" content="Case study: an AI assistant giving hotel front-desk staff cited, property-specific policy answers. Built, evaluated and documented by Vamsi Alla.">
+<meta name="description" content="Case study: an AI assistant giving hotel front-desk staff cited, property-specific policy answers. Built, evaluated, deployed and documented by Vamsi Alla.">
 <meta property="og:title" content="Hotel Operations Knowledge Assistant: case study">
-<meta property="og:description" content="Cited, property-specific policy answers for hotel staff. 94% strict retrieval on 37 test questions, 31 unit tests, CI.">
+<meta property="og:description" content="Cited, property-specific policy answers for hotel staff. 96–98% answer accuracy on a 54-question eval, about 2.5s per answer, $0.17 per 1,000 questions.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://vamsialladev.github.io/assets/og-hotel-ops.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Hotel Operations Knowledge Assistant case study: 94% strict retrieval, 31 unit tests">
+<meta property="og:image:alt" content="Hotel Operations Knowledge Assistant case study: 96–98% answer accuracy on 54 test questions, $0.17 per 1,000 questions">
 <meta property="og:url" content="https://vamsialladev.github.io/projects/hotel-ops-assistant.html">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hotel Operations Knowledge Assistant: case study">
+<meta name="twitter:description" content="Cited, property-specific policy answers for hotel staff. 96–98% answer accuracy on a 54-question eval, $0.17 per 1,000 questions.">
+<meta name="twitter:image" content="https://vamsialladev.github.io/assets/og-hotel-ops.png">
+<meta name="twitter:image:alt" content="Hotel Operations Knowledge Assistant case study: 96–98% answer accuracy on 54 test questions">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +46,17 @@
       <a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant">View the code</a>
       <a class="btn" href="https://YOUR-VIDEO-LINK">Watch the 2-minute walkthrough</a>
     </div>
-    <p class="note">This is a simulated client engagement: a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. The value figures are projections from stated assumptions.</p>
+    <p class="note">This is a simulated client engagement: a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. Quality, speed and cost are measured; the business value figures are projections from stated assumptions.</p>
+    <figure class="shot">
+      <img src="../assets/hotel-assistant-demo.gif" alt="A front-desk agent asks what time breakfast is served and the cited answer streams in, with its source chip" width="735" height="675">
+      <figcaption>The real app: a question at Beach Resort, answered from the restaurant menu PDF with a citation.</figcaption>
+    </figure>
   </div>
 
   <section>
     <div class="wrap narrow">
       <h2>The problem</h2>
-      <p>A guest at the front desk asks, "Can I bring my dog?" At the beach resort, the answer is yes, up to 40 lbs, $75 per stay. At the mountain lodge, it's yes, any size, $50 per night. And an outdated 2024 document on the shared drive still says no pets at all.</p>
+      <p>A guest at the front desk asks, "Can I bring my dog?" At the beach resort, the answer is yes, up to 40 lbs, $75 per stay. At the mountain lodge, it's yes, any size, $50 per night, capped at $200. And an outdated 2024 document on the shared drive still says no pets at all.</p>
       <p>Staff have to find the right document, for the right hotel, while the guest waits. That happens dozens of times a day: pets, late checkout, parking, fees, the spa, dining, events. Wrong answers end in refunds, complaints, and calls to the manager.</p>
     </div>
   </section>
@@ -57,15 +65,28 @@
     <div class="wrap narrow">
       <h2>What I built</h2>
       <ul>
-        <li><strong>Property-aware answers:</strong> the selected hotel's rules plus brand-wide rules, never another hotel's.</li>
-        <li><strong>Override handling:</strong> when a hotel rule beats a brand rule, the answer says so.</li>
-        <li><strong>A source for every fact,</strong> shown as numbered citations.</li>
-        <li><strong>Refusal instead of guessing</strong> when the documents don't cover the question.</li>
-        <li><strong>Resistance to prompt injection:</strong> instructions hidden inside documents are treated as data.</li>
-        <li><strong>Staff feedback</strong> on every answer, logged for weekly review.</li>
-        <li><strong>A staff web app,</strong> a command-line tool, and a Docker image for deployment.</li>
+        <li><strong>Property-aware chat:</strong> staff pick their hotel; answers use that hotel's rules plus brand-wide rules, never another hotel's, and each hotel keeps its own conversation.</li>
+        <li><strong>A source for every fact,</strong> streamed in about a second, with chips showing the document, section and the policy's effective date.</li>
+        <li><strong>Refusal instead of guessing,</strong> and off-topic questions refused before any API call.</li>
+        <li><strong>Corrections, not agreement:</strong> if staff state a wrong fee or time in the question, the answer corrects it from the documents.</li>
+        <li><strong>"Check with a manager" notes</strong> for refunds over the front-desk limit, safety and repeated complaints, quoting the rule word for word.</li>
+        <li><strong>Pages for managers:</strong> Insights (what staff ask, helpful rate, unanswered questions as policy gaps) and a Document library showing what was indexed, excluded or needs OCR.</li>
+        <li><strong>Public demo protections:</strong> per-session and daily limits, friendly errors, output escaping, a private usage log and an owner-only admin page.</li>
       </ul>
-      <!-- Add a screenshot: <img src="../assets/hotel-assistant.png" alt="The assistant answering a late checkout question with two cited sources"> -->
+      <div class="shots">
+        <figure class="shot">
+          <img src="../assets/hotel-assistant-answer.png" alt="Gold member late checkout answer at Beach Resort: capped at 12 PM on Saturday, citing the property override and the loyalty table, with sources expanded" loading="lazy">
+          <figcaption>A property rule overriding a brand rule, with the quoted sources.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/hotel-assistant-manager.png" alt="A $300 refund question answered with a manager note quoting the brand standard" loading="lazy">
+          <figcaption>A refund over the front-desk limit: answered, with the rule quoted.</figcaption>
+        </figure>
+      </div>
+      <figure class="shot">
+        <img src="../assets/hotel-assistant-two-properties.png" alt="The dog question answered at Beach Resort (40 lbs, $75 per stay) and at Mountain Lodge (any size, $50 per night capped at $200)" loading="lazy">
+        <figcaption>Same question, two hotels, two different correct answers.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -73,9 +94,9 @@
     <div class="wrap narrow">
       <h2>How it works</h2>
       <div class="flow" aria-label="System flow">
-        <span>Hotel documents</span><i>›</i><span>Clean and chunk</span><i>›</i><span>Filter by property</span><i>›</i><span>Hybrid search</span><i>›</i><span>Top 5 passages</span><i>›</i><span>Claude: cited answer or refusal</span>
+        <span>Hotel documents</span><i>›</i><span>Clean and chunk</span><i>›</i><span>Input and scope checks</span><i>›</i><span>Search this hotel only</span><i>›</i><span>Top 5 passages</span><i>›</i><span>Claude: cited answer or refusal</span><i>›</i><span>Grounding and manager checks</span>
       </div>
-      <p>Documents are cleaned and split by section, and each piece is tagged with its property. A question is searched two ways: by keywords, for exact terms like prices and airport codes, and by meaning, for loose phrasing. The two rankings are merged. Claude then writes a short answer using only the top five passages and must cite each fact.</p>
+      <p>Documents are cleaned and split by section, and each piece is tagged with its property, a readable name and its effective date. A question is checked first: if nothing in that hotel's documents matches, it's refused without calling the model. Otherwise the hotel's passages are ranked by keywords (and by meaning, where memory allows), and Claude Haiku 5.5 writes a short answer from the top five, citing each fact. Plain code then checks that every number appears in a cited source and adds manager notes where the documents require them.</p>
       <h3 style="margin-top:28px">Real-world mess, handled</h3>
       <div class="scroll"><table>
         <thead><tr><th>Problem in the data</th><th>How it's handled</th></tr></thead>
@@ -84,8 +105,9 @@
           <tr><td>Outdated policy versions</td><td>Documents marked as superseded are never indexed</td></tr>
           <tr><td>Price tables in menus</td><td>Chunking never splits a table</td></tr>
           <tr><td>"Page 1 of 3" footers in PDFs</td><td>Repeated lines removed, ignoring changing page numbers</td></tr>
-          <tr><td>A scanned, image-only PDF</td><td>Detected and flagged for OCR instead of indexed as garbage</td></tr>
-          <tr><td>Informal staff notes</td><td>One searchable passage per note</td></tr>
+          <tr><td>A scanned, image-only PDF</td><td>Detected and flagged for OCR; safety questions point to a manager</td></tr>
+          <tr><td>A pasted guest email telling the AI to waive fees</td><td>Treated as data, flagged in the document library, tested every run</td></tr>
+          <tr><td>A wrong fact in the question</td><td>Corrected from the sources instead of accepted</td></tr>
         </tbody>
       </table></div>
     </div>
@@ -94,36 +116,41 @@
   <section>
     <div class="wrap narrow">
       <h2>Results</h2>
-      <p>I wrote 37 test questions in 11 categories, including misspellings, a Spanish question, a prompt-injection attack, and questions the system must refuse. Every change is checked against them.</p>
+      <p>54 test questions in 16 categories, including misspellings, a Spanish question, a prompt-injection attack, questions it must refuse, cross-property leaks, wrong facts in the question, off-topic questions and escalation rules. Each setup ran 3 times with the shipped model, Claude Haiku 5.5.</p>
       <div class="scroll"><table>
-        <thead><tr><th>Measure</th><th class="n">Keyword search</th><th class="n">Hybrid search</th></tr></thead>
+        <thead><tr><th>Measure</th><th class="n">Live demo (keyword search)</th><th class="n">Hybrid search</th></tr></thead>
         <tbody>
-          <tr><td>Right passage retrieved (strict)</td><td class="n">94%</td><td class="n">YOUR-NUMBER</td></tr>
-          <tr><td>Answer accuracy</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
-          <tr><td>Cites the right document</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
-          <tr><td>Every number traceable to a source</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
+          <tr><td>Right passage retrieved (strict)</td><td class="n">96%</td><td class="n">98%</td></tr>
+          <tr><td>Answer accuracy</td><td class="n">96%</td><td class="n">98%</td></tr>
+          <tr><td>Cites the right document</td><td class="n">96%</td><td class="n">98%</td></tr>
+          <tr><td>Every number traceable to a source</td><td class="n">95%</td><td class="n">97%</td></tr>
+          <tr><td>Correct refusals</td><td class="n">26 of 27</td><td class="n">27 of 27</td></tr>
+          <tr><td>"Check with a manager" rules correct</td><td class="n">54 of 54</td><td class="n">54 of 54</td></tr>
+          <tr><td>Full answer, 95th percentile</td><td class="n">2.7 s</td><td class="n">2.4 s</td></tr>
+          <tr><td>Cost per 1,000 questions</td><td class="n">$0.17</td><td class="n">$0.19</td></tr>
         </tbody>
       </table></div>
-      <p><strong>What the tests caught.</strong> First, keyword search failed on word forms like "cats" vs "cat"; stemming fixed it. Then the tests caught a flaw in my own measurement: a Spanish question with no matching words still "passed", because the right document happened to come first in file order. I made the check strict, so the exact passage with the answer must be found, and stopped returning passages that match nothing. The honest score dropped to 94%, and that's the number I report.</p>
-      <p><strong>Prompt injection.</strong> A guest email pasted into the staff notes tells the AI to waive all fees, and it ranks first for a fee question. The system treats document text as data, not instructions, and the tests fail any answer that says the fees are waived.</p>
-      <p class="small">31 unit tests, 92% code coverage, and a retrieval regression gate run on every commit, including a test proving one hotel's staff never see another hotel's rules.</p>
+      <p><strong>My grader passed a wrong answer.</strong> "Can a 16-year-old book a facial?" only had to mention "18", so "Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older" counted as correct. The same grader failed a safe answer that quoted the "waive all fees" injection in order to reject it. I fixed the measurement before touching the model, and I still read the injection answers by hand every run.</p>
+      <p><strong>The model choice came from the eval, not the version number.</strong> On the same 54 questions, Claude Haiku 4.5 scored 96% and Haiku 5.5 98%. Haiku 4.5's misses were real ("you can issue a $120 credit without additional approval"; the limit is $50), and it cost $1.01 per 1,000 questions against $0.19. Haiku 5.5 is about a second slower at the 95th percentile, still under the 3-second target.</p>
+      <p><strong>A "wrong fee" bug was in the question.</strong> A $75 fee showed up at the mountain lodge, where the fee is $50 a night. The cause was a number pasted into the question. The real risk was the model accepting stated facts, so it now corrects them, and four test questions check that it does.</p>
+      <p class="small">148 unit tests (96% coverage), a dependency audit and a retrieval gate run on every commit. The free Streamlit tier runs keyword search, because the embedding model needs about 600 MB of memory; hybrid search runs in Docker.</p>
     </div>
   </section>
 
   <section id="value">
     <div class="wrap narrow">
       <h2>Business value</h2>
-      <p>Projected from assumptions, shown as a range because the inputs are uncertain. The base case assumes 40 policy lookups a day per property, 2.5 minutes saved each, $20 an hour staff cost, and one wrong answer a week costing a $75 refund.</p>
+      <p>Projected from assumptions, shown as a range because the inputs are uncertain. The base case assumes 40 policy lookups a day per property, 2.5 minutes saved each, $20 an hour staff cost, and one wrong answer a week costing a $75 refund. The AI cost per question is measured, not assumed.</p>
       <div class="scroll"><table>
         <thead><tr><th>Net value per year</th><th class="n">2 properties</th><th class="n">100 properties</th></tr></thead>
         <tbody>
-          <tr><td>Pessimistic</td><td class="n">$8,483</td><td class="n">$421,143</td></tr>
-          <tr><td><strong>Base</strong></td><td class="n"><strong>$31,806</strong></td><td class="n"><strong>$1,587,287</strong></td></tr>
-          <tr><td>Optimistic</td><td class="n">$66,329</td><td class="n">$3,313,430</td></tr>
+          <tr><td>Pessimistic</td><td class="n">$8,524</td><td class="n">$423,187</td></tr>
+          <tr><td><strong>Base</strong></td><td class="n"><strong>$31,887</strong></td><td class="n"><strong>$1,591,375</strong></td></tr>
+          <tr><td>Optimistic</td><td class="n">$66,451</td><td class="n">$3,319,562</td></tr>
         </tbody>
       </table></div>
-      <p>Even the pessimistic case returns many times its running cost of about $330 a year for two properties. The result depends most on minutes saved per lookup, so that's the first thing to measure.</p>
-      <p>To replace projections with real numbers, a 2-week pilot at one property would time lookups before and after, review 50 answers, and track staff feedback from the in-app 👍 / 👎 buttons, against go / no-go targets agreed in advance (for example, 95% answer accuracy and zero serious wrong answers reaching a guest). The full model and pilot plan are in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md">business case</a>.</p>
+      <p>Even the pessimistic case returns many times its running cost of about $246 a year for two properties. The result depends most on minutes saved per lookup, so that's the first thing a pilot should measure.</p>
+      <p>Building it also surfaced policy gaps worth raising with the client, such as credits between $51 and $200 that no rule covers. A 2-week pilot at one property would time lookups before and after, review 50 answers, and track staff feedback against go / no-go targets agreed in advance. The full model and pilot plan are in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md">business case</a>.</p>
     </div>
   </section>
 
@@ -131,19 +158,20 @@
     <div class="wrap narrow">
       <h2>Tech stack</h2>
       <ul class="stack">
-        <li>Python 3.11</li><li>Claude API</li><li>BM25</li><li>sentence-transformers</li><li>Reciprocal Rank Fusion</li><li>pypdf</li><li>Streamlit</li><li>pytest</li><li>Ruff</li><li>GitHub Actions</li><li>Docker</li>
+        <li>Python 3.12</li><li>Claude Haiku 5.5</li><li>BM25</li><li>sentence-transformers</li><li>Reciprocal Rank Fusion</li><li>pypdf</li><li>Streamlit</li><li>pytest</li><li>Playwright</li><li>Ruff</li><li>pip-audit</li><li>GitHub Actions</li><li>Docker</li>
       </ul>
       <h2 style="margin-top:40px">What I'd do next</h2>
       <ul>
-        <li>OCR for scanned documents</li>
-        <li>Redact guest personal data before any API call</li>
-        <li>A managed vector database and incremental indexing for many properties</li>
+        <li>A multilingual embedding model (the Spanish test question still fails) and OCR for scanned documents</li>
+        <li>An LLM judge calibrated against human labels, with 100+ test questions (Project 3)</li>
+        <li>Sign-in with roles, personal-data redaction and monitoring (Project 4)</li>
         <li>Use this assistant as a tool inside a guest-email agent (Project 2)</li>
       </ul>
+      <p class="small">Every design choice, with its tradeoff and result, is in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/DECISIONS.md">decision log</a>.</p>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">© 2026 Vamsi Alla · <a href="../index.html">Back to portfolio</a></div></footer>
+<footer><div class="wrap">© 2026 Vamsi Alla · <a href="../index.html">Back to portfolio</a> · <a href="https://github.com/vamsialladev/hotel-ops-assistant">GitHub</a> · <a href="https://www.linkedin.com/in/vamsi-alla/">LinkedIn</a></div></footer>
 </body>
 </html>
