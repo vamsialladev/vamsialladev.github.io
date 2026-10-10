@@ -121,3 +121,10 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   .hero .slip{margin-top:0;margin-bottom:6px}
   .hero .slip .a{font-size:21px}
 }
+
+/* Screenshots in case studies (real captures from the app) */
+.shot{margin:22px 0 8px}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.shot figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:820px){.shots{grid-template-columns:1fr}}
