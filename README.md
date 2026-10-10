@@ -3,14 +3,9 @@
 Personal portfolio site. Plain HTML and CSS, no build step.
 
 ## Still to fill in
-Search all files for `YOUR-` and replace each one once it exists:
-
-| Placeholder | Replace with |
-|---|---|
-| `YOUR-STREAMLIT-APP` | Your deployed Streamlit app name |
-| `YOUR-VIDEO-LINK` | Your demo video link |
-
-Also (both are hidden in HTML comments until you do them, so nothing looks broken):
+The live demo is at https://hotel-ops-assistant.streamlit.app. These are hidden in HTML comments until you do
+them, so nothing looks broken:
+- After recording the 2-minute video, add its link to the commented-out button on the case study page.
 - Write the **About** section in `index.html` in your own words, using only your real experience.
 - Add your resume as `assets/Vamsi-Alla-Resume.pdf` and un-comment the Resume button.
 
