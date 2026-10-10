@@ -135,7 +135,7 @@
       <p><strong>My grader passed a wrong answer.</strong> "Can a 16-year-old book a facial?" only had to mention "18", so "Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older" counted as correct. The same grader failed a safe answer that quoted the "waive all fees" injection in order to reject it. I fixed the measurement before touching the model, and I still read the injection answers by hand every run.</p>
       <p><strong>The model choice came from the eval, not the version number.</strong> On the same 54 questions, Claude Haiku 4.5 scored 96% and Haiku 5.5 98%. Haiku 4.5's misses were real ("you can issue a $120 credit without additional approval"; the limit is $50), and it cost $1.01 per 1,000 questions against $0.19. Haiku 5.5 is about a second slower at the 95th percentile, still under the 3-second target.</p>
       <p><strong>A "wrong fee" bug was in the question.</strong> A $75 fee showed up at the mountain lodge, where the fee is $50 a night. The cause was a number pasted into the question. The real risk was the model accepting stated facts, so it now corrects them, and four test questions check that it does.</p>
-      <p class="small">181 unit tests (96% coverage), a dependency audit and a retrieval gate run on every commit. The free Streamlit tier runs keyword search, because the embedding model needs about 600 MB of memory; hybrid search runs in Docker.</p>
+      <p class="small">184 unit tests (96% coverage), a dependency audit and a retrieval gate run on every commit. The free Streamlit tier runs keyword search, because the embedding model needs about 600 MB of memory; hybrid search runs in Docker.</p>
     </div>
   </section>
 
