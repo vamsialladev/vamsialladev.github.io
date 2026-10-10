@@ -2,23 +2,23 @@
 
 Personal portfolio site. Plain HTML and CSS, no build step.
 
-## Before publishing: replace placeholders
-Search all files for `YOUR-` and replace each one:
+## Still to fill in
+Search all files for `YOUR-` and replace each one once it exists:
 
 | Placeholder | Replace with |
 |---|---|
-| `YOUR-LINKEDIN` | Your LinkedIn profile ID |
 | `YOUR-STREAMLIT-APP` | Your deployed Streamlit app name |
 | `YOUR-VIDEO-LINK` | Your demo video link |
-| `YOUR-NUMBER` | Your hybrid search accuracy |
 
-Also:
+Also (both are hidden in HTML comments until you do them, so nothing looks broken):
 - Write the **About** section in `index.html` in your own words, using only your real experience.
-- Add your resume as `assets/Vamsi-Alla-Resume.pdf`.
-- Optionally add a screenshot as `assets/hotel-assistant.png` (see the comment in the case study page).
+- Add your resume as `assets/Vamsi-Alla-Resume.pdf` and un-comment the Resume button.
+
+The case study's screenshots and GIF (`assets/hotel-assistant-*.png`, `.gif`) are real captures from the app,
+copied from the project repo's `docs/images/`.
 
 ## Link previews
-`assets/og-home.png` and `assets/og-hotel-ops.png` are the images LinkedIn, Slack and X show when someone shares a link. After publishing, test them with the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/); it also refreshes LinkedIn's cached preview if you change the images. If your numbers change (e.g. after running hybrid search), update the case study image too.
+`assets/og-home.png` and `assets/og-hotel-ops.png` are the images LinkedIn, Slack and X show when someone shares a link. After publishing, test them with the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/); it also refreshes LinkedIn's cached preview if you change the images. If the project's numbers change, regenerate `og-hotel-ops.png` (same layout, rendered with the site's fonts) and update the case study and home page stats.
 
 ## Preview locally
 ```bash

@@ -43,14 +43,16 @@
       <div class="actions">
         <a class="btn primary" href="projects/hotel-ops-assistant.html">See the hotel assistant</a>
         <a class="btn" href="https://github.com/vamsialladev">GitHub</a>
+        <!-- RESUME: add assets/Vamsi-Alla-Resume.pdf, then remove this comment's markers.
         <a class="btn" href="assets/Vamsi-Alla-Resume.pdf">Resume</a>
+        -->
       </div>
       </div>
 
-      <figure class="slip" aria-label="Example answer from the hotel assistant">
-        <p class="q">Beach Resort · "A Gold member wants late checkout on Saturday. How late?"</p>
-        <p class="a">12:00 PM. On weekends this property caps late checkout at noon for Silver and Gold members<span class="cite">1</span>, which overrides the usual 2:00 PM Gold benefit<span class="cite">2</span>.</p>
-        <p class="src"><span class="cite">1</span> Beach Resort policies › Late checkout &nbsp; <span class="cite">2</span> Loyalty program › Tiers</p>
+      <figure class="slip" aria-label="A real answer from the hotel assistant">
+        <p class="q">Beach Resort · "A Gold member wants late checkout on Saturday. How late can they stay?"</p>
+        <p class="a">On Saturday, a Gold member's late check-out is capped at 12:00 PM for all guests, including Gold members<span class="cite">1</span>. The brand-wide Gold benefit of 2:00 PM does not apply on weekends because the Beach Resort property rule overrides it<span class="cite">1</span><span class="cite">4</span>.</p>
+        <p class="src"><span class="cite">1</span> Beach Resort policies › Late Check-out (Property Override) &nbsp; <span class="cite">4</span> Guest Rewards Loyalty Program › Tiers and Benefits</p>
       </figure>
     </div>
   </section>
@@ -61,9 +63,9 @@
       <article class="feature">
         <div>
           <h3>Hotel Operations Knowledge Assistant</h3>
-          <p>Front-desk staff ask policy questions in plain English and get a short answer with the source for every fact, for the right hotel. When the documents don't say, it refuses instead of guessing.</p>
+          <p>Front-desk staff ask policy questions in plain English and get a short answer with the source for every fact, for the right hotel. It refuses when the documents don't say, corrects wrong facts in the question, and points to a manager for refunds and safety. Managers see what staff ask and where the policies have gaps.</p>
           <ul class="stack" aria-label="Tech stack">
-            <li>Python</li><li>Claude API</li><li>Hybrid search (BM25 + embeddings)</li><li>Streamlit</li><li>pytest</li><li>GitHub Actions</li><li>Docker</li>
+            <li>Python</li><li>Claude Haiku 5.5</li><li>Hybrid search (BM25 + embeddings)</li><li>Streamlit</li><li>pytest</li><li>GitHub Actions</li><li>Docker</li>
           </ul>
           <div class="links">
             <a href="projects/hotel-ops-assistant.html">Case study</a>
@@ -72,9 +74,9 @@
           </div>
         </div>
         <dl class="stats">
-          <div><dt>94%</dt><dd>strict retrieval on a 37-question eval, incl. a prompt-injection attack</dd></div>
-          <div><dt>31</dt><dd>unit tests, 92% coverage, run in CI on every commit</dd></div>
-          <div><dt>10</dt><dd>messy documents: PDFs, tables, notes, an outdated version, a scan</dd></div>
+          <div><dt>96–98%</dt><dd>answer accuracy on a 54-question eval, incl. prompt injection and must-refuse cases</dd></div>
+          <div><dt>$0.17</dt><dd>measured cost per 1,000 questions, about 2.5 s per full answer</dd></div>
+          <div><dt>148</dt><dd>unit tests, 96% coverage, dependency audit in CI on every commit</dd></div>
           <div><dt>~$16K</dt><dd>projected yearly value per property (<a href="projects/hotel-ops-assistant.html#value">assumptions</a>)</dd></div>
         </dl>
       </article>
@@ -110,7 +112,9 @@
       <div class="narrow">
         <!-- EDIT: write this in your own words, using only your real experience. -->
         <p>I'm Vamsi Alla, an engineer focused on bringing AI into hospitality operations.</p>
-        <p>[Your real background: for example, the roles you've held, the systems you've worked with, or what you've seen at the front desk that made you want to fix it.]</p>
+        <!-- ABOUT: add your real background here (roles, systems, what you've seen at the front desk), then remove this comment's markers.
+        <p>[Your real background]</p>
+        -->
         <p>I'm looking for Forward Deployed Engineer and AI engineering roles where I can work directly with customers to solve real operational problems.</p>
       </div>
     </div>
@@ -121,7 +125,7 @@
       <div><h2>Contact</h2><p class="small">Open to Forward Deployed Engineer and AI engineering roles.</p></div>
       <div>
         <p><a href="mailto:vamsialla.dev@gmail.com">vamsialla.dev@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a></p>
+        <p><a href="https://www.linkedin.com/in/vamsi-alla/">LinkedIn</a></p>
         <p><a href="https://github.com/vamsialladev">GitHub</a></p>
       </div>
     </div>
