@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hotel Operations Knowledge Assistant · Vamsi Alla</title>
+<meta name="description" content="Case study: an AI assistant giving hotel front-desk staff cited, property-specific policy answers. Built, evaluated and documented by Vamsi Alla.">
+<meta property="og:title" content="Hotel Operations Knowledge Assistant: case study">
+<meta property="og:description" content="Cited, property-specific policy answers for hotel staff. 94% strict retrieval on 37 test questions, 31 unit tests, CI.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://vamsialladev.github.io/assets/og-hotel-ops.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hotel Operations Knowledge Assistant case study: 94% strict retrieval, 31 unit tests">
+<meta property="og:url" content="https://vamsialladev.github.io/projects/hotel-ops-assistant.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Vamsi Alla</a>
+    <nav aria-label="Main">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="case">
+  <div class="wrap narrow">
+    <p class="crumb"><a href="../index.html#work">Work</a></p>
+    <h1>Hotel Operations Knowledge Assistant</h1>
+    <p class="lede">Correct, property-specific policy answers for front-desk staff in seconds, with the source for every fact.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://YOUR-STREAMLIT-APP.streamlit.app">Try the live demo</a>
+      <a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant">View the code</a>
+      <a class="btn" href="https://YOUR-VIDEO-LINK">Watch the 2-minute walkthrough</a>
+    </div>
+    <p class="note">This is a simulated client engagement: a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. The value figures are projections from stated assumptions.</p>
+  </div>
+
+  <section>
+    <div class="wrap narrow">
+      <h2>The problem</h2>
+      <p>A guest at the front desk asks, "Can I bring my dog?" At the beach resort, the answer is yes, up to 40 lbs, $75 per stay. At the mountain lodge, it's yes, any size, $50 per night. And an outdated 2024 document on the shared drive still says no pets at all.</p>
+      <p>Staff have to find the right document, for the right hotel, while the guest waits. That happens dozens of times a day: pets, late checkout, parking, fees, the spa, dining, events. Wrong answers end in refunds, complaints, and calls to the manager.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <h2>What I built</h2>
+      <ul>
+        <li><strong>Property-aware answers:</strong> the selected hotel's rules plus brand-wide rules, never another hotel's.</li>
+        <li><strong>Override handling:</strong> when a hotel rule beats a brand rule, the answer says so.</li>
+        <li><strong>A source for every fact,</strong> shown as numbered citations.</li>
+        <li><strong>Refusal instead of guessing</strong> when the documents don't cover the question.</li>
+        <li><strong>Resistance to prompt injection:</strong> instructions hidden inside documents are treated as data.</li>
+        <li><strong>Staff feedback</strong> on every answer, logged for weekly review.</li>
+        <li><strong>A staff web app,</strong> a command-line tool, and a Docker image for deployment.</li>
+      </ul>
+      <!-- Add a screenshot: <img src="../assets/hotel-assistant.png" alt="The assistant answering a late checkout question with two cited sources"> -->
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <h2>How it works</h2>
+      <div class="flow" aria-label="System flow">
+        <span>Hotel documents</span><i>›</i><span>Clean and chunk</span><i>›</i><span>Filter by property</span><i>›</i><span>Hybrid search</span><i>›</i><span>Top 5 passages</span><i>›</i><span>Claude: cited answer or refusal</span>
+      </div>
+      <p>Documents are cleaned and split by section, and each piece is tagged with its property. A question is searched two ways: by keywords, for exact terms like prices and airport codes, and by meaning, for loose phrasing. The two rankings are merged. Claude then writes a short answer using only the top five passages and must cite each fact.</p>
+      <h3 style="margin-top:28px">Real-world mess, handled</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Problem in the data</th><th>How it's handled</th></tr></thead>
+        <tbody>
+          <tr><td>Different rules at each hotel</td><td>Search is filtered to the selected property plus brand-wide documents</td></tr>
+          <tr><td>Outdated policy versions</td><td>Documents marked as superseded are never indexed</td></tr>
+          <tr><td>Price tables in menus</td><td>Chunking never splits a table</td></tr>
+          <tr><td>"Page 1 of 3" footers in PDFs</td><td>Repeated lines removed, ignoring changing page numbers</td></tr>
+          <tr><td>A scanned, image-only PDF</td><td>Detected and flagged for OCR instead of indexed as garbage</td></tr>
+          <tr><td>Informal staff notes</td><td>One searchable passage per note</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <h2>Results</h2>
+      <p>I wrote 37 test questions in 11 categories, including misspellings, a Spanish question, a prompt-injection attack, and questions the system must refuse. Every change is checked against them.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Measure</th><th class="n">Keyword search</th><th class="n">Hybrid search</th></tr></thead>
+        <tbody>
+          <tr><td>Right passage retrieved (strict)</td><td class="n">94%</td><td class="n">YOUR-NUMBER</td></tr>
+          <tr><td>Answer accuracy</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
+          <tr><td>Cites the right document</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
+          <tr><td>Every number traceable to a source</td><td class="n">n/a</td><td class="n">YOUR-NUMBER</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>What the tests caught.</strong> First, keyword search failed on word forms like "cats" vs "cat"; stemming fixed it. Then the tests caught a flaw in my own measurement: a Spanish question with no matching words still "passed", because the right document happened to come first in file order. I made the check strict, so the exact passage with the answer must be found, and stopped returning passages that match nothing. The honest score dropped to 94%, and that's the number I report.</p>
+      <p><strong>Prompt injection.</strong> A guest email pasted into the staff notes tells the AI to waive all fees, and it ranks first for a fee question. The system treats document text as data, not instructions, and the tests fail any answer that says the fees are waived.</p>
+      <p class="small">31 unit tests, 92% code coverage, and a retrieval regression gate run on every commit, including a test proving one hotel's staff never see another hotel's rules.</p>
+    </div>
+  </section>
+
+  <section id="value">
+    <div class="wrap narrow">
+      <h2>Business value</h2>
+      <p>Projected from assumptions, shown as a range because the inputs are uncertain. The base case assumes 40 policy lookups a day per property, 2.5 minutes saved each, $20 an hour staff cost, and one wrong answer a week costing a $75 refund.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Net value per year</th><th class="n">2 properties</th><th class="n">100 properties</th></tr></thead>
+        <tbody>
+          <tr><td>Pessimistic</td><td class="n">$8,483</td><td class="n">$421,143</td></tr>
+          <tr><td><strong>Base</strong></td><td class="n"><strong>$31,806</strong></td><td class="n"><strong>$1,587,287</strong></td></tr>
+          <tr><td>Optimistic</td><td class="n">$66,329</td><td class="n">$3,313,430</td></tr>
+        </tbody>
+      </table></div>
+      <p>Even the pessimistic case returns many times its running cost of about $330 a year for two properties. The result depends most on minutes saved per lookup, so that's the first thing to measure.</p>
+      <p>To replace projections with real numbers, a 2-week pilot at one property would time lookups before and after, review 50 answers, and track staff feedback from the in-app 👍 / 👎 buttons, against go / no-go targets agreed in advance (for example, 95% answer accuracy and zero serious wrong answers reaching a guest). The full model and pilot plan are in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md">business case</a>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <h2>Tech stack</h2>
+      <ul class="stack">
+        <li>Python 3.11</li><li>Claude API</li><li>BM25</li><li>sentence-transformers</li><li>Reciprocal Rank Fusion</li><li>pypdf</li><li>Streamlit</li><li>pytest</li><li>Ruff</li><li>GitHub Actions</li><li>Docker</li>
+      </ul>
+      <h2 style="margin-top:40px">What I'd do next</h2>
+      <ul>
+        <li>OCR for scanned documents</li>
+        <li>Redact guest personal data before any API call</li>
+        <li>A managed vector database and incremental indexing for many properties</li>
+        <li>Use this assistant as a tool inside a guest-email agent (Project 2)</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Vamsi Alla · <a href="../index.html">Back to portfolio</a></div></footer>
+</body>
+</html>

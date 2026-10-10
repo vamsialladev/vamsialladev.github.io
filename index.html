@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vamsi Alla · Forward Deployed Engineer</title>
+<meta name="description" content="Vamsi Alla builds, evaluates and deploys AI systems for hospitality operations. Portfolio of Forward Deployed Engineering projects.">
+<meta property="og:title" content="Vamsi Alla, Forward Deployed Engineer">
+<meta property="og:description" content="AI systems for hospitality operations: built, measured, deployed and handed off.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://vamsialladev.github.io/assets/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vamsi Alla, Forward Deployed Engineer: I build AI that works at the front desk">
+<meta property="og:url" content="https://vamsialladev.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Vamsi Alla</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#approach" class="hide-sm">Approach</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+      <p class="role">Forward Deployed Engineer · Hospitality AI</p>
+      <h1>I build AI that works at the front desk, not just in a demo.</h1>
+      <p class="lede">I take messy operational problems, turn them into AI systems, measure whether they're right, and hand them over so teams can run them. My focus is hospitality: hotels, guests, and the staff who serve them.</p>
+      <div class="actions">
+        <a class="btn primary" href="projects/hotel-ops-assistant.html">See the hotel assistant</a>
+        <a class="btn" href="https://github.com/vamsialladev">GitHub</a>
+        <a class="btn" href="assets/Vamsi-Alla-Resume.pdf">Resume</a>
+      </div>
+      </div>
+
+      <figure class="slip" aria-label="Example answer from the hotel assistant">
+        <p class="q">Beach Resort · "A Gold member wants late checkout on Saturday. How late?"</p>
+        <p class="a">12:00 PM. On weekends this property caps late checkout at noon for Silver and Gold members<span class="cite">1</span>, which overrides the usual 2:00 PM Gold benefit<span class="cite">2</span>.</p>
+        <p class="src"><span class="cite">1</span> Beach Resort policies › Late checkout &nbsp; <span class="cite">2</span> Loyalty program › Tiers</p>
+      </figure>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Work</h2>
+      <article class="feature">
+        <div>
+          <h3>Hotel Operations Knowledge Assistant</h3>
+          <p>Front-desk staff ask policy questions in plain English and get a short answer with the source for every fact, for the right hotel. When the documents don't say, it refuses instead of guessing.</p>
+          <ul class="stack" aria-label="Tech stack">
+            <li>Python</li><li>Claude API</li><li>Hybrid search (BM25 + embeddings)</li><li>Streamlit</li><li>pytest</li><li>GitHub Actions</li><li>Docker</li>
+          </ul>
+          <div class="links">
+            <a href="projects/hotel-ops-assistant.html">Case study</a>
+            <a href="https://YOUR-STREAMLIT-APP.streamlit.app">Live demo</a>
+            <a href="https://github.com/vamsialladev/hotel-ops-assistant">Code</a>
+          </div>
+        </div>
+        <dl class="stats">
+          <div><dt>94%</dt><dd>strict retrieval on a 37-question eval, incl. a prompt-injection attack</dd></div>
+          <div><dt>31</dt><dd>unit tests, 92% coverage, run in CI on every commit</dd></div>
+          <div><dt>10</dt><dd>messy documents: PDFs, tables, notes, an outdated version, a scan</dd></div>
+          <div><dt>~$16K</dt><dd>projected yearly value per property (<a href="projects/hotel-ops-assistant.html#value">assumptions</a>)</dd></div>
+        </dl>
+      </article>
+
+      <div class="upcoming">
+        <article><p class="status">In progress</p><h3>Guest Request Agent</h3><p>Reads guest emails, checks bookings and policy, drafts replies, and waits for staff approval before sending.</p></article>
+        <article><p class="status">Planned</p><h3>AI Evaluation Harness</h3><p>100+ labeled cases, hallucination checks, and regression gates that block bad changes before release.</p></article>
+        <article><p class="status">Planned</p><h3>Production Deployment</h3><p>Latency, cost and privacy limits: model routing, personal-data redaction, and a monitoring dashboard.</p></article>
+        <article><p class="status">Planned</p><h3>Client Handoff Package</h3><p>Architecture docs, decision records, incident runbooks, and a recorded walkthrough for the client's team.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="wrap">
+      <h2>How I work</h2>
+      <p class="lede" style="margin:0 0 32px">Every project follows the same path as a real client engagement.</p>
+      <ol class="steps">
+        <li><strong>Understand</strong><span>Find the real problem and what it costs the business.</span></li>
+        <li><strong>Build</strong><span>Work with the data as it really is, messy and inconsistent.</span></li>
+        <li><strong>Measure</strong><span>Prove quality with evals, not impressions.</span></li>
+        <li><strong>Deploy</strong><span>Ship under real limits: speed, cost, privacy.</span></li>
+        <li><strong>Hand off</strong><span>Docs and runbooks so the team can own it.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap two">
+      <div>
+        <h2>About</h2>
+      </div>
+      <div class="narrow">
+        <!-- EDIT: write this in your own words, using only your real experience. -->
+        <p>I'm Vamsi Alla, an engineer focused on bringing AI into hospitality operations.</p>
+        <p>[Your real background: for example, the roles you've held, the systems you've worked with, or what you've seen at the front desk that made you want to fix it.]</p>
+        <p>I'm looking for Forward Deployed Engineer and AI engineering roles where I can work directly with customers to solve real operational problems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap two contact">
+      <div><h2>Contact</h2><p class="small">Open to Forward Deployed Engineer and AI engineering roles.</p></div>
+      <div>
+        <p><a href="mailto:vamsialla.dev@gmail.com">vamsialla.dev@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a></p>
+        <p><a href="https://github.com/vamsialladev">GitHub</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Vamsi Alla. Portfolio projects are simulated client engagements with synthetic data.</div></footer>
+</body>
+</html>
