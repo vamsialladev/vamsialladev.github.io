@@ -1,5 +1,5 @@
 {
-  "_comment": "The one place to change project status. status: Live | Next | Planned. Rendered by assets/site.js on Home and Projects.",
+  "_comment": "The one place to change project status. status: Live | Next | Planned. Rendered by assets/site.js on Home and Projects. Stage 2-5 wording follows the approved plan in CLAUDE.md.",
   "engagement": "One independent, simulated engagement for a fictional hotel group with two properties and synthetic data.",
   "stages": [
     {
@@ -7,11 +7,11 @@
       "name": "Hotel Operations Knowledge Assistant",
       "status": "Live",
       "summary": "Cited, property-specific policy answers for front-desk staff.",
-      "delivers": "A live RAG assistant that answers front-desk policy questions from each hotel's own documents, cites every fact, refuses when the documents don't say and flags when to check with a manager. Measured on a 54-question eval and a 49-question visitor set.",
+      "delivers": "Front-desk staff ask policy questions and get cited, property-specific answers, or an honest \"check with a manager\".",
       "links": [
         { "label": "Case study", "url": "projects/hotel-ops-assistant.html" },
         { "label": "Live app", "url": "https://hotel-ops-assistant.streamlit.app" },
-        { "label": "Code", "url": "https://github.com/vamsialladev/hotel-ops-assistant" }
+        { "label": "GitHub", "url": "https://github.com/vamsialladev/hotel-ops-assistant" }
       ]
     },
     {
@@ -19,7 +19,7 @@
       "name": "Guest Request Agent",
       "status": "Next",
       "summary": "Drafts replies to guest emails, with staff approval.",
-      "delivers": "An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool), drafts a reply and waits for staff approval before anything is sent.",
+      "delivers": "An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool) and drafts a reply that staff approve before anything is sent.",
       "links": []
     },
     {
@@ -27,7 +27,7 @@
       "name": "Eval Harness",
       "status": "Planned",
       "summary": "100+ cases and regression gates.",
-      "delivers": "A larger labeled test set, an LLM judge calibrated against human labels, and regression gates that block a worse release.",
+      "delivers": "An evaluation suite with 100+ cases, an LLM judge calibrated against human labels, and regression gates so quality can't drop silently.",
       "links": []
     },
     {
@@ -35,7 +35,7 @@
       "name": "Production Deployment",
       "status": "Planned",
       "summary": "Latency, cost, privacy and monitoring.",
-      "delivers": "Production limits made explicit: latency and cost budgets, personal-data redaction, authentication and a monitoring dashboard.",
+      "delivers": "Production limits made explicit: latency and cost budgets, personal-data redaction, sign-in and a monitoring dashboard.",
       "links": []
     },
     {
@@ -43,7 +43,7 @@
       "name": "Client Handoff",
       "status": "Planned",
       "summary": "Docs and runbooks the team can own.",
-      "delivers": "Architecture docs, decision records, incident runbooks and a recorded walkthrough, so the client's team can run it without me.",
+      "delivers": "Architecture docs, decision records, incident runbooks and a recorded walkthrough, so the hotel's own team can run it without me.",
       "links": []
     }
   ]

@@ -3,26 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Projects · Vamsi Alla</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Projects | Vamsi Alla</title>
 <meta name="description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <link rel="canonical" href="https://vamsialla.com/projects.html">
-<meta property="og:title" content="Projects · Vamsi Alla">
+<meta property="og:title" content="Projects | Vamsi Alla">
 <meta property="og:description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vamsialla.com/projects.html">
+<meta property="og:site_name" content="Vamsi Alla">
 <meta property="og:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 275 tests">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Projects · Vamsi Alla">
+<meta name="twitter:title" content="Projects | Vamsi Alla">
 <meta name="twitter:description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta name="twitter:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 275 tests">
-<meta name="theme-color" content="#1E4636">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
 </head>
@@ -41,45 +47,47 @@
 <main id="main">
   <section class="hero">
     <div class="wrap">
+      <span class="eyebrow">Projects</span>
       <h1>Projects</h1>
       <p class="lede">One independent, simulated engagement for a fictional hotel group with two properties, built stage by stage the way a client engagement runs. All documents and data are synthetic.</p>
     </div>
   </section>
-
   <section class="section" aria-labelledby="live-h">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">01</span><h2 id="live-h">Live now</h2></div>
+      <div class="section-head"><span class="eyebrow">01 · Live now</span><h2 id="live-h">Live now</h2></div>
       <article class="feature">
         <div class="feature-media">
-          <a href="projects/hotel-ops-assistant.html#demo"><picture><source srcset="assets/img/hotel-ops-still-800.webp 800w, assets/img/hotel-ops-still.webp 1200w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="assets/img/hotel-ops-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering a pet policy question with a citation" width="1200" height="627" fetchpriority="high"></picture></a>
-          <div class="actions"><a class="btn primary" href="projects/hotel-ops-assistant.html#demo">Watch the 2-minute demo</a><a class="btn" href="https://hotel-ops-assistant.streamlit.app">Try the live app</a></div>
+          <a href="projects/hotel-ops-assistant.html#demo"><picture><source srcset="assets/img/hotel-ops-still-800.webp 800w, assets/img/hotel-ops-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/hotel-ops-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering whether a guest can bring their dog at Beach Resort, with a citation and its source" width="1200" height="627" fetchpriority="high"></picture></a>
+          <figure class="slip" aria-label="A real answer from the live assistant">
+            <p class="q">Beach Resort · “A Gold member wants late checkout on Saturday. How late can they stay?”</p>
+            <p>On Saturday, a Gold member's late check-out is capped at 12:00 PM for all guests, including Gold members <span class="cite">[1]</span>. The brand-wide Gold benefit of 2:00 PM does not apply on weekends because the Beach Resort property rule overrides it <span class="cite">[1]</span> <span class="cite">[4]</span>.</p>
+          </figure>
         </div>
         <div>
-          <p class="small">Stage 1 · <span class="tag live">Live</span></p>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
           <h3>Hotel Operations Knowledge Assistant</h3>
-          <p><strong>Problem:</strong> front-desk staff search scattered PDFs, menus and notes while a guest waits, and the rules differ by hotel.</p>
-          <p><strong>Approach:</strong> property-filtered hybrid search, short answers from Claude that cite every fact, refusal when the documents don't say, manager notes quoted from the rules, and in-app guidance so first-time users know what to ask.</p>
+          <p>Front-desk staff need policy answers in seconds, and the rules differ by hotel. This assistant answers from the right property's documents, cites every fact, and says “check with a manager” when the documents don't.</p>
           <dl class="stats">
-            <div><dt>98%</dt><dd>answer accuracy, live app (97% with hybrid search)</dd></div>
-            <div><dt>98%</dt><dd>cite the right document</dd></div>
-            <div><dt>43% → 100%</dt><dd>first-question success, 49 visitor questions</dd></div>
-            <div><dt>$0.17</dt><dd>per 1,000 questions, live ($0.19 hybrid)</dd></div>
+            <div><dt>98%</dt><dd>answer accuracy, live app (keyword search; 97% with hybrid)</dd></div>
+            <div><dt>98%</dt><dd>citation accuracy: cites the right document (both modes)</dd></div>
+            <div><dt>$0.17</dt><dd>per 1,000 questions on the live app ($0.19 with hybrid)</dd></div>
+            <div><dt>43% → 100%</dt><dd>first-question success on 49 questions visitors type first</dd></div>
           </dl>
           <div class="links">
-            <a href="projects/hotel-ops-assistant.html">Read the case study</a>
-            <a href="https://hotel-ops-assistant.streamlit.app">Live app</a>
-            <a href="https://github.com/vamsialladev/hotel-ops-assistant">GitHub</a>
+            <a href="https://hotel-ops-assistant.streamlit.app" rel="noopener noreferrer">Live app →</a>
+            <a href="projects/hotel-ops-assistant.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/hotel-ops-assistant" rel="noopener noreferrer">GitHub →</a>
           </div>
         </div>
       </article>
     </div>
   </section>
-
   <section class="section" id="stages" aria-labelledby="stages-h">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">02</span><h2 id="stages-h">One engagement, five stages</h2></div>
-      <p class="lede">Each stage builds on the last and delivers something a client could use on its own.</p>
-      <ol class="stages" data-stages aria-label="One engagement, five stages"><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li></ol>
+      <div class="section-head"><span class="eyebrow">02 · One engagement, five stages</span><h2 id="stages-h">One engagement, five stages</h2></div>
+      <p class="lede">Each stage builds on the last and delivers something a client could use on its own. Only stage 1 is live.</p>
+      <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li></ol>
+      <p class="small updated">Last updated: October 2026</p>
     </div>
   </section>
 </main>
@@ -88,28 +96,15 @@
     <ul>
       <li>© <span data-year>2026</span> Vamsi Alla</li>
       <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
-      <li><a href="https://www.linkedin.com/in/vamsi-alla/">LinkedIn</a></li>
-      <li><a href="https://github.com/vamsialladev">GitHub</a></li>
-      <li><a href="about.html#privacy">Privacy note</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
     <p>Projects use a simulated hotel group and synthetic data.</p>
   </div>
 </footer>
 <script src="assets/site.js" defer></script>
-<script>
-  (function () {
-    var skip = false;
-    try {
-      if (location.hash === "#toggle-goatcounter") {
-        if (localStorage.getItem("skipgc")) { localStorage.removeItem("skipgc"); alert("GoatCounter: visits from this browser are counted again."); }
-        else { localStorage.setItem("skipgc", "t"); alert("GoatCounter: visits from this browser are no longer counted."); }
-      }
-      skip = !!localStorage.getItem("skipgc");
-    } catch (e) { /* storage blocked */ }
-    var local = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
-    if (skip || local || navigator.doNotTrack === "1") { window.goatcounter = { no_onload: true }; }
-  })();
-</script>
+<script>(function(){var skip=false;try{if(location.hash==='#toggle-goatcounter'){if(localStorage.getItem('skipgc')){localStorage.removeItem('skipgc');alert('GoatCounter: visits from this browser are counted again.');}else{localStorage.setItem('skipgc','t');alert('GoatCounter: visits from this browser are no longer counted.');}}skip=!!localStorage.getItem('skipgc');}catch(e){}var local=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);if(skip||local||navigator.doNotTrack==='1'){window.goatcounter={no_onload:true};}})();</script>
 <script data-goatcounter="https://vamsialla.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -3,27 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hotel Operations Knowledge Assistant · Case study · Vamsi Alla</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Hotel Operations Knowledge Assistant | Case study | Vamsi Alla</title>
 <meta name="description" content="Independent, simulated engagement with synthetic data: a RAG assistant that gives hotel front-desk staff cited, property-specific policy answers. 98% answer accuracy on the live app; first-question success 43% to 100%.">
 <link rel="canonical" href="https://vamsialla.com/projects/hotel-ops-assistant.html">
-<meta property="og:title" content="Hotel Operations Knowledge Assistant · Case study · Vamsi Alla">
+<meta property="og:title" content="Hotel Operations Knowledge Assistant | Case study | Vamsi Alla">
 <meta property="og:description" content="Independent, simulated engagement with synthetic data: a RAG assistant that gives hotel front-desk staff cited, property-specific policy answers. 98% answer accuracy on the live app; first-question success 43% to 100%.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://vamsialla.com/projects/hotel-ops-assistant.html">
+<meta property="og:site_name" content="Vamsi Alla">
 <meta property="og:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Hotel Operations Knowledge Assistant case study: 98% answer accuracy on the live app, first-question success 43% to 100%, 275 tests">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hotel Operations Knowledge Assistant · Case study · Vamsi Alla">
+<meta name="twitter:title" content="Hotel Operations Knowledge Assistant | Case study | Vamsi Alla">
 <meta name="twitter:description" content="Independent, simulated engagement with synthetic data: a RAG assistant that gives hotel front-desk staff cited, property-specific policy answers. 98% answer accuracy on the live app; first-question success 43% to 100%.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta name="twitter:image:alt" content="Hotel Operations Knowledge Assistant case study: 98% answer accuracy on the live app, first-question success 43% to 100%, 275 tests">
-<meta name="theme-color" content="#1E4636">
-<link rel="preload" as="image" href="../videos/hotel-ops-demo-poster.webp" fetchpriority="high">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="../videos/hotel-ops-demo-poster.webp" fetchpriority="high">
 <link rel="stylesheet" href="../assets/style.css">
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
 </head>
@@ -39,10 +45,10 @@
     </nav>
   </div>
 </header>
-<main id="main" class="case">
-  <div class="narrow case-head">
+<main id="main">
+  <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › Hotel Operations Knowledge Assistant</p>
-    <div class="demo-hero" id="demo" role="region" aria-labelledby="demo-heading">
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
       <h2 id="demo-heading">Watch the 2-minute demo</h2>
       <video controls playsinline preload="metadata" poster="../videos/hotel-ops-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
         <source src="../videos/hotel-ops-demo.mp4" type="video/mp4">
@@ -50,54 +56,66 @@
         <a href="../videos/hotel-ops-demo.mp4">Download the demo video (MP4)</a>
       </video>
       <p class="demo-summary" id="demo-summary">Recorded on the live app with real answers: a cited answer in seconds at two hotels, a hotel rule overriding a loyalty perk, a manager escalation, a refusal with suggestions, and the guidance a first-time visitor sees.</p>
+      <details class="transcript"><summary>Read the transcript</summary><p>Hotel Operations Knowledge Assistant: a simulated client project.</p><p>A front-desk agent at Beach Resort asks if a guest can bring their dog. In seconds, a short answer appears, with the source for every fact.</p><p>At Mountain Lodge, the same question gets that hotel's own rules. It never mixes up properties, and related questions are one tap away.</p><p>Here, the loyalty program promises a two p.m. checkout, but this hotel caps weekends at noon. The assistant applies the hotel's rule and shows the exact text.</p><p>A refund over the front-desk limit gets a check-with-a-manager note, quoting the policy.</p><p>When the documents don't say, it refuses instead of guessing. A wrong safety answer is worse than none.</p><p>And instead of a dead end, it suggests close questions it can answer.</p><p>Every new conversation starts with guidance: how to use it, what this demo knows, and good questions to ask.</p><p>Topic chips show example questions for each area, like the spa.</p><p>Managers see what staff ask, how they ask, and which questions point to gaps in the policies.</p><p>Every answer comes only from these documents, all synthetic, for a simulated client.</p><p>It's measured on fifty-four test questions: ninety-eight percent answer accuracy on this live demo, at about seventeen cents per thousand questions.</p><p>Try the live app, or read the code and the decisions. The links are on screen.</p></details>
       <div class="actions">
         <a class="btn primary" href="https://hotel-ops-assistant.streamlit.app">Try the live app</a>
         <span class="small">Narration: AI voice (Piper, open source) · short captions in the video, full narration captions with the CC button · no sign-in needed</span>
       </div>
-    </div>
+    </section>
+    <span class="eyebrow">Case study · stage 1 of 5</span>
     <h1>Hotel Operations Knowledge Assistant</h1>
     <p class="lede">Correct, property-specific policy answers for front-desk staff in seconds, with the source for every fact.</p>
-    <p class="note">Independent project: a simulated client engagement for a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. Quality, speed and cost are measured; the business value figures are projections from stated assumptions.</p>
-    <div class="actions">
-      <a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant">View the code</a>
-      <a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/DECISIONS.md">Decision log</a>
-    </div>
+    <p class="note">Independent project: a simulated client engagement for a fictional hotel group with a beach resort and a mountain lodge. The documents are synthetic, written to mirror real hotel operations. Quality, speed and cost are measured; the business figures are projections from stated assumptions.</p>
+    <div class="actions"><a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant">View the code</a><a class="btn" href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/DECISIONS.md">Decision log</a></div>
   </div>
-
   <section class="section" id="problem" aria-labelledby="problem-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">01</span><h2 id="problem-h">The problem</h2></div>
+      <div class="section-head"><span class="eyebrow">01 · Problem</span><h2 id="problem-h">The problem</h2></div>
       <p>A guest at the front desk asks, “Can I bring my dog?” At the beach resort the answer is yes, up to 40 lbs, $75 per stay. At the mountain lodge it's yes, any size, $50 per night, capped at $200. And an outdated 2024 document on the shared drive still says no pets at all.</p>
-      <p>Staff have to find the right document, for the right hotel, while the guest waits. That happens many times a day: pets, late checkout, parking, fees, the spa, dining, events. Wrong answers end in refunds, complaints and calls to the manager.</p>
+      <p>Staff have to find the right document, for the right hotel, while the guest waits. Wrong answers end in refunds, complaints and calls to the manager.</p>
     </div>
   </section>
-
   <section class="section" id="approach" aria-labelledby="approach-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">02</span><h2 id="approach-h">The approach</h2></div>
+      <div class="section-head"><span class="eyebrow">02 · Approach</span><h2 id="approach-h">The approach</h2></div>
       <ul>
-        <li><strong>Property-aware answers:</strong> staff pick their hotel; search only sees that hotel's documents plus brand-wide rules, never another hotel's.</li>
+        <li><strong>Property-aware answers:</strong> staff pick their hotel; search only sees that hotel's documents plus brand-wide rules.</li>
         <li><strong>A source for every fact,</strong> streamed in about a second, with chips showing the document, section and effective date.</li>
         <li><strong>Refusal instead of guessing,</strong> and off-topic questions refused before any model call.</li>
         <li><strong>Corrections, not agreement:</strong> a wrong fee or time stated in the question is corrected from the documents.</li>
         <li><strong>“Check with a manager” notes</strong> for refunds over the front-desk limit, safety and repeated complaints, quoting the rule word for word.</li>
-        <li><strong>Guidance for first-time users:</strong> a short How to use strip, a “What this demo knows” panel generated from the documents, topic chips, curated follow-ups and “Did you mean” after a refusal.</li>
-        <li><strong>For managers and the owner:</strong> Insights on what staff ask and where policies have gaps; a password-gated admin page with health, errors and cost.</li>
+        <li><strong>Guidance for first-time users:</strong> How to use, a “What this demo knows” panel generated from the documents, topic chips, curated follow-ups and “Did you mean” after a refusal.</li>
       </ul>
-      <figure class="shot"><picture><source srcset="../assets/img/welcome-800.webp 800w, ../assets/img/welcome.webp 1280w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="../assets/img/welcome.png" alt="The welcome screen: a How to use strip, the What this demo knows panel with topic chips, and three good-question buttons for Beach Resort" width="1280" height="800" loading="lazy" decoding="async"></picture><figcaption>What a first-time user sees: how to use it, what it knows, and questions that work.</figcaption></figure>
-      <figure class="shot"><picture><source srcset="../assets/img/answer-sources-800.webp 800w, ../assets/img/answer-sources.webp 831w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="../assets/img/answer-sources.png" alt="Gold member late checkout at Beach Resort: capped at 12 PM on Saturday, citing the property override, brand standards and the loyalty table, with sources expanded" width="831" height="1194" loading="lazy" decoding="async"></picture><figcaption>A hotel rule overriding a brand perk, with the quoted sources.</figcaption></figure>
-      <figure class="shot"><picture><source srcset="../assets/img/two-properties-800.webp 800w, ../assets/img/two-properties.webp 1600w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="../assets/img/two-properties.png" alt="The dog question answered at Beach Resort (40 lbs, $75 per stay) and at Mountain Lodge (any size, $50 per night capped at $200)" width="1600" height="467" loading="lazy" decoding="async"></picture><figcaption>Same question, two hotels, two different correct answers.</figcaption></figure>
+      <figure class="shot"><picture><source srcset="../assets/img/welcome-800.webp 800w, ../assets/img/welcome.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/welcome.png" alt="The welcome screen: a How to use strip, the What this demo knows panel with topic chips, and three good-question buttons for Beach Resort" width="1280" height="800" loading="lazy" decoding="async"></picture><figcaption>What a first-time user sees: how to use it, what it knows, and questions that work.</figcaption></figure>
+      <figure class="shot"><picture><source srcset="../assets/img/answer-sources-800.webp 800w, ../assets/img/answer-sources.webp 831w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/answer-sources.png" alt="Gold member late checkout at Beach Resort: capped at 12 PM on Saturday, citing the property override, brand standards and the loyalty table, with sources expanded" width="831" height="1194" loading="lazy" decoding="async"></picture><figcaption>A hotel rule overriding a brand perk, with the quoted sources.</figcaption></figure>
+      <figure class="shot"><picture><source srcset="../assets/img/two-properties-800.webp 800w, ../assets/img/two-properties.webp 1600w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/two-properties.png" alt="The dog question answered at Beach Resort (40 lbs, $75 per stay) and at Mountain Lodge (any size, $50 per night capped at $200)" width="1600" height="467" loading="lazy" decoding="async"></picture><figcaption>Same question, two hotels, two different correct answers.</figcaption></figure>
       <div class="grid grid-2">
-        <figure class="shot"><picture><source srcset="../assets/img/check-with-manager-800.webp 800w, ../assets/img/check-with-manager.webp 831w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="../assets/img/check-with-manager.png" alt="A $300 refund question answered with a manager note quoting the brand standard" width="831" height="680" loading="lazy" decoding="async"></picture><figcaption>Over the front-desk limit: answered, with the rule quoted.</figcaption></figure>
-        <figure class="shot"><picture><source srcset="../assets/img/did-you-mean-800.webp 800w, ../assets/img/did-you-mean.webp 835w" sizes="(max-width: 800px) 100vw, 760px" type="image/webp"><img src="../assets/img/did-you-mean.png" alt="A booking request refused, with Did you mean questions and topic chips" width="835" height="731" loading="lazy" decoding="async"></picture><figcaption>A refusal is never a dead end.</figcaption></figure>
+        <figure class="shot"><picture><source srcset="../assets/img/check-with-manager-800.webp 800w, ../assets/img/check-with-manager.webp 831w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/check-with-manager.png" alt="A $300 refund question answered with a manager note quoting the brand standard" width="831" height="680" loading="lazy" decoding="async"></picture><figcaption>Over the front-desk limit: answered, with the rule quoted.</figcaption></figure>
+        <figure class="shot"><picture><source srcset="../assets/img/did-you-mean-800.webp 800w, ../assets/img/did-you-mean.webp 835w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/did-you-mean.png" alt="A booking request refused, with Did you mean questions and topic chips" width="835" height="731" loading="lazy" decoding="async"></picture><figcaption>A refusal is never a dead end.</figcaption></figure>
       </div>
-      <h3>How it works</h3>
-      <ol class="flow" aria-label="System flow">
-        <li>Hotel documents</li><li>Clean and chunk</li><li>Input and scope checks</li><li>Search this hotel only</li><li>Top 5 passages</li><li>Claude: cited answer or refusal</li><li>Grounding and manager checks</li>
-      </ol>
-      <p>Documents are cleaned and split by section, and each piece is tagged with its property, a readable name and its effective date. A question is checked first: if nothing in that hotel's documents matches, it's refused without calling the model. Otherwise the hotel's passages are ranked by keywords (and by meaning, where memory allows), and Claude Haiku 5.5 writes a short answer from the top five, citing each fact. Plain code then checks that every number appears in a cited source and adds manager notes where the documents require them.</p>
+    </div>
+  </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>Staff UI (Streamlit): a question for one property<span class="why">Greetings and “what can you do?” are answered instantly, without the model.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Scope check<span class="why">Does anything in this hotel's documents match the question?</span></li>
+          <li class="branch">Refusal path: nothing matches → a polite scope message with “Did you mean” questions, no model call.</li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Retrieval with the property filter<span class="why">Only this hotel's documents plus brand-wide ones; keyword search (BM25), plus embeddings in hybrid mode; top 5 passages.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Claude Haiku 5.5<span class="why">A short answer that cites each passage it uses, or the fixed refusal when the documents don't say.</span></li>
+          <li class="branch">Refusal path: “I can't answer that from this hotel's documents”, with “Did you mean” and topic chips.</li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Cited answer<span class="why">Plain code checks every number against the cited sources and adds “check with a manager” notes quoted from the rules.</span></li>
+        </ol>
+        <figcaption class="small">One question, end to end. Full diagrams in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/ARCHITECTURE.md" rel="noopener noreferrer">architecture doc →</a></figcaption>
+      </figure>
       <div class="scroll"><table>
-        <caption class="small" style="text-align:left;caption-side:top;padding-bottom:.5rem">Real-world mess, handled</caption>
+        <caption>Real-world mess, handled</caption>
         <thead><tr><th scope="col">Problem in the data</th><th scope="col">How it's handled</th></tr></thead>
         <tbody>
           <tr><td>Different rules at each hotel</td><td>Search is filtered to the selected property plus brand-wide documents</td></tr>
@@ -106,39 +124,35 @@
           <tr><td>“Page 1 of 3” footers in PDFs</td><td>Repeated lines removed, ignoring changing page numbers</td></tr>
           <tr><td>A scanned, image-only PDF</td><td>Detected and flagged for OCR; safety questions point to a manager</td></tr>
           <tr><td>A pasted guest email telling the AI to waive fees</td><td>Treated as data, flagged in the document library, tested every run</td></tr>
-          <tr><td>A wrong fact in the question</td><td>Corrected from the sources instead of accepted</td></tr>
         </tbody>
       </table></div>
     </div>
   </section>
-
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03</span><h2 id="results-h">Results</h2></div>
-      <p>54 labeled questions in 16 categories, including misspellings, a Spanish question, a prompt-injection attack, questions it must refuse, cross-property leaks, wrong facts in the question, off-topic questions and escalation rules. Each setup ran 3 times with the shipped model, Claude Haiku 5.5 (measured 2026-10-10).</p>
+      <div class="section-head"><span class="eyebrow">04 · Results</span><h2 id="results-h">Results</h2></div>
+      <p>54 labeled questions in 16 categories, including a prompt-injection attack, questions it must refuse, cross-property leaks, wrong facts in the question, off-topic questions and escalation rules. Each setup ran 3 times with Claude Haiku 5.5, measured on 2026-10-10.</p>
       <div class="scroll"><table>
-        <thead><tr><th scope="col">Measure</th><th scope="col" class="n">Live app (keyword search)</th><th scope="col" class="n">Hybrid search</th></tr></thead>
+        <thead><tr><th scope="col">Measure</th><th scope="col" class="n">Live app (keyword-only)</th><th scope="col" class="n">Hybrid (local, Docker)</th></tr></thead>
         <tbody>
-          <tr><td>Right passage retrieved (strict)</td><td class="n">98%</td><td class="n">98%</td></tr>
+          <tr><td>Right passage retrieved (strict)</td><td class="n">98% (44/45)</td><td class="n">98% (44/45)</td></tr>
           <tr><td>Answer accuracy</td><td class="n">98%</td><td class="n">97% (96–98%)</td></tr>
-          <tr><td>Cites the right document</td><td class="n">98%</td><td class="n">98%</td></tr>
+          <tr><td>Citation accuracy (cites the right document)</td><td class="n">98%</td><td class="n">98%</td></tr>
           <tr><td>Every number traceable to a source</td><td class="n">98%</td><td class="n">100%</td></tr>
           <tr><td>Correct refusals</td><td class="n">27 of 27</td><td class="n">27 of 27</td></tr>
           <tr><td>“Check with a manager” rules correct</td><td class="n">54 of 54</td><td class="n">54 of 54</td></tr>
-          <tr><td>First question a visitor types: useful result</td><td class="n">100% (was 43%)</td><td class="n">100% (was 49%)</td></tr>
-          <tr><td>Full answer, 95th percentile</td><td class="n">2.5 s</td><td class="n">2.7 s</td></tr>
+          <tr><td>First question a visitor types: useful result (49 questions)</td><td class="n">100% (was 43%)</td><td class="n">100% (was 49%)</td></tr>
+          <tr><td>Full answer, 95th percentile</td><td class="n">2.49 s</td><td class="n">2.71 s</td></tr>
           <tr><td>Cost per 1,000 questions</td><td class="n">$0.17</td><td class="n">$0.19</td></tr>
         </tbody>
       </table></div>
       <p><strong>Testing it like a first-time visitor changed the product.</strong> The 54-question eval was written against the documents, so it scored 96–98% while the questions a visitor actually types first (Wi-Fi, the gym, breakfast, “checkout”) were often refused or blocked. I measured 49 such questions first: 43% got a useful result. Filling real content gaps, spelling “check-out” and “checkout” the same way, curated suggestions and friendly handling of greetings and off-topic input took it to 100%, with no regression on the original eval. I wrote those questions myself, so held-out questions from other people come next.</p>
-      <p><strong>My grader passed a wrong answer.</strong> “Can a 16-year-old book a facial?” only had to mention “18”, so “Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older” counted as correct. The same grader failed a safe answer that quoted the “waive all fees” injection in order to reject it. I fixed the measurement before touching the model, and I still read the injection answers by hand every run.</p>
-      <p><strong>A “wrong fee” bug was in the question.</strong> A $75 fee showed up at the mountain lodge, where the fee is $50 a night. The cause was a number pasted into the question. The real risk was the model accepting stated facts, so it now corrects them, and four test questions check that it does.</p>
+      <p><strong>My grader passed a wrong answer.</strong> “Can a 16-year-old book a facial?” only had to mention “18”, so “Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older” counted as correct. I fixed the measurement before touching the model.</p>
     </div>
   </section>
-
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <div class="scroll"><table>
         <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
         <tbody>
@@ -146,31 +160,26 @@
           <tr><td>Claude Haiku 5.5 over Haiku 4.5</td><td>Within run-to-run range on quality (97% vs 98% hybrid) at $0.19 vs $0.99 per 1,000 questions</td><td>About a second slower at the 95th percentile, still under the 3-second target</td></tr>
           <tr><td>Curated suggestions, not generated ones</td><td>Every suggestion is tested to retrieve its topic and get a real answer, and costs no model call</td><td>A list to maintain; less tailored than generated text</td></tr>
           <tr><td>Refuse rather than guess</td><td>A wrong policy answer turns into a refund or a safety risk</td><td>Some answerable questions are refused; “Did you mean” and topic chips soften it</td></tr>
-          <tr><td>Deterministic checks before an LLM judge</td><td>Cheap, repeatable and unit-tested: facts, citations, numbers, refusals</td><td>Word lists have false positives; a judge calibrated on human labels is a later stage</td></tr>
+          <tr><td>Deterministic checks before an LLM judge</td><td>Cheap, repeatable and unit-tested: facts, citations, numbers, refusals</td><td>Word lists have false positives; a judge calibrated on human labels is stage 3</td></tr>
         </tbody>
       </table></div>
     </div>
   </section>
-
   <section class="section" id="engineering" aria-labelledby="eng-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05</span><h2 id="eng-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
-        <li><strong>Architecture:</strong> ingestion and chunking, property-filtered BM25 and embeddings with rank fusion, a scope check, streamed generation, then grounding and escalation checks. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/ARCHITECTURE.md">Architecture doc</a>.</li>
-        <li><strong>Eval method:</strong> strict passage-level retrieval, required and forbidden facts per answer, citation and numeric grounding checks, 3 runs per setup, and a separate 49-question visitor set for first-question success. <a href="https://github.com/vamsialladev/hotel-ops-assistant/tree/main/eval">Eval code and saved reports</a>.</li>
-        <li><strong>Tests and CI:</strong> 275 tests at 97% coverage, lint and format checks, a dependency audit, a retrieval regression gate, a first-question gate and a check that every curated suggestion works, on every commit.</li>
-        <li><strong>Safety:</strong> document text treated as data, output escaping, per-session and daily caps, secrets outside the code, and an error boundary on every page. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/SECURITY.md">Threat model</a>.</li>
-        <li><strong>Decisions:</strong> every choice with its context, trade-off and result. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/DECISIONS.md">Decision log</a>.</li>
-      </ul>
-      <ul class="stack" aria-label="Tech stack">
-        <li>Python 3.12</li><li>Claude Haiku 5.5</li><li>BM25</li><li>sentence-transformers</li><li>Reciprocal Rank Fusion</li><li>pypdf</li><li>Streamlit</li><li>pytest</li><li>Playwright</li><li>Ruff</li><li>pip-audit</li><li>GitHub Actions</li><li>Docker</li>
+        <li><strong>Tests:</strong> 275 tests at 97% coverage, including every page rendered in a test harness and an injected error on each page.</li>
+        <li><strong>CI on every commit:</strong> lint and format checks, a dependency audit, a coverage gate, a retrieval regression gate, a first-question gate on the 49 visitor questions, and a check that every curated suggestion works.</li>
+        <li><strong>Eval method:</strong> strict passage-level retrieval, required and forbidden facts per answer, citation and numeric grounding checks, 3 runs per setup, and every raw answer saved. <a href="https://github.com/vamsialladev/hotel-ops-assistant/tree/main/eval" rel="noopener noreferrer">Eval code and reports →</a></li>
+        <li><strong>Security:</strong> secrets kept out of the code with secret scanning and push protection, document text treated as data rather than instructions, output escaping, per-session and daily caps, CSV formula-injection protection, and a password-gated admin page. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/SECURITY.md" rel="noopener noreferrer">Threat model →</a></li>
+        <li><strong>Decisions:</strong> every choice with its context, trade-off and result. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">Decision log →</a></li>
       </ul>
     </div>
   </section>
-
   <section class="section" id="value" aria-labelledby="value-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06</span><h2 id="value-h">Business case (a projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
       <p>Projected from stated assumptions and shown as a range, because the inputs are uncertain. Nothing here is a measured saving. The base case assumes 40 policy lookups a day per property, 2.5 minutes saved each, $20 an hour staff cost and one wrong answer a week costing a $75 refund. Only the AI cost per question is measured.</p>
       <div class="scroll"><table>
         <thead><tr><th scope="col">Projected net value per year</th><th scope="col" class="n">2 properties</th><th scope="col" class="n">100 properties</th></tr></thead>
@@ -180,21 +189,20 @@
           <tr><td>Optimistic</td><td class="n">$66,451</td><td class="n">$3,319,562</td></tr>
         </tbody>
       </table></div>
-      <p>The result depends most on minutes saved per lookup, so that's the first thing a pilot should measure. Building it also surfaced policy gaps worth raising with the client, such as credits between $51 and $200 that no rule covers. The full model and a two-week pilot plan with go / no-go targets are in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md">business case</a>.</p>
+      <p>The result depends most on minutes saved per lookup, so that's the first thing a pilot should measure. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md" rel="noopener noreferrer">Full business case and pilot plan →</a></p>
     </div>
   </section>
-
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07</span><h2 id="next-h">What I'd do next</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Held-out visitor questions from people who haven't seen the documents</li>
         <li>A multilingual embedding model (the Spanish test question still fails) and OCR for scanned documents</li>
-        <li>An LLM judge calibrated against human labels, with 100+ test questions (stage 3)</li>
-        <li>Sign-in with roles, personal-data redaction and monitoring (stage 4)</li>
-        <li>Use this assistant as a tool inside a guest-email agent (stage 2)</li>
+        <li>Stage 2: an agent that drafts replies to guest emails, using this assistant as a tool</li>
+        <li>Stage 3: an LLM judge calibrated against human labels, with 100+ test questions</li>
+        <li>Stage 4: sign-in with roles, personal-data redaction and monitoring</li>
       </ul>
-      <p class="small"><a href="../projects.html#stages">See all five stages</a></p>
+      <p><a class="arrow-link" href="../projects.html#stages">See all five stages →</a></p>
     </div>
   </section>
 </main>
@@ -203,28 +211,15 @@
     <ul>
       <li>© <span data-year>2026</span> Vamsi Alla</li>
       <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
-      <li><a href="https://www.linkedin.com/in/vamsi-alla/">LinkedIn</a></li>
-      <li><a href="https://github.com/vamsialladev">GitHub</a></li>
-      <li><a href="../about.html#privacy">Privacy note</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
     </ul>
     <p>Projects use a simulated hotel group and synthetic data.</p>
   </div>
 </footer>
 <script src="../assets/site.js" defer></script>
-<script>
-  (function () {
-    var skip = false;
-    try {
-      if (location.hash === "#toggle-goatcounter") {
-        if (localStorage.getItem("skipgc")) { localStorage.removeItem("skipgc"); alert("GoatCounter: visits from this browser are counted again."); }
-        else { localStorage.setItem("skipgc", "t"); alert("GoatCounter: visits from this browser are no longer counted."); }
-      }
-      skip = !!localStorage.getItem("skipgc");
-    } catch (e) { /* storage blocked */ }
-    var local = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
-    if (skip || local || navigator.doNotTrack === "1") { window.goatcounter = { no_onload: true }; }
-  })();
-</script>
+<script>(function(){var skip=false;try{if(location.hash==='#toggle-goatcounter'){if(localStorage.getItem('skipgc')){localStorage.removeItem('skipgc');alert('GoatCounter: visits from this browser are counted again.');}else{localStorage.setItem('skipgc','t');alert('GoatCounter: visits from this browser are no longer counted.');}}skip=!!localStorage.getItem('skipgc');}catch(e){}var local=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);if(skip||local||navigator.doNotTrack==='1'){window.goatcounter={no_onload:true};}})();</script>
 <script data-goatcounter="https://vamsialla.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
