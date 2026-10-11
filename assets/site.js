@@ -56,10 +56,24 @@
         if (status) status.textContent = ok ? "Copied" : "Press Ctrl+C to copy";
         setTimeout(function () { if (status) status.textContent = ""; }, 2500);
       }
+      // Fallback when the Clipboard API is missing or denied: select the visible address, then try
+      // the older copy command; if that fails too, the selection makes "Press Ctrl+C" true.
+      function fallback() {
+        var shown = btn.closest(".card") && btn.closest(".card").querySelector('a[href^="mailto:"]');
+        if (!shown || !window.getSelection) return done(false);
+        var range = document.createRange();
+        range.selectNodeContents(shown);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        done(ok);
+      }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+        navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
       } else {
-        done(false);
+        fallback();
       }
     });
   });
