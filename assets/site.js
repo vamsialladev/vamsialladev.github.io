@@ -1,4 +1,4 @@
-// Menu, theme toggle, footer year, email copy button and the engagement stages (from data/projects.json).
+// Menu, More menu, theme toggle, footer year, email copy button, notes filter and the engagement stages (data/projects.json).
 // Loaded with defer. The theme is applied before first paint by a tiny inline script allowed by hash in the CSP.
 (function () {
   "use strict";
@@ -77,6 +77,47 @@
       }
     });
   });
+
+  // "More" menu: a disclosure button (desktop); on phones its links are a group inside the menu
+  var more = document.querySelector(".site-nav .more");
+  var moreBtn = more && more.querySelector(".more-btn");
+  if (more && moreBtn) {
+    var setMore = function (open) {
+      more.classList.toggle("open", open);
+      moreBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    moreBtn.addEventListener("click", function () { setMore(!more.classList.contains("open")); });
+    document.addEventListener("click", function (e) { if (!more.contains(e.target)) setMore(false); });
+    more.addEventListener("focusout", function (e) { if (e.relatedTarget && !more.contains(e.relatedTarget)) setMore(false); });
+    more.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && more.classList.contains("open")) {
+        e.stopPropagation();
+        setMore(false);
+        moreBtn.focus();
+      }
+    });
+  }
+
+  // Notes: category filter chips (shown only with JavaScript; every note is listed without it)
+  var chips = document.querySelector(".chips");
+  var noteList = document.querySelector("[data-notes]");
+  if (chips && noteList) {
+    chips.hidden = false;
+    var noteStatus = document.querySelector(".notes-empty");
+    chips.addEventListener("click", function (e) {
+      var chip = e.target.closest(".chip");
+      if (!chip) return;
+      var filter = chip.getAttribute("data-filter");
+      chips.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+      var shown = 0;
+      noteList.querySelectorAll("li").forEach(function (li) {
+        var match = !filter || li.getAttribute("data-category") === filter;
+        li.hidden = !match;
+        if (match) shown += 1;
+      });
+      if (noteStatus) noteStatus.textContent = shown + (shown === 1 ? " note" : " notes") + (filter ? " in " + filter : "");
+    });
+  }
 
   // Engagement stages, one data file for every page
   var lists = document.querySelectorAll("[data-stages]");
