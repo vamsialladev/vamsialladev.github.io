@@ -349,3 +349,4 @@ html:not(.js) .more { display: flex; }
 
 .site-footer .footer-line { font-family: var(--font-head); font-size: var(--text-lg); color: var(--ink); margin: 0 0 var(--s2); }
 .site-footer .footer-pages { margin-bottom: var(--s2); }
+html:not(.js) .chips { display: none; } /* filtering needs JavaScript; without it every note is listed */

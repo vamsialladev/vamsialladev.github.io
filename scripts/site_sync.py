@@ -97,7 +97,7 @@ def notes_list(root: str) -> str:
     used = [c for c in DATA["note_categories"] if any(n["category"] == c for n in NOTES)]
     chips = "".join(f'<li><button class="chip" type="button" aria-pressed="false" data-filter="{esc(c)}">{esc(c)}</button></li>'
                     for c in used)
-    return (f'<div class="chips" role="group" aria-label="Filter notes by category" hidden><ul>'
+    return (f'<div class="chips" role="group" aria-label="Filter notes by category"><ul>'
             f'<li><button class="chip" type="button" aria-pressed="true" data-filter="">All</button></li>{chips}</ul></div>'
             f'<ul class="note-list" data-notes>{"".join(note_card(root, n, "h2") for n in NOTES)}</ul>'
             f'<p class="small notes-empty" role="status" aria-live="polite"></p>')
