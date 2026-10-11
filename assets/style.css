@@ -123,6 +123,16 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 }
 
 /* Screenshots in case studies (real captures from the app) */
+/* Demo first: the project card's preview and the case study's video block (no autoplay, no sound) */
+.feature-media{grid-column:1/-1}
+.feature-media img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--bg)}
+.feature-media .actions{margin-top:14px}
+.demo-hero{margin:10px 0 30px;padding:18px;border-radius:18px;background:var(--soft);border:1px solid color-mix(in srgb,var(--green) 30%,var(--line));border-left:4px solid var(--brass)}
+.demo-hero h2{margin:0 0 12px;font-size:clamp(22px,3vw,28px)}
+.demo-hero video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:12px;background:#111}
+.demo-summary{margin:12px 0 0;font-size:16px;color:var(--ink)}
+.demo-hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px}
+@media (max-width:640px){.demo-hero{padding:12px;margin:6px 0 24px}}
 /* Demo video on case studies: native controls, poster, no autoplay */
 .demo-video{margin:36px 0 12px}
 .demo-video h2{margin:0 0 14px}
