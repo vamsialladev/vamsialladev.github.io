@@ -13,6 +13,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pages, sitemap and feed match data/site.json
+        run: python scripts/site_sync.py --check
+      - name: Feed and sitemap are well-formed
+        run: python scripts/site_sync.py --validate
       - name: Validate HTML
         run: npx --yes html-validate@9.7.1 "*.html" "projects/*.html" "notes/*.html"
       - name: Internal links and assets (must pass)
