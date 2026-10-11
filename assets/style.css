@@ -1,6 +1,10 @@
 /* Vamsi Alla · portfolio. One stylesheet; every color, space and type size is a custom property.
    Light by default, dark via prefers-color-scheme, and a manual toggle stored as data-theme on <html>. */
 
+/* Self-hosted fonts (SIL Open Font License), latin subset: no third-party connection before first paint */
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/newsreader-latin.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/public-sans-latin.woff2") format("woff2"); }
+
 :root {
   --green: #1E4636;
   --brass: #94702C;
