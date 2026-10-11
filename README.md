@@ -1,6 +1,7 @@
 # vamsialla.com
 
-The portfolio of Vamsi Alla, Senior Software Engineer: experience, the hotel operations case study and how I work.
+The portfolio of Vamsi Alla, Senior Software Engineer: experience, the hotel operations case study, notes, and the
+life around the work (Now, Life, Learning, Uses).
 Live at **https://vamsialla.com**.
 
 ## Stack
@@ -9,9 +10,13 @@ dependencies at runtime. `.nojekyll` turns off Jekyll so `.well-known/` is serve
 
 | Path | What it is |
 |---|---|
-| `index.html`, `about.html`, `experience.html`, `projects.html`, `contact.html`, `privacy.html` | Public pages |
+| `index.html`, `about.html`, `experience.html`, `projects.html`, `contact.html`, `privacy.html` | Public pages (main nav) |
+| `now.html`, `life.html`, `learning.html`, `uses.html` | Brand pages, in the "More" menu and the footer |
 | `projects/hotel-ops-assistant.html` | Case study (keep the path: old links redirect here) |
-| `notes.html`, `notes/*.html` | Notes, hidden until approved (`noindex`, not in nav or sitemap, no analytics) |
+| `notes.html`, `notes/*.html` | Notes: list with category filter chips, and posts (published, in the sitemap and the feed) |
+| `feed.xml` | RSS 2.0 feed of the notes, linked from every page's `<head>` |
+| `data/site.json` | **The one place to publish a section**: title, URL, nav group (main, More, footer), `published`, Home card, and the notes list |
+| `scripts/site_sync.py` | Rewrites the shared blocks in every page (nav, More menu, footer pages, Home cards, latest notes, notes list), `sitemap.xml` and `feed.xml` from `data/site.json`; `--check` and `--validate` run in CI |
 | `404.html` | Not-found page (root-relative paths, because it's served for any missing URL) |
 | `data/projects.json` | The five engagement stages; the one place to change a project's status |
 | `assets/style.css`, `assets/site.js` | The only stylesheet and script |
@@ -19,6 +24,11 @@ dependencies at runtime. `.nojekyll` turns off Jekyll so `.well-known/` is serve
 | `assets/img/` | WebP screenshots with PNG/JPG fallbacks and 800 px variants |
 | `videos/` | Demo video, poster and captions (made by `scripts/record_demo.py` in hotel-ops-assistant) |
 | `.well-known/security.txt`, `robots.txt`, `sitemap.xml`, `CNAME` | Site metadata; `CNAME` is exactly `vamsialla.com` |
+
+## Publish a section or a note
+1. Edit `data/site.json`: set `"published": true` (or add a note to `notes`).
+2. Run `python scripts/site_sync.py`. Every page's nav, More menu, footer, Home cards, the sitemap and the feed update.
+3. Commit; CI fails if a page is out of step with `data/site.json` or links to an unpublished section.
 
 ## Run it locally
 ```bash
@@ -50,10 +60,11 @@ and applied before first paint.
 - Lighthouse (mobile) 95+ for Performance, Accessibility, Best Practices and SEO on the public pages.
 - A Content-Security-Policy meta tag on every page allows only this site, the self-hosted fonts and GoatCounter.
   Any new external script or font must be added to the CSP; inline scripts are allowed only by hash.
-- CI (`.github/workflows/site-checks.yml`): HTML validation and a link check on every push and pull request.
+- CI (`.github/workflows/site-checks.yml`): pages in step with `data/site.json`, a valid sitemap and feed, HTML
+  validation and a link check on every push and pull request.
 
 ## Analytics
-GoatCounter (site code `vamsialla`), cookie-free and only on public pages. Nothing is counted on localhost or
+GoatCounter (site code `vamsialla`), cookie-free, on every public page except the 404 page. The RSS feed has no tracking. Nothing is counted on localhost or
 `file://`, when the browser sends Do Not Track, or when `localStorage.skipgc` is set. To stop counting your own
 visits, open `https://vamsialla.com/#toggle-goatcounter` once in each browser. Details on `privacy.html`.
 
