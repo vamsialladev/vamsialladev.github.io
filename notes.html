@@ -3,13 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Draft: My eval said 96%. It was wrong. · Vamsi Alla</title>
-<meta name="description" content="Draft note on tightening a retrieval metric from document-level to strict passage-level scoring.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Notes | Vamsi Alla</title>
+<meta name="description" content="Short write-ups on building software and AI that holds up.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#1E4636">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
 </head>
@@ -26,47 +31,28 @@
   </div>
 </header>
 <main id="main">
-  <article class="hero">
-    <div class="wrap narrow prose">
-      <p class="draft-banner" role="note"><strong>Draft, not published.</strong> Waiting for Vamsi's approval. It isn't linked from the site, isn't in the sitemap and is hidden from search engines.</p>
-      <p class="small">Notes · Hotel Operations Knowledge Assistant (independent, simulated engagement)</p>
-      <h1>My eval said 96%. It was wrong.</h1>
-      <p class="lede">The number was real. It just measured something easier than what the front desk needs.</p>
-
-      <h2>The setup</h2>
-      <p>The hotel assistant answers front-desk policy questions from each hotel's documents. Before any answer is written, search has to find the right passage, so the first thing I measured was retrieval: for each labeled question, is the right source in the top 5 results?</p>
-      <p>After adding light stemming (so “cats” matches “cat” and “RVs” matches “RV”), keyword search reached 96% on that check, up from 86%.</p>
-
-      <h2>The question that shouldn't have passed</h2>
-      <p>One test question is in Spanish: “¿Se permiten perros en el hotel?” Keyword search shares no words with the English documents, so every passage scored zero. It passed anyway. With every score tied at zero, results came back in file order, and the right document happened to be first.</p>
-      <p>The check only asked whether the right <em>document</em> appeared somewhere in the top 5. It never asked whether the passage with the answer was there.</p>
-
-      <h2>The fix</h2>
-      <ul>
-        <li>Each question now names a distinctive phrase, such as “up to 40 lbs”, that must appear in a retrieved passage from the expected document. Multi-part questions list one phrase per part.</li>
-        <li>Search never returns passages that match nothing. A question with no matching words gets a refusal without calling the model, instead of five arbitrary passages.</li>
-      </ul>
-      <p>The honest keyword-only score on that 37-question set was 94% (32 of 34 answerable questions). Lower, and true.</p>
-
-      <h2>What I took from it</h2>
-      <ul>
-        <li>Measure what the user needs. Staff need the passage with the answer, not the right file name.</li>
-        <li>Check that a metric can fail. A test that passes on a question with zero matches is measuring luck.</li>
-        <li>Read the raw results, not just the score. The same habit later caught my answer grader passing a wrong “yes”.</li>
-      </ul>
-      <p>Today the eval has 54 questions in 16 categories, and strict retrieval is 98% (44 of 45) in both search modes. The Spanish question still fails in keyword mode, and it's documented as a known limitation.</p>
-      <p class="small">Sources: the project's decision log (decisions 7 to 10) and eval reports in <a href="https://github.com/vamsialladev/hotel-ops-assistant">the repository</a>.</p>
+  <section class="hero">
+    <div class="narrow">
+      <span class="eyebrow">Notes</span>
+      <h1>Thinking in public.</h1>
+      <p class="lede">Short write-ups on building software and AI that holds up: what worked, what didn't, and the numbers behind it.</p>
+      <a class="card note-card" href="notes/eval-said-96.html">
+        <span class="eyebrow">Evals · AI engineering · October 2026</span>
+        <h2>My eval said 96%. It was wrong.</h2>
+        <p>How a generous metric hid retrieval misses, and why I published the lower number.</p>
+        <span class="arrow-link">Read →</span>
+      </a>
     </div>
-  </article>
+  </section>
 </main>
 <footer class="site-footer">
   <div class="wrap">
     <ul>
       <li>© <span data-year>2026</span> Vamsi Alla</li>
       <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
-      <li><a href="https://www.linkedin.com/in/vamsi-alla/">LinkedIn</a></li>
-      <li><a href="https://github.com/vamsialladev">GitHub</a></li>
-      <li><a href="about.html#privacy">Privacy note</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
     </ul>
     <p>Projects use a simulated hotel group and synthetic data.</p>
   </div>
