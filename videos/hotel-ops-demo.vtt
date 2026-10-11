@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:04.680 line:6% position:50% align:center
+Hotel Operations Knowledge Assistant: a simulated client project.
+
+00:00:05.030 --> 00:00:09.320 line:6% position:50% align:center
+A front-desk agent at Beach Resort asks if a guest can bring their dog.
+
+00:00:09.320 --> 00:00:13.370 line:6% position:50% align:center
+In seconds, a short answer appears, with the source for every fact.
+
+00:00:13.800 --> 00:00:17.940 line:6% position:50% align:center
+At Mountain Lodge, the same question gets that hotel's own rules.
+
+00:00:17.940 --> 00:00:22.340 line:6% position:50% align:center
+It never mixes up properties, and related questions are one tap away.
+
+00:00:22.790 --> 00:00:28.770 line:6% position:50% align:center
+Here, the loyalty program promises a two p.m. checkout, but this hotel caps weekends at noon.
+
+00:00:28.770 --> 00:00:32.880 line:6% position:50% align:center
+The assistant applies the hotel's rule and shows the exact text.
+
+00:00:36.870 --> 00:00:41.610 line:6% position:50% align:center
+A refund over the front-desk limit gets a check-with-a-manager note, quoting the policy.
+
+00:00:46.180 --> 00:00:49.900 line:6% position:50% align:center
+When the documents don't say, it refuses instead of guessing.
+
+00:00:49.900 --> 00:00:52.400 line:6% position:50% align:center
+A wrong safety answer is worse than none.
+
+00:00:54.520 --> 00:00:59.250 line:6% position:50% align:center
+And instead of a dead end, it suggests close questions it can answer.
+
+00:01:02.490 --> 00:01:09.010 line:6% position:50% align:center
+Every new conversation starts with guidance: how to use it, what this demo knows, and good questions to ask.
+
+00:01:09.460 --> 00:01:13.560 line:6% position:50% align:center
+Topic chips show example questions for each area, like the spa.
+
+00:01:14.040 --> 00:01:20.180 line:6% position:50% align:center
+Managers see what staff ask, how they ask, and which questions point to gaps in the policies.
+
+00:01:20.600 --> 00:01:25.920 line:6% position:50% align:center
+Every answer comes only from these documents, all synthetic, for a simulated client.
+
+00:01:26.350 --> 00:01:35.190 line:6% position:50% align:center
+It's measured on fifty-four test questions: ninety-eight percent answer accuracy on this live demo, at about seventeen cents per thousand questions.
+
+00:01:35.620 --> 00:01:38.610 line:6% position:50% align:center
+Try the live app, or read the code and the decisions.
+
+00:01:38.610 --> 00:01:39.960 line:6% position:50% align:center
+The links are on screen.
