@@ -1,4 +1,5 @@
-// Menu, theme toggle, footer year and the engagement stages (from data/projects.json).
+// Menu, theme toggle, footer year, email copy button and the engagement stages (from data/projects.json).
+// Loaded with defer. The theme is applied before first paint by a tiny inline script allowed by hash in the CSP.
 (function () {
   "use strict";
   var root = document.documentElement;
@@ -20,14 +21,13 @@
     });
   }
 
-  // Theme: system by default, a manual choice is remembered
+  // Theme: system by default; a manual choice is remembered
   var themeBtn = document.querySelector(".theme-btn");
   function current() {
     if (root.dataset.theme) return root.dataset.theme;
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
   function label() {
-    if (!themeBtn) return;
     var next = current() === "dark" ? "light" : "dark";
     themeBtn.setAttribute("aria-label", "Switch to " + next + " mode");
     themeBtn.setAttribute("title", "Switch to " + next + " mode");
@@ -42,9 +42,27 @@
     });
   }
 
-  // Footer year
+  // Footer year (2026 is in the HTML as the fallback)
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  // Copy email to the clipboard, with a visible confirmation
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var status = document.getElementById(btn.getAttribute("aria-describedby"));
+    btn.hidden = false;
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy");
+      function done(ok) {
+        if (status) status.textContent = ok ? "Copied" : "Press Ctrl+C to copy";
+        setTimeout(function () { if (status) status.textContent = ""; }, 2500);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+      } else {
+        done(false);
+      }
+    });
+  });
 
   // Engagement stages, one data file for every page
   var lists = document.querySelectorAll("[data-stages]");
@@ -77,8 +95,9 @@
           if (!compact && s.links && s.links.length) {
             var links = el("div", "links");
             s.links.forEach(function (l) {
-              var a = el("a", null, l.label);
+              var a = el("a", null, l.label + " →");
               a.href = href(l.url);
+              if (/^https?:/.test(l.url)) a.rel = "noopener noreferrer";
               links.appendChild(a);
             });
             li.appendChild(links);
@@ -87,5 +106,5 @@
         });
       });
     })
-    .catch(function () { /* the static fallback text stays */ });
+    .catch(function () { /* the static fallback list stays */ });
 })();
