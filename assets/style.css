@@ -127,6 +127,15 @@ strong { font-weight: 700; }
 .bio { max-width: var(--measure); }
 .open-to { display: inline-block; margin: var(--s3) 0 0; padding: var(--s1) var(--s2); border-left: 3px solid var(--brass-decor); background: var(--surface); border-radius: 0 var(--radius-btn) var(--radius-btn) 0; font-size: var(--text-sm); }
 .hero-links { margin-top: var(--s2); }
+/* Headshot: above the eyebrow on small screens, right column from 900px */
+.hero-grid { display: grid; gap: var(--s3); }
+.hero-text { min-width: 0; }
+.headshot img { width: 140px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-card); border: 1px solid var(--line); background: var(--surface); }
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); align-items: center; gap: var(--s6); }
+  .hero-grid .headshot { order: 2; }
+  .headshot img { width: 100%; max-width: 360px; }
+}
 
 /* ---------- buttons ---------- */
 .actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; margin-top: var(--s3); }
