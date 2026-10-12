@@ -4,3 +4,6 @@
 
 # Private brand notes, drafts and photos (kept outside the repos; never commit)
 brand-content/
+
+# Old resume versions (kept outside the repos; never commit)
+resume-archive/
