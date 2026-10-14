@@ -4,9 +4,9 @@
    dark ink 15.0:1, muted 7.8:1, primary 9.2:1, brass-text 9.0:1 on bg. brass-decor is for lines and large text only. */
 
 /* Self-hosted fonts (SIL Open Font License), latin subset */
-@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/newsreader-500-latin.woff2") format("woff2"); }
-@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 500; font-display: swap; src: url("fonts/newsreader-500-italic-latin.woff2") format("woff2"); }
-@font-face { font-family: "Public Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/public-sans-latin.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 500; font-display: optional; src: url("fonts/newsreader-500-latin.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 500; font-display: optional; src: url("fonts/newsreader-500-italic-latin.woff2") format("woff2"); }
+@font-face { font-family: "Public Sans"; font-style: normal; font-weight: 400 700; font-display: optional; src: url("fonts/public-sans-latin.woff2") format("woff2"); }
 
 :root {
   --bg: #F7F4EE;
