@@ -9,23 +9,45 @@
       "summary": "Cited, property-specific policy answers for front-desk staff.",
       "delivers": "Front-desk staff ask policy questions and get cited, property-specific answers, or an honest \"check with a manager\".",
       "links": [
-        { "label": "Case study", "url": "projects/hotel-ops-assistant.html" },
-        { "label": "Live app", "url": "https://hotel-ops-assistant.streamlit.app" },
-        { "label": "GitHub", "url": "https://github.com/vamsialladev/hotel-ops-assistant" }
+        {
+          "label": "Case study",
+          "url": "projects/hotel-ops-assistant.html"
+        },
+        {
+          "label": "Live app",
+          "url": "https://hotel-ops-assistant.streamlit.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/hotel-ops-assistant"
+        }
       ]
     },
     {
       "stage": 2,
       "name": "Guest Request Agent",
-      "status": "Next",
-      "summary": "Drafts replies to guest emails, with staff approval.",
+      "status": "Live",
+      "summary": "Drafts cited replies to guest emails; staff approve every send.",
       "delivers": "An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool) and drafts a reply that staff approve before anything is sent.",
-      "links": []
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/guest-request-agent.html"
+        },
+        {
+          "label": "Live app",
+          "url": "https://guest-request-agent.streamlit.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/guest-request-agent"
+        }
+      ]
     },
     {
       "stage": 3,
       "name": "Eval Harness",
-      "status": "Planned",
+      "status": "Next",
       "summary": "100+ cases and regression gates.",
       "delivers": "An evaluation suite with 100+ cases, an LLM judge calibrated against human labels, and regression gates so quality can't drop silently.",
       "links": []

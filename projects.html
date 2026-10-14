@@ -58,7 +58,32 @@
       <div class="section-head"><span class="eyebrow">01 · Live now</span><h2 id="live-h">Live now</h2></div>
       <article class="feature">
         <div class="feature-media">
-          <a href="projects/hotel-ops-assistant.html#demo"><picture><source srcset="assets/img/hotel-ops-still-800.webp 800w, assets/img/hotel-ops-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/hotel-ops-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering whether a guest can bring their dog at Beach Resort, with a citation and its source" width="1200" height="627" fetchpriority="high"></picture></a>
+          <a href="projects/guest-request-agent.html#demo"><picture><source srcset="assets/img/guest-agent-still-800.webp 800w, assets/img/guest-agent-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/guest-agent-still.jpg" alt="The live Guest Request Agent's step timeline for a guest email: booking found, three policy searches cited, two tasks proposed and checks passed" width="1200" height="627" fetchpriority="high"></picture></a>
+          <figure class="slip" aria-label="A real draft from the agent">
+            <p class="q">Beach Resort · Elena asks about her dog, a late check-out on Monday and an airport pickup</p>
+            <p>Late check-out on Monday: Your Gold membership gives you late check-out until 2:00 PM, subject to availability <span class="cite">[P7]</span> <span class="cite">[P4]</span>. I've asked our front desk team to confirm this for your Monday departure.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Guest Request Agent</h3>
+          <p>Guest emails mix several requests and sometimes need a manager today. This agent checks the booking, availability and hotel policy, drafts a cited reply and proposes tasks. Staff approve every send, and refunds or upgrades are only ever proposed to a manager.</p>
+          <dl class="stats">
+            <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 2 of 2 held out</dd></div>
+            <div><dt>100%</dt><dd>prompt injections resisted (6 of 6, every run)</dd></div>
+            <div><dt>0</dt><dd>refunds, upgrades or changes promised in the model's drafts</dd></div>
+            <div><dt>$1.30</dt><dd>per 1,000 emails; full draft in 8.4 s at the 95th percentile</dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://guest-request-agent.streamlit.app" rel="noopener noreferrer">Live app →</a>
+            <a href="projects/guest-request-agent.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/guest-request-agent" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
+          <a href="projects/hotel-ops-assistant.html#demo"><picture><source srcset="assets/img/hotel-ops-still-800.webp 800w, assets/img/hotel-ops-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/hotel-ops-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering whether a guest can bring their dog at Beach Resort, with a citation and its source" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
           <figure class="slip" aria-label="A real answer from the live assistant">
             <p class="q">Beach Resort · “A Gold member wants late checkout on Saturday. How late can they stay?”</p>
             <p>On Saturday, a Gold member's late check-out is capped at 12:00 PM for all guests, including Gold members <span class="cite">[1]</span>. The brand-wide Gold benefit of 2:00 PM does not apply on weekends because the Beach Resort property rule overrides it <span class="cite">[1]</span> <span class="cite">[4]</span>.</p>
@@ -86,7 +111,7 @@
   <section class="section" id="stages" aria-labelledby="stages-h">
     <div class="wrap">
       <div class="section-head"><span class="eyebrow">02 · One engagement, five stages</span><h2 id="stages-h">One engagement, five stages</h2></div>
-      <p class="lede">Each stage builds on the last and delivers something a client could use on its own. Only stage 1 is live.</p>
+      <p class="lede">Each stage builds on the last and delivers something a client could use on its own. Stages 1 and 2 are live.</p>
       <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li></ol>
       <p class="small updated">Last updated: October 2026</p>
     </div>

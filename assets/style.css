@@ -161,6 +161,7 @@ strong { font-weight: 700; }
 
 /* featured project */
 .feature { display: grid; gap: var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--s3); }
+.feature + .feature { margin-top: var(--s4); }
 @media (min-width: 900px) { .feature { grid-template-columns: 1fr 1fr; padding: var(--s4); } }
 .feature-media img { border-radius: var(--radius-btn); border: 1px solid var(--line); }
 .feature h3 { font-size: var(--text-xl); }
