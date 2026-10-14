@@ -1,0 +1,52 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:05.160 line:6% position:50% align:center
+Guest Request Agent: a simulated client project, part two of five.
+
+00:00:05.510 --> 00:00:10.680 line:6% position:50% align:center
+A guest writes with three requests: a dog, a late check-out and an airport pickup.
+
+00:00:11.110 --> 00:00:12.960 line:6% position:50% align:center
+The agent finds every request.
+
+00:00:12.960 --> 00:00:20.730 line:6% position:50% align:center
+It looks up her booking, checks the hotel's policies with the search from project one, and proposes tasks for the right teams.
+
+00:00:21.150 --> 00:00:28.030 line:6% position:50% align:center
+The draft cites every policy it uses, and every price and date is checked against the tool results before staff see it.
+
+00:00:28.510 --> 00:00:29.880 line:6% position:50% align:center
+Staff stay in control.
+
+00:00:29.880 --> 00:00:32.420 line:6% position:50% align:center
+They can edit the reply, then approve it.
+
+00:00:32.420 --> 00:00:35.770 line:6% position:50% align:center
+Nothing is really sent: it goes to a simulated outbox.
+
+00:00:36.250 --> 00:00:40.080 line:6% position:50% align:center
+Only now are the tasks created, for the teams that will do them.
+
+00:00:41.280 --> 00:00:46.990 line:6% position:50% align:center
+An angry refund demand goes straight to a manager, with the reason and a polite holding reply.
+
+00:00:46.990 --> 00:00:49.050 line:6% position:50% align:center
+The agent never promises a refund.
+
+00:00:49.900 --> 00:00:52.750 line:6% position:50% align:center
+This email tries to take over the assistant.
+
+00:00:52.750 --> 00:00:56.760 line:6% position:50% align:center
+It's treated as data: no refund, and no other guest's booking.
+
+00:01:00.280 --> 00:01:11.550 line:6% position:50% align:center
+It's measured on forty labelled emails, three runs each: every escalation caught, every injection resisted, no forbidden promises, at about a dollar thirty per thousand emails.
+
+00:01:12.010 --> 00:01:18.890 line:6% position:50% align:center
+The owner sees every request: each agent step, the draft, and exactly what staff changed before sending.
+
+00:01:30.080 --> 00:01:33.050 line:6% position:50% align:center
+Try the live app, or read the code and the decisions.
+
+00:01:33.050 --> 00:01:34.400 line:6% position:50% align:center
+The links are on screen.
