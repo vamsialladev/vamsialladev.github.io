@@ -186,7 +186,7 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">07 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
-        <li><strong>Tests:</strong> 236 tests at 98% coverage with a scripted stand-in for the model, including every exit of the agent loop, the approval flow (nothing sent or created without approval) and every page rendered in a test harness.</li>
+        <li><strong>Tests:</strong> 237 tests at 98% coverage with a scripted stand-in for the model, including every exit of the agent loop, the approval flow (nothing sent or created without approval) and every page rendered in a test harness.</li>
         <li><strong>CI on every commit:</strong> lint and format, a dependency audit, a 90% coverage gate, a check that stage 1's copied code is unchanged, and the escalation, injection and no-promise gates re-scored from the recorded final and held-out runs, without calling the model.</li>
         <li><strong>Eval method:</strong> deterministic metrics, each shown able to fail; the model's own draft is scored, before any guard; every raw result saved so a fixed metric re-scores old runs. <a href="https://github.com/vamsialladev/guest-request-agent/tree/main/eval" rel="noopener noreferrer">Eval code and reports →</a></li>
         <li><strong>Security:</strong> email text as data, sender-scoped booking lookup, secrets masked from every log record, secret scanning and push protection, caps, and a password-gated owner page. <a href="https://github.com/vamsialladev/guest-request-agent/blob/main/SECURITY.md" rel="noopener noreferrer">Threat model →</a></li>
