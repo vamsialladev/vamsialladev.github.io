@@ -156,6 +156,9 @@
               links.appendChild(a);
             });
             li.appendChild(links);
+            if (s.links.some(function (l) { return l.label === "Live app"; })) {
+              li.appendChild(el("p", "small wake-note", "Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds."));
+            }
           }
           list.appendChild(li);
         });

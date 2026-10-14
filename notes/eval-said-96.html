@@ -28,6 +28,7 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preconnect" href="https://gc.zgo.at">
 <link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/style.css">
@@ -67,22 +68,22 @@
 
 <h2>Making it strict</h2>
 <p>Each test question now names a distinctive phrase that must appear in a retrieved passage from the expected document. For the dog question at the beach resort, that phrase is “up to 40 lbs”:</p>
-<pre><code>{"id": "q01", "property": "beach-resort", "question": "Can a guest bring their dog?", ..., "expected_source": "beach-resort/policies.md", "expected_text": "up to 40 lbs"}</code></pre>
+<pre tabindex="0"><code>{"id": "q01", "property": "beach-resort", "question": "Can a guest bring their dog?", ..., "expected_source": "beach-resort/policies.md", "expected_text": "up to 40 lbs"}</code></pre>
 <p>Multi-part questions list one phrase per part, and every part has to be found. The scoring function is three lines:</p>
-<pre><code>def retrieval_hit(item: dict, results: list) -&gt; bool:
+<pre tabindex="0"><code>def retrieval_hit(item: dict, results: list) -&gt; bool:
     texts = item["expected_text"] if isinstance(item["expected_text"], list) else [item["expected_text"]]
     return all(any(r["source"] == item["expected_source"] and t in r["text"] for r in results) for t in texts)</code></pre>
 <p>A passage only counts if it comes from the right document and contains the answer. Luck with file order no longer helps.</p>
 
 <h2>What dropped, and what it revealed</h2>
-<div class="scroll"><table>
+<section class="scroll" tabindex="0" aria-label="Keyword-only retrieval, same question set (table, scrolls sideways)"><table>
   <caption>Keyword-only retrieval, same question set</caption>
   <thead><tr><th scope="col">Metric</th><th scope="col" class="n">Score</th></tr></thead>
   <tbody>
     <tr><td>Right document in the top 5</td><td class="n">96%</td></tr>
     <tr><td>Right passage in the top 5 (strict)</td><td class="n">94% (32 of 34)</td></tr>
   </tbody>
-</table></div>
+</table></section>
 <p>Two points lower, and every one of them real. The two misses had the same shape: the question shares no words with the passage that answers it.</p>
 <p>One was the Spanish question. The other was “A guest left a jacket”. The answer is in the Lost and Found procedure, and that procedure never uses the word “jacket”. Keyword search matched nothing at all.</p>
 <p>Those are not edge cases at a front desk. Staff ask in their own words, and sometimes in their own language.</p>

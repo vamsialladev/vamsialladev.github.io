@@ -28,11 +28,13 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preconnect" href="https://gc.zgo.at">
 <link rel="preload" as="image" href="../videos/hotel-ops-demo-poster.webp" fetchpriority="high">
 <link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/style.css">
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Hotel Operations Knowledge Assistant", "description": "Independent, simulated engagement with synthetic data: a RAG assistant that gives hotel front-desk staff cited, property-specific policy answers.", "url": "https://vamsialla.com/projects/hotel-ops-assistant.html", "codeRepository": "https://github.com/vamsialladev/hotel-ops-assistant", "programmingLanguage": "Python", "runtimePlatform": "Streamlit", "license": "https://opensource.org/licenses/MIT", "version": "1.5.0", "dateModified": "2026-10-11", "image": "https://vamsialla.com/assets/og-hotel-ops.png", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/", "jobTitle": "Senior Software Engineer"}, "targetProduct": {"@type": "SoftwareApplication", "name": "Hotel Operations Knowledge Assistant", "url": "https://hotel-ops-assistant.streamlit.app", "applicationCategory": "BusinessApplication", "operatingSystem": "Web"}}</script>
 </head>
 <body data-root="../">
 <a class="skip" href="#main">Skip to content</a>
@@ -59,9 +61,10 @@
       <p class="demo-summary" id="demo-summary">Recorded on the live app with real answers: a cited answer in seconds at two hotels, a hotel rule overriding a loyalty perk, a manager escalation, a refusal with suggestions, and the guidance a first-time visitor sees.</p>
       <details class="transcript"><summary>Read the transcript</summary><p>Hotel Operations Knowledge Assistant: a simulated client project.</p><p>A front-desk agent at Beach Resort asks if a guest can bring their dog. In seconds, a short answer appears, with the source for every fact.</p><p>At Mountain Lodge, the same question gets that hotel's own rules. It never mixes up properties, and related questions are one tap away.</p><p>Here, the loyalty program promises a two p.m. checkout, but this hotel caps weekends at noon. The assistant applies the hotel's rule and shows the exact text.</p><p>A refund over the front-desk limit gets a check-with-a-manager note, quoting the policy.</p><p>When the documents don't say, it refuses instead of guessing. A wrong safety answer is worse than none.</p><p>And instead of a dead end, it suggests close questions it can answer.</p><p>Every new conversation starts with guidance: how to use it, what this demo knows, and good questions to ask.</p><p>Topic chips show example questions for each area, like the spa.</p><p>Managers see what staff ask, how they ask, and which questions point to gaps in the policies.</p><p>Every answer comes only from these documents, all synthetic, for a simulated client.</p><p>It's measured on fifty-four test questions: ninety-eight percent answer accuracy on this live demo, at about seventeen cents per thousand questions.</p><p>Try the live app, or read the code and the decisions. The links are on screen.</p></details>
       <div class="actions">
-        <a class="btn primary" href="https://hotel-ops-assistant.streamlit.app">Try the live app</a>
+        <a class="btn primary" href="https://hotel-ops-assistant.streamlit.app" rel="noopener noreferrer">Try the live app</a>
         <span class="small">Narration: AI voice (Piper, open source) · short captions in the video, full narration captions with the CC button · no sign-in needed</span>
       </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
     </section>
     <span class="eyebrow">Case study · stage 1 of 5</span>
     <h1>Hotel Operations Knowledge Assistant</h1>
@@ -115,7 +118,7 @@
         </ol>
         <figcaption class="small">One question, end to end. Full diagrams in the <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/ARCHITECTURE.md" rel="noopener noreferrer">architecture doc →</a></figcaption>
       </figure>
-      <div class="scroll"><table>
+      <section class="scroll" tabindex="0" aria-label="Real-world mess, handled (table, scrolls sideways)"><table>
         <caption>Real-world mess, handled</caption>
         <thead><tr><th scope="col">Problem in the data</th><th scope="col">How it's handled</th></tr></thead>
         <tbody>
@@ -126,14 +129,14 @@
           <tr><td>A scanned, image-only PDF</td><td>Detected and flagged for OCR; safety questions point to a manager</td></tr>
           <tr><td>A pasted guest email telling the AI to waive fees</td><td>Treated as data, flagged in the document library, tested every run</td></tr>
         </tbody>
-      </table></div>
+      </table></section>
     </div>
   </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">04 · Results</span><h2 id="results-h">Results</h2></div>
       <p>54 labeled questions in 16 categories, including a prompt-injection attack, questions it must refuse, cross-property leaks, wrong facts in the question, off-topic questions and escalation rules. Each setup ran 3 times with Claude Haiku 5.5, measured on 2026-10-10.</p>
-      <div class="scroll"><table>
+      <section class="scroll" tabindex="0" aria-label="Table: Measure (scrolls sideways)"><table>
         <thead><tr><th scope="col">Measure</th><th scope="col" class="n">Live app (keyword-only)</th><th scope="col" class="n">Hybrid (local, Docker)</th></tr></thead>
         <tbody>
           <tr><td>Right passage retrieved (strict)</td><td class="n">98% (44/45)</td><td class="n">98% (44/45)</td></tr>
@@ -146,7 +149,7 @@
           <tr><td>Full answer, 95th percentile</td><td class="n">2.49 s</td><td class="n">2.71 s</td></tr>
           <tr><td>Cost per 1,000 questions</td><td class="n">$0.17</td><td class="n">$0.19</td></tr>
         </tbody>
-      </table></div>
+      </table></section>
       <p><strong>Testing it like a first-time visitor changed the product.</strong> The 54-question eval was written against the documents, so it scored 96–98% while the questions a visitor actually types first (Wi-Fi, the gym, breakfast, “checkout”) were often refused or blocked. I measured 49 such questions first: 43% got a useful result. Filling real content gaps, spelling “check-out” and “checkout” the same way, curated suggestions and friendly handling of greetings and off-topic input took it to 100%, with no regression on the original eval. I wrote those questions myself, so held-out questions from other people come next.</p>
       <p><strong>My grader passed a wrong answer.</strong> “Can a 16-year-old book a facial?” only had to mention “18”, so “Yes, a 16-year-old can book a facial. The spa requires guests to be 18 or older” counted as correct. I fixed the measurement before touching the model.</p>
     </div>
@@ -154,7 +157,7 @@
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
-      <div class="scroll"><table>
+      <section class="scroll" tabindex="0" aria-label="Table: Choice (scrolls sideways)"><table>
         <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
         <tbody>
           <tr><td>Keyword-only search on the free hosting tier</td><td>The embedding model needs about 600 MB of memory; keyword search fits and scores 98% strict retrieval</td><td>Meaning-only questions (“a guest left a jacket”, the Spanish question) need hybrid search, which runs in Docker</td></tr>
@@ -163,7 +166,7 @@
           <tr><td>Refuse rather than guess</td><td>A wrong policy answer turns into a refund or a safety risk</td><td>Some answerable questions are refused; “Did you mean” and topic chips soften it</td></tr>
           <tr><td>Deterministic checks before an LLM judge</td><td>Cheap, repeatable and unit-tested: facts, citations, numbers, refusals</td><td>Word lists have false positives; a judge calibrated on human labels is stage 3</td></tr>
         </tbody>
-      </table></div>
+      </table></section>
     </div>
   </section>
   <section class="section" id="engineering" aria-labelledby="eng-h">
@@ -182,14 +185,14 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
       <p>Projected from stated assumptions and shown as a range, because the inputs are uncertain. Nothing here is a measured saving. The base case assumes 40 policy lookups a day per property, 2.5 minutes saved each, $20 an hour staff cost and one wrong answer a week costing a $75 refund. Only the AI cost per question is measured.</p>
-      <div class="scroll"><table>
+      <section class="scroll" tabindex="0" aria-label="Table: Projected net value per year (scrolls sideways)"><table>
         <thead><tr><th scope="col">Projected net value per year</th><th scope="col" class="n">2 properties</th><th scope="col" class="n">100 properties</th></tr></thead>
         <tbody>
           <tr><td>Pessimistic</td><td class="n">$8,524</td><td class="n">$423,187</td></tr>
           <tr><td><strong>Base</strong></td><td class="n"><strong>$31,887</strong></td><td class="n"><strong>$1,591,375</strong></td></tr>
           <tr><td>Optimistic</td><td class="n">$66,451</td><td class="n">$3,319,562</td></tr>
         </tbody>
-      </table></div>
+      </table></section>
       <p>The result depends most on minutes saved per lookup, so that's the first thing a pilot should measure. <a href="https://github.com/vamsialladev/hotel-ops-assistant/blob/main/docs/BUSINESS_CASE.md" rel="noopener noreferrer">Full business case and pilot plan →</a></p>
     </div>
   </section>
