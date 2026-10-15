@@ -68,18 +68,40 @@
     {
       "stage": 4,
       "name": "Production Deployment",
-      "status": "Next",
-      "summary": "Latency, cost, privacy and monitoring.",
-      "delivers": "Production limits made explicit: latency and cost budgets, personal-data redaction, sign-in and a monitoring dashboard.",
-      "links": []
+      "status": "Live",
+      "summary": "Eval-found gaps fixed, redacted persistent logs, budgets in CI, monitoring.",
+      "delivers": "Both live apps hardened: four gaps the evals found fixed and measured, personal data redacted before storage, a staff role, latency and cost budgets gated in CI, a kill switch and an Operations page.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/production-and-handoff.html"
+        },
+        {
+          "label": "Assistant (live)",
+          "url": "https://hotel-ops-assistant.streamlit.app"
+        },
+        {
+          "label": "Agent (live)",
+          "url": "https://guest-request-agent.streamlit.app"
+        }
+      ]
     },
     {
       "stage": 5,
       "name": "Client Handoff",
-      "status": "Planned",
-      "summary": "Docs and runbooks the team can own.",
-      "delivers": "Architecture docs, decision records, incident runbooks and a recorded walkthrough, so the hotel's own team can run it without me.",
-      "links": []
+      "status": "Live",
+      "summary": "Runbooks, SLOs and guides the team can own.",
+      "delivers": "A handoff package for the hotel group's IT and operations teams: architecture, decision index, eight runbooks, SLOs and budgets, staff and admin guides, a readiness checklist, a 30/60/90-day plan and a daily health check.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/production-and-handoff.html"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/hotel-ai-handoff"
+        }
+      ]
     }
   ]
 }

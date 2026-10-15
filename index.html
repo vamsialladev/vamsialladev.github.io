@@ -87,6 +87,31 @@
       <div class="section-head"><span class="eyebrow">03 · Featured projects</span><h2 id="project-h">Featured projects</h2></div>
       <article class="feature">
         <div class="feature-media">
+          <a href="projects/production-and-handoff.html#demo"><picture><source srcset="assets/img/production-handoff-still-600.webp 600w, assets/img/production-handoff-still-800.webp 800w, assets/img/production-handoff-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/production-handoff-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering a Spanish question about parking in Spanish, with its cited source" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
+          <figure class="slip" aria-label="A real answer from the live assistant">
+            <p class="q">Beach Resort · “¿Cuánto cuesta el estacionamiento?” (blocked before the fix)</p>
+            <p>El estacionamiento es solo con servicio de valet y cuesta $45 por noche, con privilegios de entrada y salida <span class="cite">[1]</span>.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Production &amp; Handoff</h3>
+          <p>Both live apps made ready for a hotel group to run: the gaps the evals found fixed and measured, personal data out of the logs, budgets that fail CI, monitoring that knows “asleep” from “down”, and runbooks their own team can work from.</p>
+          <dl class="stats">
+            <div><dt>67% → 85%</dt><dd>held-out answers on the assistant after the Spanish and emergency fixes (new cases: 62% → 100%)</dd></div>
+            <div><dt>0/6 → 6/6</dt><dd>wrong-inbox emails the agent now answers for the guest's own hotel</dd></div>
+            <div><dt>30 days</dt><dd>log retention, with personal data redacted before anything is stored</dd></div>
+            <div><dt>8</dt><dd>runbooks in the handoff package, plus SLOs, guides and a daily health check</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/production-and-handoff.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/hotel-ai-handoff" rel="noopener noreferrer">Handoff on GitHub →</a>
+          </div>
+          <p class="small wake-note">Free hosting: if an app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
           <a href="projects/eval-harness.html#demo"><picture><source srcset="assets/img/eval-harness-still-800.webp 800w, assets/img/eval-harness-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/eval-harness-still.jpg" alt="The live Eval Harness dashboard: question q13 from the regression demo drilled down to its expected passage and three refused answers" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
           <figure class="slip" aria-label="Real output from the harness's gate">
             <p class="q">A throwaway branch: “send 2 passages instead of 5 to cut input tokens”</p>
@@ -98,7 +123,7 @@
           <h3>Eval Harness</h3>
           <p>Two assistants, each changing: new models, prompts and settings. This harness checks both the same way, with the projects' own metrics, honest intervals and regression gates in CI, and an AI judge that only counts once it agrees with hand labels.</p>
           <dl class="stats">
-            <div><dt>181</dt><dd>labelled cases across both assistants, 20 of them new and held out</dd></div>
+            <div><dt>195</dt><dd>labelled cases across both assistants (181, plus 14 added in stage 4 on Oct 15)</dd></div>
             <div><dt>q13, q35</dt><dd>the questions a top-k 5 → 2 change broke: caught, though the rate stayed inside its interval</dd></div>
             <div><dt>κ 0.29</dt><dd>judge vs my 70 blind hand labels (best rubric), so no judge score is trusted or gated</dd></div>
             <div><dt>$0.41</dt><dd>total API spend; CI re-scores saved runs for free</dd></div>
@@ -124,10 +149,10 @@
           <h3>Guest Request Agent</h3>
           <p>Guest emails mix several requests and sometimes need a manager today. This agent checks the booking, availability and hotel policy, drafts a cited reply and proposes tasks. Staff approve every send, and refunds or upgrades are only ever proposed to a manager.</p>
           <dl class="stats">
-            <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 2 of 2 held out</dd></div>
+            <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 9 of 9 held out (re-run Oct 15)</dd></div>
             <div><dt>100%</dt><dd>prompt injections resisted (6 of 6, every run)</dd></div>
             <div><dt>0</dt><dd>refunds, upgrades or changes promised in the model's drafts</dd></div>
-            <div><dt>$1.30</dt><dd>per 1,000 emails; full draft in 8.4 s at the 95th percentile</dd></div>
+            <div><dt>$1.24</dt><dd>per 1,000 emails; full draft in 8.3 s at the 95th percentile (was $1.30 / 8.4 s; v1.1.0, Oct 15)</dd></div>
           </dl>
           <div class="links">
             <a href="https://guest-request-agent.streamlit.app" rel="noopener noreferrer">Live app →</a>
@@ -150,9 +175,9 @@
           <h3>Hotel Operations Knowledge Assistant</h3>
           <p>Front-desk staff need policy answers in seconds, and the rules differ by hotel. This assistant answers from the right property's documents, cites every fact, and says “check with a manager” when the documents don't.</p>
           <dl class="stats">
-            <div><dt>98%</dt><dd>answer accuracy, live app (keyword search; 97% with hybrid)</dd></div>
-            <div><dt>98%</dt><dd>citation accuracy: cites the right document (both modes)</dd></div>
-            <div><dt>$0.17</dt><dd>per 1,000 questions on the live app ($0.19 with hybrid)</dd></div>
+            <div><dt>100%</dt><dd>answer accuracy, live app, keyword search (98% before the stage 4 fixes; v1.6.0, Oct 15)</dd></div>
+            <div><dt>100%</dt><dd>citation accuracy: cites the right document (98% before; v1.6.0, Oct 15)</dd></div>
+            <div><dt>$0.18</dt><dd>per 1,000 questions on the live app (re-measured Oct 15; was $0.17)</dd></div>
             <div><dt>43% → 100%</dt><dd>first-question success on 49 questions visitors type first</dd></div>
           </dl>
           <div class="links">

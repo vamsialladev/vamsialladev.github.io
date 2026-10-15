@@ -37,7 +37,7 @@
     {"id": "privacy", "title": "Privacy", "url": "privacy.html", "nav": "footer", "published": true,
      "description": "How this site counts visits."}
   ],
-  "sitemap_extra": ["projects/hotel-ops-assistant.html", "projects/guest-request-agent.html", "projects/eval-harness.html"],
+  "sitemap_extra": ["projects/hotel-ops-assistant.html", "projects/guest-request-agent.html", "projects/eval-harness.html", "projects/production-and-handoff.html"],
   "note_categories": ["Evals", "Production AI", "Java & distributed systems", "Career & life"],
   "notes": [
     {"slug": "eval-said-96", "url": "notes/eval-said-96.html", "title": "My eval said 96%. It was wrong.",
