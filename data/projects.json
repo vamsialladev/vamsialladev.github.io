@@ -47,15 +47,28 @@
     {
       "stage": 3,
       "name": "Eval Harness",
-      "status": "Next",
-      "summary": "100+ cases and regression gates.",
-      "delivers": "An evaluation suite with 100+ cases, an LLM judge calibrated against human labels, and regression gates so quality can't drop silently.",
-      "links": []
+      "status": "Live",
+      "summary": "One eval harness for both assistants: 181 cases, gates in CI, a judge checked against hand labels.",
+      "delivers": "One evaluation system for stages 1 and 2: 181 labelled cases, the projects' own metrics, regression gates in both repos' CI, and an LLM judge that counts only once it agrees with hand labels.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/eval-harness.html"
+        },
+        {
+          "label": "Dashboard",
+          "url": "https://eval-harness.streamlit.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/eval-harness"
+        }
+      ]
     },
     {
       "stage": 4,
       "name": "Production Deployment",
-      "status": "Planned",
+      "status": "Next",
       "summary": "Latency, cost, privacy and monitoring.",
       "delivers": "Production limits made explicit: latency and cost budgets, personal-data redaction, sign-in and a monitoring dashboard.",
       "links": []

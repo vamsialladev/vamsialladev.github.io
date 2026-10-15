@@ -4,7 +4,7 @@
   "name": "Vamsi Alla",
   "tagline": "Build · Measure · Ship · Share",
   "footer_line": "Work, writing, and the life around it.",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "sections": [
     {"id": "home", "title": "Home", "url": "index.html", "nav": "main", "published": true,
      "description": "Senior Software Engineer building production AI systems (LLM, RAG, agents)."},
@@ -37,7 +37,7 @@
     {"id": "privacy", "title": "Privacy", "url": "privacy.html", "nav": "footer", "published": true,
      "description": "How this site counts visits."}
   ],
-  "sitemap_extra": ["projects/hotel-ops-assistant.html", "projects/guest-request-agent.html"],
+  "sitemap_extra": ["projects/hotel-ops-assistant.html", "projects/guest-request-agent.html", "projects/eval-harness.html"],
   "note_categories": ["Evals", "Production AI", "Java & distributed systems", "Career & life"],
   "notes": [
     {"slug": "eval-said-96", "url": "notes/eval-said-96.html", "title": "My eval said 96%. It was wrong.",

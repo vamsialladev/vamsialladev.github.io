@@ -88,6 +88,32 @@
       <div class="section-head"><span class="eyebrow">03 · Featured projects</span><h2 id="project-h">Featured projects</h2></div>
       <article class="feature">
         <div class="feature-media">
+          <a href="projects/eval-harness.html#demo"><picture><source srcset="assets/img/eval-harness-still-800.webp 800w, assets/img/eval-harness-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/eval-harness-still.jpg" alt="The live Eval Harness dashboard: question q13 from the regression demo drilled down to its expected passage and three refused answers" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
+          <figure class="slip" aria-label="Real output from the harness's gate">
+            <p class="q">A throwaway branch: “send 2 passages instead of 5 to cut input tokens”</p>
+            <p>FAIL: 4 gate failures against the baseline. Strict retrieval: 2 case(s) passed in every baseline run and now fail: q13, q35.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Eval Harness</h3>
+          <p>Two assistants, each changing: new models, prompts and settings. This harness checks both the same way, with the projects' own metrics, honest intervals and regression gates in CI, and an AI judge that only counts once it agrees with hand labels.</p>
+          <dl class="stats">
+            <div><dt>181</dt><dd>labelled cases across both assistants, 20 of them new and held out</dd></div>
+            <div><dt>q13, q35</dt><dd>the questions a top-k 5 → 2 change broke: caught, though the rate stayed inside its interval</dd></div>
+            <div><dt>κ 0.00</dt><dd>judge vs my 40 hand labels (95% agreement), so no judge score is trusted or gated</dd></div>
+            <div><dt>$0.38</dt><dd>total API spend; CI re-scores saved runs for free</dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Dashboard →</a>
+            <a href="projects/eval-harness.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/eval-harness" rel="noopener noreferrer">GitHub →</a>
+          </div>
+          <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
           <a href="projects/guest-request-agent.html#demo"><picture><source srcset="assets/img/guest-agent-still-800.webp 800w, assets/img/guest-agent-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/guest-agent-still.jpg" alt="The live Guest Request Agent's step timeline for a guest email: booking found, three policy searches cited, two tasks proposed and checks passed" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
           <figure class="slip" aria-label="A real draft from the agent">
             <p class="q">Beach Resort · Elena asks about her dog, a late check-out on Monday and an airport pickup</p>
