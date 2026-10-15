@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- DRAFT: not in data/site.json, the sitemap, the feed or Home. Publish only after "approve note". -->
+<meta name="robots" content="noindex, nofollow">
+<title>My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla</title>
+<meta name="description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<link rel="canonical" href="https://vamsialla.com/notes/agreement-is-not-evidence.html">
+<meta property="og:title" content="My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla">
+<meta property="og:description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vamsialla.com/notes/agreement-is-not-evidence.html">
+<meta property="og:site_name" content="Vamsi Alla">
+<meta property="og:image" content="https://vamsialla.com/assets/og-eval-harness.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla">
+<meta name="twitter:description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<meta name="twitter:image" content="https://vamsialla.com/assets/og-eval-harness.png">
+<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
+</head>
+<body data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="../index.html"><span class="brand-name">Vamsi Alla</span><span class="brand-tag">Build · Measure · Ship · Share</span></a>
+    <button class="icon-btn theme-btn" type="button" aria-label="Switch color theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul><!--s:nav--><li><a href="../index.html">Home</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../projects.html">Projects</a></li><li><a href="../notes.html" aria-current="page">Notes</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li class="more"><span class="more-title" aria-hidden="true">More</span><button class="more-btn" type="button" aria-expanded="false" aria-controls="more-menu">More<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><ul id="more-menu" class="more-menu"><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li></ul></li><!--/s:nav--></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <article class="hero">
+    <div class="narrow post">
+      <p class="small"><a class="arrow-link" href="../notes.html">← All notes</a></p>
+      <span class="eyebrow">Evals</span>
+      <h1>My LLM judge agreed with me 95% of the time. It proved nothing.</h1>
+      <p class="lede">I labelled 40 replies by hand to check an AI judge. Agreement was 95% and Cohen's kappa was 0.00. Why both numbers are true, and what I'd do differently.</p>
+      <p class="small"><time datetime="2026-10-15">October 15, 2026</time> · 4 min read · Evals</p>
+
+<h2>The setup</h2>
+<p>My third portfolio project is an evaluation harness for two AI assistants I built for a fictional hotel group: one answers front-desk staff's policy questions, the other drafts replies to guest emails. The harness checks both the same way, with labelled cases, the projects' own metrics and regression gates in CI. The hotel, the guests and the documents are all synthetic.</p>
+<p>Most of what it measures is deterministic. Does the answer contain the right fee? Is every number in a cited passage? Did the email that mentions an injury go to a manager? Code can check those, cheaply and the same way every time.</p>
+<p>Some things code can't check: is the reply complete, is the tone right for a guest, is it clear? For those I added an LLM judge, Claude Haiku 5.5 with a versioned rubric that asks for a pass or fail and a short reason for each of the three. The rule I set before writing any of it: a judge metric only counts if it agrees with human labels beyond chance, measured by Cohen's kappa of at least 0.6. Otherwise it's reported as "not trusted" and never gates a release.</p>
+
+<h2>The labels</h2>
+<p>I sampled 40 replies: 20 from each assistant, split across completeness, tone and clarity. Because most replies are fine, a random sample would have had almost no failures, so I stratified: about half came from outputs that a deterministic check had already flagged, including earlier development runs and an older model. Then I labelled them on a small local page, one click each, without seeing the judge's verdicts.</p>
+<p>I passed all 40.</p>
+
+<h2>The numbers</h2>
+<p>The judge passed 38 and failed 2, both on clarity. One was the staff assistant's fixed refusal, "I couldn't find this in the hotel's documents. Please check with a manager." The judge called it vague. The other was a guest draft that repeated its hand-off-to-a-manager sentence almost word for word.</p>
+<p>So the judge agreed with me on 38 of 40: 95%. That sounds like a judge you could use.</p>
+<p>Cohen's kappa was 0.00. For completeness and tone, where we agreed on every item, it was undefined.</p>
+<p>Kappa asks how much better than chance two raters agree. If I pass everything, a judge that also passes everything agrees with me 100% of the time without reading a word. Chance agreement here was already 95%, because both of us said "pass" almost every time. The judge matched it and added nothing. With no failures in my labels, there was nothing for it to agree with me about.</p>
+
+<h2>What I tried, and stopped</h2>
+<p>I allowed myself at most two rubric revisions, scored on the same recorded replies with no new labels. The first one told the judge that the fixed refusal sentence is the honest, clear answer when the documents are silent. That item flipped to pass. A different item, a reply the judge had passed before, now failed. Agreement: still 95%. Kappa: still 0.00.</p>
+<p>Before blaming the rubric, I ran the same 40 prompts through the judge twice more. Haiku 5.5 doesn't accept a temperature setting, so its verdicts can't be pinned. It gave the same verdict on 39 of 40; the item that had just flipped flipped again. A one-item change after a rubric edit was within the judge's own noise.</p>
+<p>I stopped there. With zero human failures, no wording could reach a kappa of 0.6, and a second revision tuned to these 40 labels would only have taught the rubric to agree with me on this sample. So no judge score is trusted, and none is a gate. The dashboard says so.</p>
+
+<h2>Who's right about clarity?</h2>
+<p>On full runs of both assistants, the judge fails 13–17% of replies on clarity. I passed every clarity item I labelled. Either the judge is stricter than me, or I was generous. The calibration can't say which, because it never saw a reply I thought was unclear.</p>
+<p>The duplicated sentence is the honest example. The judge failed it in every pass. I'd passed it. Looking again, a guest reading the same sentence twice would notice. I didn't change my label: the labels are the ground truth for this run, and a label I edit after seeing the judge's answer isn't one.</p>
+
+<h2>What I'd do differently</h2>
+<ul>
+  <li><strong>Seed real failures into the calibration set.</strong> Stratifying on deterministic flags gave me replies with wrong facts, not badly written ones. The qualities a judge is for need their own bad examples: a curt reply, a buried answer, a missed request.</li>
+  <li><strong>Report kappa next to agreement, always.</strong> 95% agreement and 0.00 kappa describe the same 40 labels. Only one of them tells you whether the judge is useful.</li>
+  <li><strong>Measure the judge against itself</strong> before reading meaning into a change after a rubric edit.</li>
+  <li><strong>Get a second labeler.</strong> How often two people agree is the ceiling for any judge.</li>
+</ul>
+<p>The deterministic gates did their job: on a throwaway branch, a change that sent two passages instead of five to save tokens was caught, naming the two questions it broke. The judge is the part that needs better evidence before it counts.</p>
+<p class="small">Everything here is in the project's repository: the 40 labels, both rubric versions, the judge's verdicts and the calibration numbers.</p>
+<p><a class="arrow-link" href="https://github.com/vamsialladev/eval-harness">The repository →</a><br><a class="arrow-link" href="../projects/eval-harness.html">The case study →</a></p>
+
+      <p class="sign-off">Have a question about this? <a href="mailto:vamsialla.dev@gmail.com">Email me</a> or find me on <a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a>.</p>
+      <p class="updated"><a class="arrow-link" href="../notes.html">← All notes</a></p>
+    </div>
+  </article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-line">Work, writing, and the life around it.</p>
+    <ul class="footer-pages"><!--s:footer-pages--><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li><!--/s:footer-pages--></ul>
+    <ul>
+      <li>© <span data-year>2026</span> Vamsi Alla</li>
+      <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://vamsialla.com/feed.xml">RSS</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+    </ul>
+    <p>Projects use a simulated hotel group and synthetic data.</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
