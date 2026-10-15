@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:05.020 line:6% position:50% align:center
+Eval Harness: a simulated client project, part three of five.
+
+00:00:05.370 --> 00:00:14.810 line:6% position:50% align:center
+One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.
+
+00:00:15.210 --> 00:00:22.590 line:6% position:50% align:center
+It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.
+
+00:00:23.040 --> 00:00:29.180 line:6% position:50% align:center
+Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens.
+
+00:00:29.180 --> 00:00:34.120 line:6% position:50% align:center
+Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.
+
+00:00:34.570 --> 00:00:39.450 line:6% position:50% align:center
+The gate still failed, because two questions that always passed now always fail.
+
+00:00:39.450 --> 00:00:40.850 line:6% position:50% align:center
+The message names them.
+
+00:00:40.850 --> 00:00:42.560 line:6% position:50% align:center
+The branch was never merged.
+
+00:00:43.010 --> 00:00:46.440 line:6% position:50% align:center
+Here is one: a spa question about a sixteen-year-old.
+
+00:00:46.440 --> 00:00:50.120 line:6% position:50% align:center
+The right passage dropped out, and every metric shows it.
+
+00:00:54.850 --> 00:00:57.140 line:6% position:50% align:center
+An AI judge rates tone and clarity.
+
+00:00:57.140 --> 00:00:59.310 line:6% position:50% align:center
+I labelled forty replies by hand.
+
+00:00:59.310 --> 00:01:07.040 line:6% position:50% align:center
+It agreed ninety-five percent of the time, but kappa was zero: my labels had no failures, so agreement proved nothing.
+
+00:01:07.040 --> 00:01:10.050 line:6% position:50% align:center
+No judge score is trusted, and none is a gate.
+
+00:01:10.520 --> 00:01:14.000 line:6% position:50% align:center
+The code, the reports and every decision are linked on screen.
