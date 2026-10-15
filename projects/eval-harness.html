@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Eval Harness | Case study | Vamsi Alla</title>
+<meta name="description" content="Independent, simulated engagement with synthetic data: one evaluation harness for two AI assistants, with 181 labelled cases, regression gates in CI and an LLM judge checked against hand labels. It caught a realistic retrieval regression.">
+<link rel="canonical" href="https://vamsialla.com/projects/eval-harness.html">
+<meta property="og:title" content="Eval Harness | Case study | Vamsi Alla">
+<meta property="og:description" content="Independent, simulated engagement with synthetic data: one evaluation harness for two AI assistants, with 181 labelled cases, regression gates in CI and an LLM judge checked against hand labels. It caught a realistic retrieval regression.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vamsialla.com/projects/eval-harness.html">
+<meta property="og:site_name" content="Vamsi Alla">
+<meta property="og:image" content="https://vamsialla.com/assets/og-eval-harness.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eval Harness | Case study | Vamsi Alla">
+<meta name="twitter:description" content="Independent, simulated engagement with synthetic data: one evaluation harness for two AI assistants, with 181 labelled cases, regression gates in CI and an LLM judge checked against hand labels. It caught a realistic retrieval regression.">
+<meta name="twitter:image" content="https://vamsialla.com/assets/og-eval-harness.png">
+<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preconnect" href="https://gc.zgo.at">
+<link rel="preconnect" href="https://vamsialla.goatcounter.com">
+<link rel="preload" as="image" href="../videos/eval-harness-demo-poster.webp" fetchpriority="high">
+<link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Eval Harness", "description": "Independent, simulated engagement with synthetic data: one evaluation harness for two AI assistants, with labelled cases, regression gates in CI and an LLM judge checked against hand labels.", "url": "https://vamsialla.com/projects/eval-harness.html", "codeRepository": "https://github.com/vamsialladev/eval-harness", "programmingLanguage": "Python", "runtimePlatform": "Streamlit", "license": "https://opensource.org/licenses/MIT", "version": "1.0.0", "dateModified": "2026-10-15", "image": "https://vamsialla.com/assets/og-eval-harness.png", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/", "jobTitle": "Senior Software Engineer"}, "targetProduct": {"@type": "SoftwareApplication", "name": "Eval Harness dashboard", "url": "https://eval-harness.streamlit.app", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web"}}</script>
+</head>
+<body data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="../index.html"><span class="brand-name">Vamsi Alla</span><span class="brand-tag">Build · Measure · Ship · Share</span></a>
+    <button class="icon-btn theme-btn" type="button" aria-label="Switch color theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul><!--s:nav--><li><a href="../index.html">Home</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li class="more"><span class="more-title" aria-hidden="true">More</span><button class="more-btn" type="button" aria-expanded="false" aria-controls="more-menu">More<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><ul id="more-menu" class="more-menu"><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li></ul></li><!--/s:nav--></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="narrow">
+    <p class="crumb"><a href="../projects.html">Projects</a> › Eval Harness</p>
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo</h2>
+      <video controls playsinline preload="none" poster="../videos/eval-harness-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/eval-harness-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/eval-harness-demo.vtt" srclang="en" label="English (narration)">
+        <a href="../videos/eval-harness-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="demo-summary" id="demo-summary">Recorded on the live dashboard: both assistants' gates, a regression caught, a failing case, and the judge checked against hand labels.</p>
+      <details class="transcript"><summary>Read the transcript</summary><p>Eval Harness: a simulated client project, part three of five.</p><p>One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.</p><p>It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.</p><p>Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens. Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.</p><p>The gate still failed, because two questions that always passed now always fail. The message names them. The branch was never merged.</p><p>Here is one: a spa question about a sixteen-year-old. The right passage dropped out, and every metric shows it.</p><p>An AI judge rates tone and clarity. I labelled forty replies by hand. It agreed ninety-five percent of the time, but kappa was zero: my labels had no failures, so agreement proved nothing. No judge score is trusted, and none is a gate.</p><p>The code, the reports and every decision are linked on screen.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Open the live dashboard</a>
+        <span class="small">Narration: AI voice (Piper, open source) · captions with the CC button · read-only, no sign-in</span>
+      </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    </section>
+    <span class="eyebrow">Case study · stage 3 of 5</span>
+    <h1>Eval Harness</h1>
+    <p class="lede">One evaluation system for both of the hotel group's AI assistants: the same cases, metrics, statistics and regression gates, so a prompt, model or retrieval change can't lower quality without a red check.</p>
+    <p class="note">Independent project: a simulated client engagement for the same fictional hotel group as stages 1 and 2. Documents, guests and emails are synthetic. Every number below comes from a saved run in the repo; the business figures are projections from stated assumptions.</p>
+    <div class="actions"><a class="btn" href="https://github.com/vamsialladev/eval-harness" rel="noopener noreferrer">View the code</a><a class="btn" href="https://github.com/vamsialladev/eval-harness/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">Decision log</a></div>
+  </div>
+  <section class="section" id="problem" aria-labelledby="problem-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">01 · Problem</span><h2 id="problem-h">Why evals rot</h2></div>
+      <p>Both assistants were measured carefully when they shipped. Then the changes start: a cheaper model, a shorter prompt, “send 2 passages instead of 5 to save tokens”. Each change is reasonable, and each project had its own eval scripts, its own report format and nothing in CI that would fail.</p>
+      <p>One of those changes quietly stops the staff assistant from finding the spa's age rule. Nobody notices until a front-desk agent books a 16-year-old for a facial.</p>
+    </div>
+  </section>
+  <section class="section" id="approach" aria-labelledby="approach-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">02 · Approach</span><h2 id="approach-h">The approach</h2></div>
+      <ul>
+        <li><strong>One case bank:</strong> 181 labelled cases. 161 imported from both projects without changing what they test; 20 new held-out cases where coverage was thin (cross-property leaks, Spanish, a superseded document, injections, safety wording).</li>
+        <li><strong>Recorded first:</strong> saved outputs are re-scored with no API call, so CI is free and the same every time. Live mode runs a project's real pipeline at a pinned commit.</li>
+        <li><strong>The projects' own metrics:</strong> copied byte for byte at the pinned commits, behind one registry, so the harness reproduces both projects' published numbers from the same recordings.</li>
+        <li><strong>Honest statistics:</strong> a 95% interval on every rate, counted over distinct cases; repeated runs to find flaky cases.</li>
+        <li><strong>Gates that name names:</strong> hard 100% gates for escalation, prompt injection and forbidden promises, floors, the baseline interval, and any case that always passed and now always fails.</li>
+        <li><strong>A judge only where code can't judge:</strong> completeness, tone and clarity, trusted only if it agrees with my hand labels beyond chance.</li>
+      </ul>
+      <figure class="shot"><picture><source srcset="../assets/img/eh-overview-600.webp 600w, ../assets/img/eh-overview-800.webp 800w, ../assets/img/eh-overview.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-overview.png" alt="The dashboard overview: Project 1's latest run gated against its baseline, 8 of 8 gated checks passing, 116 cases, p95 3.3 s, $0.17 per 1,000" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>The read-only dashboard: each assistant's latest run against its baseline.</figcaption></figure>
+    </div>
+  </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>Cases<span class="why">One schema for both projects; dev, held-out and visitor splits.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Runners<span class="why">Recorded outputs by default; or the real pipeline at a pinned commit, exported so the checkout is never touched.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Metrics + judge<span class="why">The projects' own deterministic checks; an LLM judge only for completeness, tone and clarity.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Statistics<span class="why">Wilson intervals, run-to-run consistency, flaky cases, categories.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Gates<span class="why">Candidate vs baseline: hard 100%, floors, the interval, stable flips.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Dashboard and CI<span class="why">Reports in the repo, a read-only dashboard, and one CI job in each project's repo.</span></li>
+        </ol>
+        <figcaption class="small">From a labelled case to a red or green check. Full diagrams in the <a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/ARCHITECTURE.md" rel="noopener noreferrer">architecture doc →</a></figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="results" aria-labelledby="results-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · Results</span><h2 id="results-h">Results</h2></div>
+      <p>From the projects' own recordings, the harness reproduces their published numbers exactly: stage 1 at 98% answer accuracy and 27 of 27 correct refusals, stage 2 at 100% on escalation, injection and forbidden promises. Then it re-ran both live at their pinned versions, 3 runs each, on 2026-10-14.</p>
+      <section class="scroll" tabindex="0" aria-label="Table: fresh re-runs at the pinned versions (scrolls sideways)"><table>
+        <caption>Fresh re-runs at the pinned versions (95% interval over cases)</caption>
+        <thead><tr><th scope="col">Measure</th><th scope="col" class="n">Stage 1, 54 questions</th><th scope="col" class="n">Stage 2, 40 emails</th></tr></thead>
+        <tbody>
+          <tr><td>Gate against the saved baseline</td><td class="n">Pass</td><td class="n">Pass</td></tr>
+          <tr><td>Hard gates: escalation, injection, no promises</td><td class="n">100%</td><td class="n">100%</td></tr>
+          <tr><td>Answer accuracy / requests found</td><td class="n">98% (90–100%)</td><td class="n">100% (91–100%)</td></tr>
+          <tr><td>Strict retrieval / facts grounded</td><td class="n">98% (88–100%)</td><td class="n">100% (91–100%)</td></tr>
+          <tr><td>Expected source cited</td><td class="n">98% (88–100%)</td><td class="n">94% (72–99%)</td></tr>
+          <tr><td>Same verdict in all 3 runs</td><td class="n">98%</td><td class="n">90%</td></tr>
+          <tr><td>Median / 95th percentile</td><td class="n">1.6 s / 3.3 s</td><td class="n">4.3 s / 8.9 s</td></tr>
+          <tr><td>Cost per 1,000</td><td class="n">$0.17</td><td class="n">$1.30</td></tr>
+        </tbody>
+      </table></section>
+      <p><strong>The 20 new held-out cases found real gaps, reported rather than tuned away.</strong> Stage 1 answered 67% of its 13 correctly (interval 40–86%): Spanish questions are blocked before they reach the model, injected text pushed the resort-fee passage out of the search results, and the safety rule misses “smoke coming from under a door” and “incendio”. Stage 2's 7 new emails kept escalation and injection at 100%.</p>
+    </div>
+  </section>
+  <section class="section" id="judge" aria-labelledby="judge-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">05 · The judge</span><h2 id="judge-h">The judge calibration story</h2></div>
+      <p>An LLM judge (Claude Haiku 5.5, versioned rubric, structured output) rates completeness, tone and clarity. Before any of its numbers count, I labelled 40 stratified replies by hand, pass or fail, without seeing its verdicts.</p>
+      <p><strong>I passed all 40.</strong> The judge agreed on 38: 95% agreement, which sounds good. Cohen's kappa was 0.00. With no failures in my labels, agreement can't be told apart from a judge that always says “pass”. So no judge metric is trusted, and none is a gate.</p>
+      <ul>
+        <li>One rubric revision fixed the item it targeted (stage 1's fixed “couldn't find this, check with a manager” sentence is clear, not vague). Agreement stayed 95%, kappa 0.00. A second revision could only have fitted these 40 labels.</li>
+        <li>Judging the same 40 prompts three times, the judge changed its verdict on one item: a disagreement that comes and goes on identical input is noise.</li>
+        <li>On the full re-runs the judge fails 13–17% of replies on clarity, stricter than my labels. Which of us is right needs labels that contain real failures.</li>
+      </ul>
+      <figure class="shot"><picture><source srcset="../assets/img/eh-calibration-600.webp 600w, ../assets/img/eh-calibration-800.webp 800w, ../assets/img/eh-calibration.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-calibration.png" alt="The Judge calibration page: 40 hand labels, 95% agreement, Cohen's kappa 0.00, rubric v2, and a confusion matrix with 2 judge-only fails" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>95% agreement, kappa 0.00: the labels held no failures to agree on.</figcaption></figure>
+    </div>
+  </section>
+  <section class="section" id="regression" aria-labelledby="regression-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">06 · Caught</span><h2 id="regression-h">The regression it caught</h2></div>
+      <p>On a throwaway branch I made a realistic change to stage 1: send 2 retrieved passages instead of 5, to cut input tokens. Strict retrieval fell from 98% to 93%, which is still inside the baseline's interval (88–100%). An interval-only gate would have passed it.</p>
+      <p>The harness failed it anyway: two questions passed in every baseline run and failed in every run after the change, q13 (“Can a 16 year old book a facial?”) and q35. In recorded mode (saved answers, retrieval recomputed, no API) 1 gate failed; in live mode 4 did, each naming the cases. The branch was deleted, never pushed and never merged.</p>
+      <figure class="shot"><picture><source srcset="../assets/img/eh-gate-fail-600.webp 600w, ../assets/img/eh-gate-fail-800.webp 800w, ../assets/img/eh-gate-fail.webp 1800w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-gate-fail.png" alt="hoteleval gate on the regression demo run: FAIL, 4 gate failures, each naming q13 and q35" width="1800" height="816" loading="lazy" decoding="async"></picture><figcaption>The real gate output, naming the questions that flipped.</figcaption></figure>
+      <figure class="shot"><picture><source srcset="../assets/img/eh-case-600.webp 600w, ../assets/img/eh-case-800.webp 800w, ../assets/img/eh-case.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-case.png" alt="The Cases page: q13 in the demo run, the expected passage about age 18, and three runs that each refused" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>q13 drilled down: the age rule dropped out of the search results, so every run refused.</figcaption></figure>
+    </div>
+  </section>
+  <section class="section" id="lessons" aria-labelledby="lessons-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">07 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <ul>
+        <li><strong>Agreement isn't evidence.</strong> 95% agreement with kappa 0.00 meant my sample had nothing to disagree about. Sampling replies a deterministic check had flagged gave me wrong facts, not badly written replies.</li>
+        <li><strong>An interval alone misses small, real regressions.</strong> Two lost questions out of 45 stay inside it; “always passed, now always fails” caught them.</li>
+        <li><strong>Re-running unchanged code failed the gate.</strong> One model miss in a 3-case group broke a 90% floor. Floors now need 10 or more cases.</li>
+        <li><strong>The graders were wrong four times:</strong> a cited policy description read as a promise, two correct injection rejections, and a Spanish “50 $”. Each fix is a test with the exact sentence.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">08 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
+        <caption>Trade-offs</caption>
+        <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
+        <tbody>
+          <tr><td>Copy each project's metric code at a pinned commit</td><td>One definition per metric; published numbers reproduce exactly</td><td>A project fix reaches the harness only when the pin moves</td></tr>
+          <tr><td>Recorded mode by default</td><td>Free, deterministic CI</td><td>A model change needs a live run to be measured</td></tr>
+          <tr><td>Intervals over distinct cases</td><td>Three runs of one question aren't three samples</td><td>Wide intervals on small groups, shown rather than hidden</td></tr>
+          <tr><td>Stable flips fail a build</td><td>Catches the small, real regression an interval misses</td><td>One real flip on a model metric can be noise; the message names it for a person</td></tr>
+          <tr><td>The judge never gates until trusted</td><td>An unverified judge would gate on its own opinion</td><td>No automated tone or clarity score yet</td></tr>
+        </tbody>
+      </table></section>
+    </div>
+  </section>
+  <section class="section" id="engineering" aria-labelledby="eng-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">09 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
+      <ul>
+        <li><strong>Tests:</strong> 86 tests at 93% coverage, including every metric passing and failing, kappa and interval math, gates, the judge with a stand-in model, and every dashboard page.</li>
+        <li><strong>CI:</strong> lint and format, a dependency audit, a 90% coverage gate, recorded-mode gates and a re-score of every saved report. Stages 1 and 2 each gained one CI job that installs the harness at v1.0.0; their own tests and numbers are unchanged.</li>
+        <li><strong>Cost:</strong> the whole project's API spend was $0.38: two live re-runs, the demo and 318 judge calls.</li>
+        <li><strong>Decisions:</strong> 19 recorded, each with context, trade-off and result. <a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">Decision log →</a></li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="value" aria-labelledby="value-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">10 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
+      <p>Projected from stated assumptions and shown as a range; nothing here is a measured saving. The base case assumes 4 changes a month per assistant, 3 hours to evaluate one by hand against 30 minutes with the harness, $90 an hour, and one shipped regression a quarter. Only the API cost of a full re-run ($0.29) is measured.</p>
+      <section class="scroll" tabindex="0" aria-label="Table: projected net value per year (scrolls sideways)"><table>
+        <caption>Projected net value per year, two assistants</caption>
+        <thead><tr><th scope="col">Scenario</th><th scope="col" class="n">Net value</th></tr></thead>
+        <tbody>
+          <tr><td>Pessimistic</td><td class="n">$1,493</td></tr>
+          <tr><td><strong>Base</strong></td><td class="n"><strong>$26,273</strong></td></tr>
+          <tr><td>Optimistic</td><td class="n">$67,613</td></tr>
+        </tbody>
+      </table></section>
+      <p><a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/BUSINESS_CASE.md" rel="noopener noreferrer">Full business case, pilot plan and go / no-go KPIs →</a></p>
+    </div>
+  </section>
+  <section class="section" id="next" aria-labelledby="next-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <ul>
+        <li>Calibration labels that contain real failures, and a second labeler</li>
+        <li>Held-out questions and emails written by front-desk staff</li>
+        <li>Stage 4, Production Deployment: run history in a database, monitoring, sign-in and personal-data redaction</li>
+      </ul>
+      <p><a class="arrow-link" href="../projects.html#stages">See all five stages →</a></p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-line">Work, writing, and the life around it.</p>
+    <ul class="footer-pages"><!--s:footer-pages--><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li><!--/s:footer-pages--></ul>
+    <ul>
+      <li>© <span data-year>2026</span> Vamsi Alla</li>
+      <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://vamsialla.com/feed.xml">RSS</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+    </ul>
+    <p>Projects use a simulated hotel group and synthetic data.</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+<script>(function(){var skip=false;try{if(location.hash==='#toggle-goatcounter'){if(localStorage.getItem('skipgc')){localStorage.removeItem('skipgc');alert('GoatCounter: visits from this browser are counted again.');}else{localStorage.setItem('skipgc','t');alert('GoatCounter: visits from this browser are no longer counted.');}}skip=!!localStorage.getItem('skipgc');}catch(e){}var local=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);if(skip||local||navigator.doNotTrack==='1'){window.goatcounter={no_onload:true};}})();</script>
+<script data-goatcounter="https://vamsialla.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
