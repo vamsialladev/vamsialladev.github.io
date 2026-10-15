@@ -16,12 +16,12 @@
 <meta property="og:image" content="https://vamsialla.com/assets/og-eval-harness.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.29 against 70 hand labels (not trusted), $0.41 total API spend">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Eval Harness | Case study | Vamsi Alla">
 <meta name="twitter:description" content="Independent, simulated engagement with synthetic data: one evaluation harness for two AI assistants, with 181 labelled cases, regression gates in CI and an LLM judge checked against hand labels. It caught a realistic retrieval regression.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-eval-harness.png">
-<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.29 against 70 hand labels (not trusted), $0.41 total API spend">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
@@ -59,8 +59,8 @@
         <track kind="captions" src="../videos/eval-harness-demo.vtt" srclang="en" label="English (narration)">
         <a href="../videos/eval-harness-demo.mp4">Download the demo video (MP4)</a>
       </video>
-      <p class="demo-summary" id="demo-summary">Recorded on the live dashboard: both assistants' gates, a regression caught, a failing case, and the judge checked against hand labels.</p>
-      <details class="transcript"><summary>Read the transcript</summary><p>Eval Harness: a simulated client project, part three of five.</p><p>One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.</p><p>It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.</p><p>Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens. Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.</p><p>The gate still failed, because two questions that always passed now always fail. The message names them. The branch was never merged.</p><p>Here is one: a spa question about a sixteen-year-old. The right passage dropped out, and every metric shows it.</p><p>An AI judge rates tone and clarity. I labelled forty replies by hand. It agreed ninety-five percent of the time, but kappa was zero: my labels had no failures, so agreement proved nothing. No judge score is trusted, and none is a gate.</p><p>The code, the reports and every decision are linked on screen.</p></details>
+      <p class="demo-summary" id="demo-summary">Recorded on the live dashboard: both assistants' gates, a regression caught, a failing case, and the judge checked against 70 hand labels.</p>
+      <details class="transcript"><summary>Read the transcript</summary><p>Eval Harness: a simulated client project, part three of five.</p><p>One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.</p><p>It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.</p><p>Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens. Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.</p><p>The gate still failed, because two questions that always passed now always fail. The message names them. The branch was never merged.</p><p>Here is one: a spa question about a sixteen-year-old. The right passage dropped out, and every metric shows it.</p><p>An AI judge rates tone and clarity. I labelled seventy replies by hand, in two blind rounds, the second one full of failures on purpose. Its best kappa was point two nine, well under the bar of point six. So no judge score is trusted, and none is a gate.</p><p>The code, the reports and every decision are linked on screen.</p></details>
       <div class="actions">
         <a class="btn primary" href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Open the live dashboard</a>
         <span class="small">Narration: AI voice (Piper, open source) · captions with the CC button · read-only, no sign-in</span>
@@ -139,14 +139,24 @@
   <section class="section" id="judge" aria-labelledby="judge-h">
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">05 · The judge</span><h2 id="judge-h">The judge calibration story</h2></div>
-      <p>An LLM judge (Claude Haiku 5.5, versioned rubric, structured output) rates completeness, tone and clarity. Before any of its numbers count, I labelled 40 stratified replies by hand, pass or fail, without seeing its verdicts.</p>
-      <p><strong>I passed all 40.</strong> The judge agreed on 38: 95% agreement, which sounds good. Cohen's kappa was 0.00. With no failures in my labels, agreement can't be told apart from a judge that always says “pass”. So no judge metric is trusted, and none is a gate.</p>
+      <p>An LLM judge (Claude Haiku 5.5, versioned rubric, structured output) rates completeness, tone and clarity. Before any of its numbers count, I label replies by hand, blind, pass or fail. A judge metric counts only at Cohen's kappa ≥ 0.6 on all my labels; even then it is never a gate.</p>
+      <p><strong>Round 1: I passed all 40.</strong> The judge agreed on 38: 95% agreement, but kappa 0.00. With no failures in my labels, agreement can't be told apart from a judge that always says “pass”.</p>
+      <p><strong>Round 2 was enriched with failures on purpose:</strong> 15 real replies the judge had failed and 15 I degraded by hand (robotic, cold, rambling, jargon, a request dropped), shuffled, with nothing on screen to tell them apart. I failed 6 of 30; the judge failed all 30. Because the round was built to contain failures, its kappa isn't what everyday traffic would give.</p>
+      <section class="scroll" tabindex="0" aria-label="Table: judge calibration by rubric version (scrolls sideways)"><table>
+        <caption>Judge vs 70 hand labels (round 2 enriched with failures)</caption>
+        <thead><tr><th scope="col">Rubric</th><th scope="col" class="n">Kappa, all 70</th><th scope="col" class="n">Kappa, round 2</th><th scope="col" class="n">Tone / clarity / completeness</th><th scope="col">Trusted</th></tr></thead>
+        <tbody>
+          <tr><td>v1</td><td class="n">0.22</td><td class="n">0.04</td><td class="n">0.30 / 0.19 / 0.00</td><td>None</td></tr>
+          <tr><td>v2</td><td class="n">0.20</td><td class="n">0.00</td><td class="n">0.30 / 0.14 / 0.00</td><td>None</td></tr>
+          <tr><td>v3 (in use)</td><td class="n">0.29</td><td class="n">0.13</td><td class="n">0.51 / 0.23 / 0.00</td><td>None</td></tr>
+        </tbody>
+      </table></section>
       <ul>
-        <li>One rubric revision fixed the item it targeted (stage 1's fixed “couldn't find this, check with a manager” sentence is clear, not vague). Agreement stayed 95%, kappa 0.00. A second revision could only have fitted these 40 labels.</li>
+        <li>The judge caught every reply I failed, but failed many I passed: it is far stricter than I am. I passed 11 of the 15 replies I had degraded myself, so my own standard needs written examples too.</li>
+        <li>v3 raised the bar for “fail” to “the reader would be confused, misled, left unanswered or put off”. It was revised on these same labels, so its numbers are optimistic, and I stopped there rather than nudge tone over 0.6.</li>
         <li>Judging the same 40 prompts three times, the judge changed its verdict on one item: a disagreement that comes and goes on identical input is noise.</li>
-        <li>On the full re-runs the judge fails 13–17% of replies on clarity, stricter than my labels. Which of us is right needs labels that contain real failures.</li>
       </ul>
-      <figure class="shot"><picture><source srcset="../assets/img/eh-calibration-600.webp 600w, ../assets/img/eh-calibration-800.webp 800w, ../assets/img/eh-calibration.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-calibration.png" alt="The Judge calibration page: 40 hand labels, 95% agreement, Cohen's kappa 0.00, rubric v2, and a confusion matrix with 2 judge-only fails" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>95% agreement, kappa 0.00: the labels held no failures to agree on.</figcaption></figure>
+      <figure class="shot"><picture><source srcset="../assets/img/eh-calibration-600.webp 600w, ../assets/img/eh-calibration-800.webp 800w, ../assets/img/eh-calibration.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-calibration.png" alt="The Judge calibration page: 70 hand labels in two rounds, 81% agreement, Cohen's kappa 0.29 with rubric v3, and every judge metric marked not trusted" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>70 blind labels, best kappa 0.29: no judge score is trusted or used as a gate.</figcaption></figure>
     </div>
   </section>
   <section class="section" id="regression" aria-labelledby="regression-h">
@@ -162,7 +172,7 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">07 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <ul>
-        <li><strong>Agreement isn't evidence.</strong> 95% agreement with kappa 0.00 meant my sample had nothing to disagree about. Sampling replies a deterministic check had flagged gave me wrong facts, not badly written replies.</li>
+        <li><strong>Agreement isn't evidence.</strong> 95% agreement with kappa 0.00 meant my first sample had nothing to disagree about. A second round built to contain failures gave kappa 0.20–0.29: the judge is much stricter than I am, and I passed most of the replies I had degraded myself.</li>
         <li><strong>An interval alone misses small, real regressions.</strong> Two lost questions out of 45 stay inside it; “always passed, now always fails” caught them.</li>
         <li><strong>Re-running unchanged code failed the gate.</strong> One model miss in a 3-case group broke a 90% floor. Floors now need 10 or more cases.</li>
         <li><strong>The graders were wrong four times:</strong> a cited policy description read as a promise, two correct injection rejections, and a Spanish “50 $”. Each fix is a test with the exact sentence.</li>
@@ -189,10 +199,10 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">09 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
-        <li><strong>Tests:</strong> 86 tests at 93% coverage, including every metric passing and failing, kappa and interval math, gates, the judge with a stand-in model, and every dashboard page.</li>
+        <li><strong>Tests:</strong> 87 tests at 93% coverage, including every metric passing and failing, kappa and interval math, gates, the judge with a stand-in model, and every dashboard page.</li>
         <li><strong>CI:</strong> lint and format, a dependency audit, a 90% coverage gate, recorded-mode gates and a re-score of every saved report. Stages 1 and 2 each gained one CI job that installs the harness at v1.0.0; their own tests and numbers are unchanged.</li>
-        <li><strong>Cost:</strong> the whole project's API spend was $0.38: two live re-runs, the demo and 318 judge calls.</li>
-        <li><strong>Decisions:</strong> 19 recorded, each with context, trade-off and result. <a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">Decision log →</a></li>
+        <li><strong>Cost:</strong> the whole project's API spend was $0.41: two live re-runs, the demo and 433 judge calls across two calibration rounds.</li>
+        <li><strong>Decisions:</strong> 21 recorded, each with context, trade-off and result. <a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">Decision log →</a></li>
       </ul>
     </div>
   </section>
@@ -216,7 +226,7 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
-        <li>Calibration labels that contain real failures, and a second labeler</li>
+        <li>Written pass and fail examples for each quality, a second labeler, and fresh labels before any judge metric counts</li>
         <li>Held-out questions and emails written by front-desk staff</li>
         <li>Stage 4, Production Deployment: run history in a database, monitoring, sign-in and personal-data redaction</li>
       </ul>

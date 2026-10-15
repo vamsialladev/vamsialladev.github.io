@@ -8,22 +8,22 @@
 <!-- DRAFT: not in data/site.json, the sitemap, the feed or Home. Publish only after "approve note". -->
 <meta name="robots" content="noindex, nofollow">
 <title>My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla</title>
-<meta name="description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<meta name="description" content="I labelled 70 replies by hand to check an AI judge: 95% agreement and kappa 0.00, then a failure-rich round that reached 0.29.">
 <link rel="canonical" href="https://vamsialla.com/notes/agreement-is-not-evidence.html">
 <meta property="og:title" content="My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla">
-<meta property="og:description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<meta property="og:description" content="I labelled 70 replies by hand to check an AI judge: 95% agreement and kappa 0.00, then a failure-rich round that reached 0.29.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://vamsialla.com/notes/agreement-is-not-evidence.html">
 <meta property="og:site_name" content="Vamsi Alla">
 <meta property="og:image" content="https://vamsialla.com/assets/og-eval-harness.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta property="og:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.29 against 70 hand labels (not trusted), $0.41 total API spend">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="My LLM judge agreed with me 95% of the time. It proved nothing. | Vamsi Alla">
-<meta name="twitter:description" content="I labelled 40 replies by hand to check an AI judge: 95% agreement, Cohen's kappa 0.00. Why both are true.">
+<meta name="twitter:description" content="I labelled 70 replies by hand to check an AI judge: 95% agreement and kappa 0.00, then a failure-rich round that reached 0.29.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-eval-harness.png">
-<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.00 against 40 hand labels, $0.38 total API spend">
+<meta name="twitter:image:alt" content="Eval Harness case study: 181 labelled cases, the regression it caught (q13, q35), judge kappa 0.29 against 70 hand labels (not trusted), $0.41 total API spend">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
@@ -53,42 +53,40 @@
       <p class="small"><a class="arrow-link" href="../notes.html">← All notes</a></p>
       <span class="eyebrow">Evals</span>
       <h1>My LLM judge agreed with me 95% of the time. It proved nothing.</h1>
-      <p class="lede">I labelled 40 replies by hand to check an AI judge. Agreement was 95% and Cohen's kappa was 0.00. Why both numbers are true, and what I'd do differently.</p>
+      <p class="lede">I labelled 70 replies by hand to check an AI judge. The first 40 gave 95% agreement and a kappa of 0.00. A second round, built to contain failures, got to 0.29. What both rounds taught me.</p>
       <p class="small"><time datetime="2026-10-15">October 15, 2026</time> · 4 min read · Evals</p>
 
 <h2>The setup</h2>
-<p>My third portfolio project is an evaluation harness for two AI assistants I built for a fictional hotel group: one answers front-desk staff's policy questions, the other drafts replies to guest emails. The harness checks both the same way, with labelled cases, the projects' own metrics and regression gates in CI. The hotel, the guests and the documents are all synthetic.</p>
-<p>Most of what it measures is deterministic. Does the answer contain the right fee? Is every number in a cited passage? Did the email that mentions an injury go to a manager? Code can check those, cheaply and the same way every time.</p>
-<p>Some things code can't check: is the reply complete, is the tone right for a guest, is it clear? For those I added an LLM judge, Claude Haiku 5.5 with a versioned rubric that asks for a pass or fail and a short reason for each of the three. The rule I set before writing any of it: a judge metric only counts if it agrees with human labels beyond chance, measured by Cohen's kappa of at least 0.6. Otherwise it's reported as "not trusted" and never gates a release.</p>
+<p>My third portfolio project is an evaluation harness for two AI assistants I built for a fictional hotel group: one answers front-desk staff's policy questions, the other drafts replies to guest emails. Most of what it checks is deterministic: the right fee, every number traceable to a source, the email about an injury sent to a manager. The hotel, guests and documents are synthetic.</p>
+<p>Some things code can't check: is the reply complete, is the tone right, is it clear? For those I added an LLM judge with a versioned rubric, and set one rule before writing any of it: a judge metric only counts if it agrees with my hand labels beyond chance, measured by Cohen's kappa of at least 0.6. Even then it never gates a release.</p>
 
-<h2>The labels</h2>
-<p>I sampled 40 replies: 20 from each assistant, split across completeness, tone and clarity. Because most replies are fine, a random sample would have had almost no failures, so I stratified: about half came from outputs that a deterministic check had already flagged, including earlier development runs and an older model. Then I labelled them on a small local page, one click each, without seeing the judge's verdicts.</p>
-<p>I passed all 40.</p>
+<h2>Round 1: 95% agreement, kappa 0.00</h2>
+<p>I sampled 40 replies, about half from outputs a deterministic check had flagged, and labelled them blind. I passed all 40. The judge passed 38.</p>
+<p>That's 95% agreement, and a kappa of 0.00. Kappa asks how much better than chance two raters agree. When both of us say "pass" nearly every time, chance agreement is already 95%; a judge that never reads the reply would score the same. My sample had nothing to disagree about. The flagged outputs had wrong facts, not bad writing.</p>
 
-<h2>The numbers</h2>
-<p>The judge passed 38 and failed 2, both on clarity. One was the staff assistant's fixed refusal, "I couldn't find this in the hotel's documents. Please check with a manager." The judge called it vague. The other was a guest draft that repeated its hand-off-to-a-manager sentence almost word for word.</p>
-<p>So the judge agreed with me on 38 of 40: 95%. That sounds like a judge you could use.</p>
-<p>Cohen's kappa was 0.00. For completeness and tone, where we agreed on every item, it was undefined.</p>
-<p>Kappa asks how much better than chance two raters agree. If I pass everything, a judge that also passes everything agrees with me 100% of the time without reading a word. Chance agreement here was already 95%, because both of us said "pass" almost every time. The judge matched it and added nothing. With no failures in my labels, there was nothing for it to agree with me about.</p>
+<h2>Round 2: built to contain failures</h2>
+<p>So I built a second blind set of 30: 15 real replies the judge had failed on full runs, and 15 real replies I degraded by hand. I made some robotic, some cold, some rambling, filled some with internal jargon, and dropped one of the guest's requests from others. The two halves were shuffled and looked the same on the labeling page; only hidden metadata said which was which.</p>
+<p>I failed 6 of the 30. The judge failed all 30.</p>
+<p>On all 70 labels, kappa was 0.22 with the first rubric and 0.20 with the second. The judge caught every reply I failed, but it also failed most of the ones I passed. Round 2 on its own scored close to zero, and because it was built to be full of failures, that number isn't what everyday traffic would give.</p>
 
-<h2>What I tried, and stopped</h2>
-<p>I allowed myself at most two rubric revisions, scored on the same recorded replies with no new labels. The first one told the judge that the fixed refusal sentence is the honest, clear answer when the documents are silent. That item flipped to pass. A different item, a reply the judge had passed before, now failed. Agreement: still 95%. Kappa: still 0.00.</p>
-<p>Before blaming the rubric, I ran the same 40 prompts through the judge twice more. Haiku 5.5 doesn't accept a temperature setting, so its verdicts can't be pinned. It gave the same verdict on 39 of 40; the item that had just flipped flipped again. A one-item change after a rubric edit was within the judge's own noise.</p>
-<p>I stopped there. With zero human failures, no wording could reach a kappa of 0.6, and a second revision tuned to these 40 labels would only have taught the rubric to agree with me on this sample. So no judge score is trusted, and none is a gate. The dashboard says so.</p>
+<h2>One more revision, then stop</h2>
+<p>I allowed myself two rubric revisions per round, scored on the recorded replies with no new labels. The third version raised the bar for "fail" to something a reader would actually feel: confused, misled, left without an answer, or put off. Style imperfections pass.</p>
+<p>Kappa on all 70 rose to 0.29. Tone reached 0.51, clarity 0.23, completeness 0.00. Nothing crossed 0.6, so nothing is trusted, nothing is reported as a judge score, and the release gates stay deterministic.</p>
+<p>I didn't make a fourth version. Tone was the only quality close to the line, and nudging it over on the same 70 labels it was revised on would mean fitting the rubric to my answers, not checking the judge.</p>
 
-<h2>Who's right about clarity?</h2>
-<p>On full runs of both assistants, the judge fails 13–17% of replies on clarity. I passed every clarity item I labelled. Either the judge is stricter than me, or I was generous. The calibration can't say which, because it never saw a reply I thought was unclear.</p>
-<p>The duplicated sentence is the honest example. The judge failed it in every pass. I'd passed it. Looking again, a guest reading the same sentence twice would notice. I didn't change my label: the labels are the ground truth for this run, and a label I edit after seeing the judge's answer isn't one.</p>
+<h2>The uncomfortable part</h2>
+<p>I passed 11 of the 15 replies I had degraded myself. A curt reply about a guest's noisy room was a fail; a mechanical one about a pet policy was a pass. The judge failed every one of those replies. Where its line and mine differ isn't written down anywhere: neither of us had a definition of "fail" beyond one sentence per quality.</p>
+<p>So the low kappa isn't only the judge's problem. Calibration needs a written standard first: a few pass and fail examples for each quality, ideally agreed by two people. How often two people agree is the ceiling for any judge.</p>
 
-<h2>What I'd do differently</h2>
+<h2>What I'd tell myself at the start</h2>
 <ul>
-  <li><strong>Seed real failures into the calibration set.</strong> Stratifying on deterministic flags gave me replies with wrong facts, not badly written ones. The qualities a judge is for need their own bad examples: a curt reply, a buried answer, a missed request.</li>
-  <li><strong>Report kappa next to agreement, always.</strong> 95% agreement and 0.00 kappa describe the same 40 labels. Only one of them tells you whether the judge is useful.</li>
-  <li><strong>Measure the judge against itself</strong> before reading meaning into a change after a rubric edit.</li>
-  <li><strong>Get a second labeler.</strong> How often two people agree is the ceiling for any judge.</li>
+  <li><strong>Report kappa next to agreement, always.</strong> 95% agreement and a kappa of 0.00 described the same 40 labels.</li>
+  <li><strong>Put failures in the calibration set on purpose,</strong> and say so every time you show its kappa.</li>
+  <li><strong>Write the standard before you label.</strong> Otherwise you're calibrating the judge against a mood.</li>
+  <li><strong>Stop revising when you start fitting.</strong> A rubric tuned to the labels it is scored on proves nothing new.</li>
 </ul>
-<p>The deterministic gates did their job: on a throwaway branch, a change that sent two passages instead of five to save tokens was caught, naming the two questions it broke. The judge is the part that needs better evidence before it counts.</p>
-<p class="small">Everything here is in the project's repository: the 40 labels, both rubric versions, the judge's verdicts and the calibration numbers.</p>
+<p>The deterministic gates did their job in the same project: a change that sent two passages instead of five to save tokens was caught, naming the two questions it broke. The judge is the part that still needs better evidence before it counts.</p>
+<p class="small">Everything here is in the project's repository: all 70 labels, the three rubric versions, the judge's verdicts and the calibration numbers.</p>
 <p><a class="arrow-link" href="https://github.com/vamsialladev/eval-harness">The repository →</a><br><a class="arrow-link" href="../projects/eval-harness.html">The case study →</a></p>
 
       <p class="sign-off">Have a question about this? <a href="mailto:vamsialla.dev@gmail.com">Email me</a> or find me on <a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a>.</p>
