@@ -97,7 +97,7 @@
       </table></section>
       <p>The headline numbers didn't drop: the assistant's answer accuracy went from 98% to <strong>100%</strong> (162/162; the Spanish question q37 now passes) at a 95th percentile of 2.93 s and $0.18 per 1,000 questions. The agent kept every hard gate at 100%, with correct tool use 96% → <strong>100%</strong>, citations 94% → <strong>100%</strong> and $1.30 → <strong>$1.24</strong> per 1,000 emails.</p>
       <ul>
-        <li><strong>Persistent, private logs:</strong> every request goes to Postgres (Neon) or SQLite, one table shared by both apps. Emails, phone and card-like numbers and names are removed, and booking IDs hashed, <em>before</em> anything is stored; records are deleted after 30 days. Tests plant personal data in every field and fail if any survives.</li>
+        <li><strong>Persistent, private logs:</strong> every request goes to Postgres (Neon) or SQLite, one table shared by both apps. Emails, phone and card-like numbers and names are removed, and booking IDs hashed, <em>before</em> anything is stored; records are deleted after 30 days. Tests plant personal data in every field and fail if any survives. Live on Neon since 16 October 2026: a request with a planted name, email and phone was stored with all three replaced.</li>
         <li><strong>Staff sign-in:</strong> the public demo stays open in a labelled Demo mode; a Staff role (lockout, idle sign-out) unlocks reporting an answer for review. A real client would use their own SSO; the switch is documented.</li>
         <li><strong>Budgets and resilience:</strong> p95 and cost-per-1,000 budgets for each app, checked by the eval harness in CI; 30-second timeouts with retries; a kill switch that stops every model call.</li>
         <li><strong>Monitoring:</strong> an owner-only Operations page (requests, errors, latency, cost per day, budget status) and a daily GitHub Action that reads Streamlit Cloud's status, so a sleeping free app never pages anyone and a broken one opens an issue.</li>
@@ -138,7 +138,7 @@
         <tbody>
           <tr><td>A Spanish vocabulary list, not a translation call</td><td>Free, deterministic, testable</td><td>Only Spanish; other languages are still refused before the model</td></tr>
           <tr><td>Pattern-based redaction</td><td>No model or API call before every write; fully tested</td><td>A bare name with no cue can slip through (listed as a known limit)</td></tr>
-          <tr><td>Every new setting optional</td><td>The live apps never break on deploy</td><td>Persistence is “ready” until the owner adds the database URL</td></tr>
+          <tr><td>Every new setting optional</td><td>The live apps never break on deploy</td><td>A new database means a new secret to rotate (runbook 6)</td></tr>
           <tr><td>Shared staff password</td><td>Enough for a demo, same protections as the owner page</td><td>No individual accounts; SSO is the client path</td></tr>
           <tr><td>One health sample a day</td><td>Free, and never alarms on a sleeping app</td><td>Can't see a short outage between checks</td></tr>
         </tbody>
