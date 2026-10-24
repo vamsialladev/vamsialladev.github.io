@@ -6,42 +6,157 @@
   "footer_line": "Work, writing, and the life around it.",
   "updated": "2026-10-15",
   "sections": [
-    {"id": "home", "title": "Home", "url": "index.html", "nav": "main", "published": true,
-     "description": "Senior Software Engineer building production AI systems (LLM, RAG, agents)."},
-    {"id": "experience", "title": "Experience", "url": "experience.html", "nav": "main", "published": true,
-     "description": "Nine years of Java and distributed systems, then three years of production AI.",
-     "card": {"n": 1, "label": "Work", "headline": "Twelve years of systems that have to hold up."}},
-    {"id": "projects", "title": "Projects", "url": "projects.html", "nav": "main", "published": true,
-     "description": "One independent, simulated hotel engagement with synthetic data, built in five stages.",
-     "card": {"n": 2, "label": "Projects", "headline": "A simulated client engagement, built in five stages."}},
-    {"id": "notes", "title": "Notes", "url": "notes.html", "nav": "main", "published": true,
-     "description": "Short write-ups on building software and AI that holds up.",
-     "card": {"n": 3, "label": "Notes", "headline": "Thinking in public."}},
-    {"id": "about", "title": "About", "url": "about.html", "nav": "main", "published": true,
-     "description": "How I work and what I believe about building software and AI."},
-    {"id": "contact", "title": "Contact", "url": "contact.html", "nav": "main", "published": true,
-     "description": "Email, LinkedIn, GitHub and the resume."},
-    {"id": "now", "title": "Now", "url": "now.html", "nav": "more", "published": true,
-     "description": "What I'm building, learning and looking for this month.",
-     "card": {"n": 4, "label": "Now", "headline": "What I'm building, learning and looking for this month."}},
-    {"id": "life", "title": "Life", "url": "life.html", "nav": "more", "published": true,
-     "description": "Family, travel, cricket, and a good movie.",
-     "card": {"n": 5, "label": "Life", "headline": "Family, travel, cricket, and a good movie."}},
-    {"id": "learning", "title": "Learning", "url": "learning.html", "nav": "more", "published": true,
-     "description": "I learn by building, measuring and writing it down."},
-    {"id": "uses", "title": "Uses", "url": "uses.html", "nav": "more", "published": true,
-     "description": "The tools behind the work, and this site.",
-     "card": {"n": 6, "label": "Uses", "headline": "The tools behind the work, and this site."}},
-    {"id": "photos", "title": "Photos", "url": "photos.html", "nav": "more", "published": false,
-     "description": "Photos I'm happy to share."},
-    {"id": "privacy", "title": "Privacy", "url": "privacy.html", "nav": "footer", "published": true,
-     "description": "How this site counts visits."}
+    {
+      "id": "home",
+      "title": "Home",
+      "url": "index.html",
+      "nav": "main",
+      "published": true,
+      "description": "Senior Software Engineer building production AI systems (LLM, RAG, agents)."
+    },
+    {
+      "id": "experience",
+      "title": "Experience",
+      "url": "experience.html",
+      "nav": "main",
+      "published": true,
+      "description": "Nine years of Java and distributed systems, then three years of production AI.",
+      "card": {
+        "n": 1,
+        "label": "Work",
+        "headline": "Twelve years of systems that have to hold up."
+      }
+    },
+    {
+      "id": "projects",
+      "title": "Projects",
+      "url": "projects.html",
+      "nav": "main",
+      "published": true,
+      "description": "One independent, simulated hotel engagement with synthetic data, built in five stages.",
+      "card": {
+        "n": 2,
+        "label": "Projects",
+        "headline": "A simulated client engagement, built in five stages."
+      }
+    },
+    {
+      "id": "notes",
+      "title": "Notes",
+      "url": "notes.html",
+      "nav": "main",
+      "published": true,
+      "description": "Short write-ups on building software and AI that holds up.",
+      "card": {
+        "n": 3,
+        "label": "Notes",
+        "headline": "Thinking in public."
+      }
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "url": "about.html",
+      "nav": "main",
+      "published": true,
+      "description": "How I work and what I believe about building software and AI."
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "url": "contact.html",
+      "nav": "main",
+      "published": true,
+      "description": "Email, LinkedIn, GitHub and the resume."
+    },
+    {
+      "id": "now",
+      "title": "Now",
+      "url": "now.html",
+      "nav": "more",
+      "published": true,
+      "description": "What I'm building, learning and looking for this month.",
+      "card": {
+        "n": 4,
+        "label": "Now",
+        "headline": "What I'm building, learning and looking for this month."
+      }
+    },
+    {
+      "id": "life",
+      "title": "Life",
+      "url": "life.html",
+      "nav": "more",
+      "published": true,
+      "description": "Family, travel, cricket, and a good movie.",
+      "card": {
+        "n": 5,
+        "label": "Life",
+        "headline": "Family, travel, cricket, and a good movie."
+      }
+    },
+    {
+      "id": "learning",
+      "title": "Learning",
+      "url": "learning.html",
+      "nav": "more",
+      "published": true,
+      "description": "I learn by building, measuring and writing it down."
+    },
+    {
+      "id": "uses",
+      "title": "Uses",
+      "url": "uses.html",
+      "nav": "more",
+      "published": true,
+      "description": "The tools behind the work, and this site.",
+      "card": {
+        "n": 6,
+        "label": "Uses",
+        "headline": "The tools behind the work, and this site."
+      }
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "url": "photos.html",
+      "nav": "more",
+      "published": false,
+      "description": "Photos I'm happy to share."
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy",
+      "url": "privacy.html",
+      "nav": "footer",
+      "published": true,
+      "description": "How this site counts visits."
+    }
   ],
-  "sitemap_extra": ["projects/hotel-ops-assistant.html", "projects/guest-request-agent.html", "projects/eval-harness.html", "projects/production-and-handoff.html"],
-  "note_categories": ["Evals", "Production AI", "Java & distributed systems", "Career & life"],
+  "sitemap_extra": [
+    "projects/hotel-ops-assistant.html",
+    "projects/guest-request-agent.html",
+    "projects/eval-harness.html",
+    "projects/production-and-handoff.html",
+    "projects/hotel-ai-discovery.html",
+    "projects/hotel-tools-mcp.html",
+    "projects/hotel-ops-analytics-agent.html"
+  ],
+  "note_categories": [
+    "Evals",
+    "Production AI",
+    "Java & distributed systems",
+    "Career & life"
+  ],
   "notes": [
-    {"slug": "eval-said-96", "url": "notes/eval-said-96.html", "title": "My eval said 96%. It was wrong.",
-     "subtitle": "How a generous metric hid retrieval misses, and why I published the lower number.",
-     "date": "2026-10-09", "category": "Evals", "minutes": 3}
+    {
+      "slug": "eval-said-96",
+      "url": "notes/eval-said-96.html",
+      "title": "My eval said 96%. It was wrong.",
+      "subtitle": "How a generous metric hid retrieval misses, and why I published the lower number.",
+      "date": "2026-10-09",
+      "category": "Evals",
+      "minutes": 3
+    }
   ]
 }
