@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Projects | Vamsi Alla</title>
-<meta name="description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta name="description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <link rel="canonical" href="https://vamsialla.com/projects.html">
 <meta property="og:title" content="Projects | Vamsi Alla">
-<meta property="og:description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta property="og:description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vamsialla.com/projects.html">
 <meta property="og:site_name" content="Vamsi Alla">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 307 tests">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects | Vamsi Alla">
-<meta name="twitter:description" content="One independent, simulated engagement for a fictional hotel group, built in five stages. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta name="twitter:description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta name="twitter:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 307 tests">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
@@ -60,6 +60,52 @@
       <div class="section-head"><span class="eyebrow">01 · Live now</span><h2 id="live-h">Live now</h2></div>
       <article class="feature">
         <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <figure class="slip" aria-label="Real output from the daily anomaly check">
+            <p class="q">Daily check, 2026-09-14 (real output of the job, synthetic data)</p>
+            <p>rate error · Suite at beach-resort is priced $50 today vs a 28-day median of $515.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Ops Analytics Agent</h3>
+          <p>Managers ask the bookings database in plain English and get a table, a chart and a short answer, always with the SQL. A daily check posts anomalies to Slack.</p>
+          <dl class="stats">
+            <div><dt>98%</dt><dd>execution accuracy on 49 dev questions × 3 runs (95% held out)</dd></div>
+            <div><dt>100%</dt><dd>unsafe requests refused: writes, schema changes, personal data</dd></div>
+            <div><dt>5/5</dt><dd>planted anomalies caught on two synthetic years, 1 false alarm in 11 months</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/hotel-ops-analytics-agent.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/hotel-ops-analytics-agent" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <figure class="slip" aria-label="Real output from the three-roles demo script">
+            <p class="q">“Booking BR-1042: a $75 credit for the noise?” as three roles (real output)</p>
+            <p>guest: refused, no credit tool · front desk: pending_manager_approval · manager: approved</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Hotel Tools MCP Server</h3>
+          <p>The hotel group's tools for Claude Desktop, Claude Code or any MCP client. The role decides which tools exist, other hotel groups' data looks like it isn't there, and every call is audited.</p>
+          <dl class="stats">
+            <div><dt>99/99</dt><dd>labelled checks, 3 runs (18/18 held out): roles, fields, tenants, credits, injection</dd></div>
+            <div><dt>45/45</dt><dd>stage 1's labelled questions find the expected passage through the server</dd></div>
+            <div><dt>$0.00</dt><dd>per 1,000 calls: the server calls no model</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/hotel-tools-mcp.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
           <a href="projects/production-and-handoff.html#demo"><picture><source srcset="assets/img/production-handoff-still-600.webp 600w, assets/img/production-handoff-still-800.webp 800w, assets/img/production-handoff-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/production-handoff-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering a Spanish question about parking in Spanish, with its cited source" width="1200" height="627" fetchpriority="high"></picture></a>
           <figure class="slip" aria-label="A real answer from the live assistant">
             <p class="q">Beach Resort · “¿Cuánto cuesta el estacionamiento?” (blocked before the fix)</p>
@@ -74,7 +120,6 @@
             <div><dt>67% → 85%</dt><dd>held-out answers on the assistant after the Spanish and emergency fixes (new cases: 62% → 100%)</dd></div>
             <div><dt>0/6 → 6/6</dt><dd>wrong-inbox emails the agent now answers for the guest's own hotel</dd></div>
             <div><dt>30 days</dt><dd>log retention, with personal data redacted before anything is stored</dd></div>
-            <div><dt>8</dt><dd>runbooks in the handoff package, plus SLOs, guides and a daily health check</dd></div>
           </dl>
           <div class="links">
             <a href="projects/production-and-handoff.html">Case study →</a>
@@ -99,7 +144,6 @@
             <div><dt>195</dt><dd>labelled cases across both assistants (181, plus 14 added in stage 4 on Oct 15)</dd></div>
             <div><dt>q13, q35</dt><dd>the questions a top-k 5 → 2 change broke: caught, though the rate stayed inside its interval</dd></div>
             <div><dt>κ 0.29</dt><dd>judge vs my 70 blind hand labels (best rubric), so no judge score is trusted or gated</dd></div>
-            <div><dt>$0.41</dt><dd>total API spend; CI re-scores saved runs for free</dd></div>
           </dl>
           <div class="links">
             <a href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Dashboard →</a>
@@ -125,7 +169,6 @@
             <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 9 of 9 held out (re-run Oct 15)</dd></div>
             <div><dt>100%</dt><dd>prompt injections resisted (6 of 6, every run)</dd></div>
             <div><dt>0</dt><dd>refunds, upgrades or changes promised in the model's drafts</dd></div>
-            <div><dt>$1.24</dt><dd>per 1,000 emails; full draft in 8.3 s at the 95th percentile (was $1.30 / 8.4 s; v1.1.0, Oct 15)</dd></div>
           </dl>
           <div class="links">
             <a href="https://guest-request-agent.streamlit.app" rel="noopener noreferrer">Live app →</a>
@@ -151,7 +194,6 @@
             <div><dt>100%</dt><dd>answer accuracy, live app, keyword search (98% before the stage 4 fixes; v1.6.0, Oct 15)</dd></div>
             <div><dt>100%</dt><dd>citation accuracy: cites the right document (98% before; v1.6.0, Oct 15)</dd></div>
             <div><dt>$0.18</dt><dd>per 1,000 questions on the live app (re-measured Oct 15; was $0.17)</dd></div>
-            <div><dt>43% → 100%</dt><dd>first-question success on 49 questions visitors type first</dd></div>
           </dl>
           <div class="links">
             <a href="https://hotel-ops-assistant.streamlit.app" rel="noopener noreferrer">Live app →</a>
@@ -161,14 +203,54 @@
           <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
         </div>
       </article>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <figure class="slip" aria-label="From the problem selection document">
+            <p class="q">The four-check test (from the problem selection)</p>
+            <p>Automatic refunds and upgrades: fail. The GM said that's exactly what would make them switch it off.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Discovery &amp; Scoping</h3>
+          <p>The work before the code: six stakeholder sessions, six use cases scored with a four-check test, a statement of work, pricing from measured costs and procurement security answers.</p>
+          <dl class="stats">
+            <div><dt>4 of 6</dt><dd>use cases passed the four-check test; they became stages 1, 2, 7 and 8</dd></div>
+            <div><dt>2</dt><dd>measured inputs in the pricing model: $0.18 and $1.24 per 1,000 requests</dd></div>
+            <div><dt>25</dt><dd>tests, including one that fails if the pricing doc and script disagree</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/hotel-ai-discovery.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/hotel-ai-discovery" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
   <section class="section" id="stages" aria-labelledby="stages-h">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">02 · One engagement, five stages</span><h2 id="stages-h">One engagement, five stages</h2></div>
-      <p class="lede">Each stage builds on the last and delivers something a client could use on its own. All five stages are live.</p>
-      <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li></ol>
+      <div class="section-head"><span class="eyebrow">02 · One engagement, stage by stage</span><h2 id="stages-h">One engagement, stage by stage</h2></div>
+      <p class="lede">Each stage builds on the last and delivers something a client could use on its own. Stages 0–5, 7 and 8 are published.</p>
+      <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">0</span></div><h3>Discovery &amp; Scoping</h3><p>The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3><p>Front-desk staff ask policy questions and get cited, property-specific answers, or an honest &quot;check with a manager&quot;.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3><p>An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool) and drafts a reply that staff approve before anything is sent.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3><p>One evaluation system for stages 1 and 2: 181 labelled cases, the projects&#x27; own metrics, regression gates in both repos&#x27; CI, and an LLM judge that counts only once it agrees with hand labels.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3><p>Both live apps hardened: four gaps the evals found fixed and measured, personal data redacted before storage, a staff role, latency and cost budgets gated in CI, a kill switch and an Operations page.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3><p>A handoff package for the hotel group&#x27;s IT and operations teams: architecture, decision index, eight runbooks, SLOs and budgets, staff and admin guides, a readiness checklist, a 30/60/90-day plan and a daily health check.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">7</span></div><h3>Hotel Tools MCP Server</h3><p>An MCP server where an API key&#x27;s role decides which tools exist and which fields come back, hotel groups can&#x27;t see each other&#x27;s data, and every call is audited.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">8</span></div><h3>Ops Analytics Agent</h3><p>Managers ask the bookings database in plain English and see the SQL behind every answer; a daily check posts anomalies to Slack.</p></li></ol>
       <p class="small updated">Last updated: October 2026</p>
+    </div>
+  </section>
+  <section class="section" id="how-i-work-lifecycle" aria-labelledby="lifecycle-h">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">03 · How I work</span><h2 id="lifecycle-h">How I work: scope, build, deploy, operate, hand over</h2></div>
+      <p class="lede">The same lifecycle a forward deployed engineer runs with a client, and where each step shows in this engagement.</p>
+      <section class="scroll" tabindex="0" aria-label="Table: the lifecycle mapped to the projects (scrolls sideways)"><table>
+        <caption>The lifecycle, mapped to the projects</caption>
+        <thead><tr><th scope="col">Step</th><th scope="col">What it means</th><th scope="col">Where it shows</th></tr></thead>
+        <tbody>
+          <tr><td>Scope</td><td>Talk to the people who'll use it, pick the first problem, agree what “working” means and what it costs</td><td><a href="projects/hotel-ai-discovery.html">Discovery &amp; Scoping</a> (stage 0)</td></tr>
+          <tr><td>Build</td><td>Ship the smallest useful version, measured before it's claimed</td><td><a href="projects/hotel-ops-assistant.html">Knowledge Assistant</a>, <a href="projects/guest-request-agent.html">Guest Request Agent</a>, <a href="projects/hotel-tools-mcp.html">MCP Tools</a>, <a href="projects/hotel-ops-analytics-agent.html">Ops Analytics</a></td></tr>
+          <tr><td>Deploy</td><td>Make it safe to run: gates in CI, redacted logs, roles, budgets, a kill switch</td><td><a href="projects/eval-harness.html">Eval Harness</a>, <a href="projects/production-and-handoff.html">Production</a></td></tr>
+          <tr><td>Operate</td><td>Know when it's down or wrong before the client does</td><td>Daily health check and anomaly check (<a href="projects/production-and-handoff.html">stages 4–5</a>, <a href="projects/hotel-ops-analytics-agent.html">stage 8</a>)</td></tr>
+          <tr><td>Hand over</td><td>Runbooks, service levels and guides so the client's team owns it</td><td><a href="projects/production-and-handoff.html">Handoff package</a> (stage 5)</td></tr>
+        </tbody>
+      </table></section>
     </div>
   </section>
 </main>

@@ -87,84 +87,8 @@
       <div class="section-head"><span class="eyebrow">03 · Featured projects</span><h2 id="project-h">Featured projects</h2></div>
       <article class="feature">
         <div class="feature-media">
-          <a href="projects/production-and-handoff.html#demo"><picture><source srcset="assets/img/production-handoff-still-600.webp 600w, assets/img/production-handoff-still-800.webp 800w, assets/img/production-handoff-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/production-handoff-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering a Spanish question about parking in Spanish, with its cited source" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
-          <figure class="slip" aria-label="A real answer from the live assistant">
-            <p class="q">Beach Resort · “¿Cuánto cuesta el estacionamiento?” (blocked before the fix)</p>
-            <p>El estacionamiento es solo con servicio de valet y cuesta $45 por noche, con privilegios de entrada y salida <span class="cite">[1]</span>.</p>
-          </figure>
-        </div>
-        <div>
-          <p class="label">Independent project · simulated hotel group, synthetic data</p>
-          <h3>Production &amp; Handoff</h3>
-          <p>Both live apps made ready for a hotel group to run: the gaps the evals found fixed and measured, personal data out of the logs, budgets that fail CI, monitoring that knows “asleep” from “down”, and runbooks their own team can work from.</p>
-          <dl class="stats">
-            <div><dt>67% → 85%</dt><dd>held-out answers on the assistant after the Spanish and emergency fixes (new cases: 62% → 100%)</dd></div>
-            <div><dt>0/6 → 6/6</dt><dd>wrong-inbox emails the agent now answers for the guest's own hotel</dd></div>
-            <div><dt>30 days</dt><dd>log retention, with personal data redacted before anything is stored</dd></div>
-            <div><dt>8</dt><dd>runbooks in the handoff package, plus SLOs, guides and a daily health check</dd></div>
-          </dl>
-          <div class="links">
-            <a href="projects/production-and-handoff.html">Case study →</a>
-            <a href="https://github.com/vamsialladev/hotel-ai-handoff" rel="noopener noreferrer">Handoff on GitHub →</a>
-          </div>
-          <p class="small wake-note">Free hosting: if an app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
-        </div>
-      </article>
-      <article class="feature">
-        <div class="feature-media">
-          <a href="projects/eval-harness.html#demo"><picture><source srcset="assets/img/eval-harness-still-800.webp 800w, assets/img/eval-harness-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/eval-harness-still.jpg" alt="The live Eval Harness dashboard: question q13 from the regression demo drilled down to its expected passage and three refused answers" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
-          <figure class="slip" aria-label="Real output from the harness's gate">
-            <p class="q">A throwaway branch: “send 2 passages instead of 5 to cut input tokens”</p>
-            <p>FAIL: 4 gate failures against the baseline. Strict retrieval: 2 case(s) passed in every baseline run and now fail: q13, q35.</p>
-          </figure>
-        </div>
-        <div>
-          <p class="label">Independent project · simulated hotel group, synthetic data</p>
-          <h3>Eval Harness</h3>
-          <p>Two assistants, each changing: new models, prompts and settings. This harness checks both the same way, with the projects' own metrics, honest intervals and regression gates in CI, and an AI judge that only counts once it agrees with hand labels.</p>
-          <dl class="stats">
-            <div><dt>195</dt><dd>labelled cases across both assistants (181, plus 14 added in stage 4 on Oct 15)</dd></div>
-            <div><dt>q13, q35</dt><dd>the questions a top-k 5 → 2 change broke: caught, though the rate stayed inside its interval</dd></div>
-            <div><dt>κ 0.29</dt><dd>judge vs my 70 blind hand labels (best rubric), so no judge score is trusted or gated</dd></div>
-            <div><dt>$0.41</dt><dd>total API spend; CI re-scores saved runs for free</dd></div>
-          </dl>
-          <div class="links">
-            <a href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Dashboard →</a>
-            <a href="projects/eval-harness.html">Case study →</a>
-            <a href="https://github.com/vamsialladev/eval-harness" rel="noopener noreferrer">GitHub →</a>
-          </div>
-          <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
-        </div>
-      </article>
-      <article class="feature">
-        <div class="feature-media">
-          <a href="projects/guest-request-agent.html#demo"><picture><source srcset="assets/img/guest-agent-still-800.webp 800w, assets/img/guest-agent-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/guest-agent-still.jpg" alt="The live Guest Request Agent's step timeline for a guest email: booking found, three policy searches cited, two tasks proposed and checks passed" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
-          <figure class="slip" aria-label="A real draft from the agent">
-            <p class="q">Beach Resort · Elena asks about her dog, a late check-out on Monday and an airport pickup</p>
-            <p>Late check-out on Monday: Your Gold membership gives you late check-out until 2:00 PM, subject to availability <span class="cite">[P7]</span> <span class="cite">[P4]</span>. I've asked our front desk team to confirm this for your Monday departure.</p>
-          </figure>
-        </div>
-        <div>
-          <p class="label">Independent project · simulated hotel group, synthetic data</p>
-          <h3>Guest Request Agent</h3>
-          <p>Guest emails mix several requests and sometimes need a manager today. This agent checks the booking, availability and hotel policy, drafts a cited reply and proposes tasks. Staff approve every send, and refunds or upgrades are only ever proposed to a manager.</p>
-          <dl class="stats">
-            <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 9 of 9 held out (re-run Oct 15)</dd></div>
-            <div><dt>100%</dt><dd>prompt injections resisted (6 of 6, every run)</dd></div>
-            <div><dt>0</dt><dd>refunds, upgrades or changes promised in the model's drafts</dd></div>
-            <div><dt>$1.24</dt><dd>per 1,000 emails; full draft in 8.3 s at the 95th percentile (was $1.30 / 8.4 s; v1.1.0, Oct 15)</dd></div>
-          </dl>
-          <div class="links">
-            <a href="https://guest-request-agent.streamlit.app" rel="noopener noreferrer">Live app →</a>
-            <a href="projects/guest-request-agent.html">Case study →</a>
-            <a href="https://github.com/vamsialladev/guest-request-agent" rel="noopener noreferrer">GitHub →</a>
-          </div>
-          <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
-        </div>
-      </article>
-      <article class="feature">
-        <div class="feature-media">
-          <a href="projects/hotel-ops-assistant.html#demo"><picture><source srcset="assets/img/hotel-ops-still-800.webp 800w, assets/img/hotel-ops-still.webp 1200w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="assets/img/hotel-ops-still.jpg" alt="The live Hotel Operations Knowledge Assistant answering whether a guest can bring their dog at Beach Resort, with a citation and its source" width="1200" height="627" loading="lazy" decoding="async"></picture></a>
+          <!-- DEMO-VIDEO -->
+          <video controls playsinline preload="none" poster="videos/hotel-ops-demo-poster.webp" width="1280" height="720"><source src="videos/hotel-ops-demo.mp4" type="video/mp4"><track kind="captions" src="videos/hotel-ops-demo.vtt" srclang="en" label="English" default><a href="videos/hotel-ops-demo.mp4">Download the demo video (MP4)</a></video>
           <figure class="slip" aria-label="A real answer from the live assistant">
             <p class="q">Beach Resort · “A Gold member wants late checkout on Saturday. How late can they stay?”</p>
             <p>On Saturday, a Gold member's late check-out is capped at 12:00 PM for all guests, including Gold members <span class="cite">[1]</span>. The brand-wide Gold benefit of 2:00 PM does not apply on weekends because the Beach Resort property rule overrides it <span class="cite">[1]</span> <span class="cite">[4]</span>.</p>
@@ -178,7 +102,6 @@
             <div><dt>100%</dt><dd>answer accuracy, live app, keyword search (98% before the stage 4 fixes; v1.6.0, Oct 15)</dd></div>
             <div><dt>100%</dt><dd>citation accuracy: cites the right document (98% before; v1.6.0, Oct 15)</dd></div>
             <div><dt>$0.18</dt><dd>per 1,000 questions on the live app (re-measured Oct 15; was $0.17)</dd></div>
-            <div><dt>43% → 100%</dt><dd>first-question success on 49 questions visitors type first</dd></div>
           </dl>
           <div class="links">
             <a href="https://hotel-ops-assistant.streamlit.app" rel="noopener noreferrer">Live app →</a>
@@ -188,13 +111,65 @@
           <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
         </div>
       </article>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <video controls playsinline preload="none" poster="videos/guest-request-agent-demo-poster.webp" width="1280" height="720"><source src="videos/guest-request-agent-demo.mp4" type="video/mp4"><track kind="captions" src="videos/guest-request-agent-demo.vtt" srclang="en" label="English" default><a href="videos/guest-request-agent-demo.mp4">Download the demo video (MP4)</a></video>
+          <figure class="slip" aria-label="A real draft from the agent">
+            <p class="q">Beach Resort · Elena asks about her dog, a late check-out on Monday and an airport pickup</p>
+            <p>Late check-out on Monday: Your Gold membership gives you late check-out until 2:00 PM, subject to availability <span class="cite">[P7]</span> <span class="cite">[P4]</span>. I've asked our front desk team to confirm this for your Monday departure.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Guest Request Agent</h3>
+          <p>Guest emails mix several requests and sometimes need a manager today. This agent checks the booking, availability and hotel policy, drafts a cited reply and proposes tasks. Staff approve every send, and refunds or upgrades are only ever proposed to a manager.</p>
+          <dl class="stats">
+            <div><dt>100%</dt><dd>escalations caught: 40 emails × 3 runs, plus 9 of 9 held out (re-run Oct 15)</dd></div>
+            <div><dt>100%</dt><dd>prompt injections resisted (6 of 6, every run)</dd></div>
+            <div><dt>0</dt><dd>refunds, upgrades or changes promised in the model's drafts</dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://guest-request-agent.streamlit.app" rel="noopener noreferrer">Live app →</a>
+            <a href="projects/guest-request-agent.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/guest-request-agent" rel="noopener noreferrer">GitHub →</a>
+          </div>
+          <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <video controls playsinline preload="none" poster="videos/eval-harness-demo-poster.webp" width="1280" height="720"><source src="videos/eval-harness-demo.mp4" type="video/mp4"><track kind="captions" src="videos/eval-harness-demo.vtt" srclang="en" label="English" default><a href="videos/eval-harness-demo.mp4">Download the demo video (MP4)</a></video>
+          <figure class="slip" aria-label="Real output from the harness's gate">
+            <p class="q">A throwaway branch: “send 2 passages instead of 5 to cut input tokens”</p>
+            <p>FAIL: 4 gate failures against the baseline. Strict retrieval: 2 case(s) passed in every baseline run and now fail: q13, q35.</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Eval Harness</h3>
+          <p>Two assistants, each changing: new models, prompts and settings. This harness checks both the same way, with the projects' own metrics, honest intervals and regression gates in CI, and an AI judge that only counts once it agrees with hand labels.</p>
+          <dl class="stats">
+            <div><dt>195</dt><dd>labelled cases across both assistants (181, plus 14 added in stage 4 on Oct 15)</dd></div>
+            <div><dt>q13, q35</dt><dd>the questions a top-k 5 → 2 change broke: caught, though the rate stayed inside its interval</dd></div>
+            <div><dt>κ 0.29</dt><dd>judge vs my 70 blind hand labels (best rubric), so no judge score is trusted or gated</dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Dashboard →</a>
+            <a href="projects/eval-harness.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/eval-harness" rel="noopener noreferrer">GitHub →</a>
+          </div>
+          <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+        </div>
+      </article>
     </div>
   </section>
   <section class="section" aria-labelledby="stages-h">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">04 · One engagement, five stages</span><h2 id="stages-h">One engagement, five stages</h2></div>
+      <div class="section-head"><span class="eyebrow">04 · One engagement, stage by stage</span><h2 id="stages-h">One engagement, stage by stage</h2></div>
       <p class="lede">The hotel project runs like a client engagement, one stage at a time, for the same fictional hotel group.</p>
-      <ol class="stages compact" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li></ol>
+      <ol class="stages compact" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">0</span></div><h3>Discovery &amp; Scoping</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">7</span></div><h3>Hotel Tools MCP Server</h3></li><li class="stage"><div class="stage-top"><span class="stage-num">8</span></div><h3>Ops Analytics Agent</h3></li></ol>
       <p class="updated"><a class="arrow-link" href="projects.html#stages">What each stage delivers →</a></p>
     </div>
   </section>
@@ -212,7 +187,7 @@
         <div class="card reader"><h3>Recruiters</h3><a class="arrow-link" href="assets/Vamsi-Alla-Resume.pdf" download="Vamsi-Alla-Resume.pdf">Download resume →</a><a class="arrow-link" href="experience.html">Experience →</a></div>
         <div class="card reader"><h3>Hiring managers</h3><a class="arrow-link" href="projects/hotel-ops-assistant.html">Case study →</a><a class="arrow-link" href="about.html#how-i-work">How I work →</a></div>
         <div class="card reader"><h3>Engineers</h3><a class="arrow-link" href="https://github.com/vamsialladev/hotel-ops-assistant">GitHub →</a><a class="arrow-link" href="projects/hotel-ops-assistant.html#architecture">Architecture →</a></div>
-        <div class="card reader"><h3>Clients</h3><a class="arrow-link" href="projects.html#stages">The five stages →</a></div>
+        <div class="card reader"><h3>Clients</h3><a class="arrow-link" href="projects.html#stages">Every stage →</a></div>
       </div>
     </div>
   </section>

@@ -1,7 +1,24 @@
 {
-  "_comment": "The one place to change project status. status: Live | Next | Planned. Rendered by assets/site.js on Home and Projects. Stage 2-5 wording follows the approved plan in CLAUDE.md.",
+  "_comment": "The one place to change project status. status: Live | Next | Planned. Rendered by assets/site.js on Home and Projects. Stage numbers follow CLAUDE.md section 18; stage 6 is not built and not shown.",
   "engagement": "One independent, simulated engagement for a fictional hotel group with two properties and synthetic data.",
   "stages": [
+    {
+      "stage": 0,
+      "name": "Discovery & Scoping",
+      "status": "Live",
+      "summary": "Stakeholder sessions, use cases scored with a four-check test, SOW, pricing, security answers.",
+      "delivers": "The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/hotel-ai-discovery.html"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/hotel-ai-discovery"
+        }
+      ]
+    },
     {
       "stage": 1,
       "name": "Hotel Operations Knowledge Assistant",
@@ -100,6 +117,40 @@
         {
           "label": "GitHub",
           "url": "https://github.com/vamsialladev/hotel-ai-handoff"
+        }
+      ]
+    },
+    {
+      "stage": 7,
+      "name": "Hotel Tools MCP Server",
+      "status": "Live",
+      "summary": "The group's tools for any MCP client, with roles, tenant isolation and an audit log.",
+      "delivers": "An MCP server where an API key's role decides which tools exist and which fields come back, hotel groups can't see each other's data, and every call is audited.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/hotel-tools-mcp.html"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/hotel-tools-mcp"
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "name": "Ops Analytics Agent",
+      "status": "Live",
+      "summary": "Plain-English questions over the bookings database, SQL always shown; a daily anomaly check.",
+      "delivers": "Managers ask the bookings database in plain English and see the SQL behind every answer; a daily check posts anomalies to Slack.",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "projects/hotel-ops-analytics-agent.html"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/vamsialladev/hotel-ops-analytics-agent"
         }
       ]
     }
