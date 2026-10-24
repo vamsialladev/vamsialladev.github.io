@@ -54,16 +54,17 @@
     <p class="crumb"><a href="../projects.html">Projects</a> › Eval Harness</p>
     <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
       <h2 id="demo-heading">Watch the demo</h2>
+      <!-- DEMO-VIDEO -->
       <video controls playsinline preload="none" poster="../videos/eval-harness-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
         <source src="../videos/eval-harness-demo.mp4" type="video/mp4">
-        <track kind="captions" src="../videos/eval-harness-demo.vtt" srclang="en" label="English (narration)">
+        <track kind="captions" src="../videos/eval-harness-demo.vtt" srclang="en" label="English">
         <a href="../videos/eval-harness-demo.mp4">Download the demo video (MP4)</a>
       </video>
       <p class="demo-summary" id="demo-summary">Recorded on the live dashboard: both assistants' gates, a regression caught, a failing case, and the judge checked against 70 hand labels.</p>
-      <details class="transcript"><summary>Read the transcript</summary><p>Eval Harness: a simulated client project, part three of five.</p><p>One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.</p><p>It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.</p><p>Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens. Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.</p><p>The gate still failed, because two questions that always passed now always fail. The message names them. The branch was never merged.</p><p>Here is one: a spa question about a sixteen-year-old. The right passage dropped out, and every metric shows it.</p><p>An AI judge rates tone and clarity. I labelled seventy replies by hand, in two blind rounds, the second one full of failures on purpose. Its best kappa was point two nine, well under the bar of point six. So no judge score is trusted, and none is a gate.</p><p>The code, the reports and every decision are linked on screen.</p></details>
+      <details class="transcript"><summary>Read the captions</summary><p>Eval Harness: a simulated client project, part three of five.</p><p>One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.</p><p>It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.</p><p>Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens. Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.</p><p>The gate still failed, because two questions that always passed now always fail. The message names them. The branch was never merged.</p><p>Here is one: a spa question about a sixteen-year-old. The right passage dropped out, and every metric shows it.</p><p>An AI judge rates tone and clarity. I labelled seventy replies by hand, in two blind rounds, the second one full of failures on purpose. Its best kappa was point two nine, well under the bar of point six. So no judge score is trusted, and none is a gate.</p><p>The code, the reports and every decision are linked on screen.</p></details>
       <div class="actions">
         <a class="btn primary" href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Open the live dashboard</a>
-        <span class="small">Narration: AI voice (Piper, open source) · captions with the CC button · read-only, no sign-in</span>
+        <span class="small">Screen recording with captions (more with the CC button) · read-only, no sign-in</span>
       </div>
       <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
     </section>

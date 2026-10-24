@@ -33,3 +33,15 @@ jobs:
         with:
           args: --no-progress --root-dir "${{ github.workspace }}" --scheme https --cookie-jar lychee-cookies.json --max-retries 3 --accept "200..=299,403,429,503,999" --exclude "^https://(www\.)?linkedin\.com" --exclude "^https://vamsialla\.com" "*.html" "projects/*.html" "notes/*.html"
           fail: false
+
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks (full history)
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.24.2/gitleaks_8.24.2_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks git --redact --verbose --exit-code 1 .
