@@ -141,7 +141,8 @@
     "projects/hotel-ai-discovery.html",
     "projects/hotel-tools-mcp.html",
     "projects/hotel-ops-analytics-agent.html",
-    "projects/resort-activities-concierge.html"
+    "projects/resort-activities-concierge.html",
+    "projects/fde-account-research-agent.html"
   ],
   "note_categories": [
     "Evals",
