@@ -1,46 +1,73 @@
 WEBVTT
 
-00:00:00.400 --> 00:00:05.020 line:6% position:50% align:center
-Eval Harness: a simulated client project, part three of five.
+1
+00:00:03.000 --> 00:00:05.752
+I had two AI assistants for a hotel group,
 
-00:00:05.370 --> 00:00:15.040 line:6% position:50% align:center
-One harness now checks both of the hotel group's assistants the same way: the same cases, metrics and gates, with ninety-five percent intervals on every rate.
+2
+00:00:06.602 --> 00:00:09.759
+and nothing told me when a change made either one worse.
 
-00:00:15.480 --> 00:00:23.150 line:6% position:50% align:center
-It reproduces both projects' published numbers from their own recordings, and fresh re-runs at the pinned versions pass every gate.
+3
+00:00:10.609 --> 00:00:12.828
+So I built one eval harness for both.
 
-00:00:23.620 --> 00:00:29.720 line:6% position:50% align:center
-Then I made a realistic bad change on a throwaway branch: two passages instead of five, to save tokens.
+4
+00:00:13.678 --> 00:00:16.601
+It's a simulated client, with synthetic data.
 
-00:00:29.720 --> 00:00:34.640 line:6% position:50% align:center
-Retrieval only fell from ninety-eight to ninety-three percent, inside the interval.
+5
+00:00:17.219 --> 00:00:19.416
+Here's a bad change I made on purpose.
 
-00:00:35.060 --> 00:00:39.820 line:6% position:50% align:center
-The gate still failed, because two questions that always passed now always fail.
+6
+00:00:20.266 --> 00:00:22.784
+I cut the search from five passages to two.
 
-00:00:39.820 --> 00:00:41.180 line:6% position:50% align:center
-The message names them.
+7
+00:00:23.634 --> 00:00:25.212
+The average barely moved,
 
-00:00:41.180 --> 00:00:42.850 line:6% position:50% align:center
-The branch was never merged.
+8
+00:00:26.062 --> 00:00:29.177
+but the gate failed, and it names the cases that broke.
 
-00:00:43.340 --> 00:00:46.670 line:6% position:50% align:center
-Here is one: a spa question about a sixteen-year-old.
+9
+00:00:29.797 --> 00:00:31.034
+This is one of them.
 
-00:00:46.670 --> 00:00:50.260 line:6% position:50% align:center
-The right passage dropped out, and every metric shows it.
+10
+00:00:31.884 --> 00:00:35.788
+The question needs a passage the smaller search no longer finds.
 
-00:00:54.860 --> 00:00:57.150 line:6% position:50% align:center
-An AI judge rates tone and clarity.
+11
+00:00:36.638 --> 00:00:38.900
+You can see the expected policy text,
 
-00:00:57.150 --> 00:01:03.710 line:6% position:50% align:center
-I labelled seventy replies by hand, in two blind rounds, the second one full of failures on purpose.
+12
+00:00:39.750 --> 00:00:42.331
+and the answers, wrong the same way every run.
 
-00:01:03.710 --> 00:01:08.100 line:6% position:50% align:center
-Its best kappa was point two nine, well under the bar of point six.
+13
+00:00:42.937 --> 00:00:44.857
+I also tried an AI judge,
 
-00:01:08.100 --> 00:01:11.310 line:6% position:50% align:center
-So no judge score is trusted, and none is a gate.
+14
+00:00:45.707 --> 00:00:47.606
+and checked it against my own labels.
 
-00:01:11.730 --> 00:01:15.460 line:6% position:50% align:center
-The code, the reports and every decision are linked on screen.
+15
+00:00:48.456 --> 00:00:51.528
+The agreement was too low, a kappa of about point three,
+
+16
+00:00:52.378 --> 00:00:54.042
+so nothing is gated on it.
+
+17
+00:00:54.656 --> 00:00:56.192
+It's live and read-only.
+
+18
+00:00:57.042 --> 00:00:58.813
+The link and the code are below.

@@ -1,52 +1,86 @@
 WEBVTT
 
-00:00:00.400 --> 00:00:05.160 line:6% position:50% align:center
-Guest Request Agent: a simulated client project, part two of five.
+1
+00:00:03.000 --> 00:00:05.773
+Hotels get emails with three questions in one.
 
-00:00:05.510 --> 00:00:10.680 line:6% position:50% align:center
-A guest writes with three requests: a dog, a late check-out and an airport pickup.
+2
+00:00:06.623 --> 00:00:08.138
+Staff answer them by hand,
 
-00:00:11.110 --> 00:00:12.960 line:6% position:50% align:center
-The agent finds every request.
+3
+00:00:08.988 --> 00:00:12.679
+and under pressure they promise things only a manager can approve.
 
-00:00:12.960 --> 00:00:20.730 line:6% position:50% align:center
-It looks up her booking, checks the hotel's policies with the search from project one, and proposes tasks for the right teams.
+4
+00:00:13.529 --> 00:00:16.451
+This is a simulated hotel, with made-up guests.
 
-00:00:21.150 --> 00:00:28.030 line:6% position:50% align:center
-The draft cites every policy it uses, and every price and date is checked against the tool results before staff see it.
+5
+00:00:17.062 --> 00:00:18.491
+So the agent reads it,
 
-00:00:28.510 --> 00:00:29.880 line:6% position:50% align:center
-Staff stay in control.
+6
+00:00:19.341 --> 00:00:20.643
+finds the requests,
 
-00:00:29.880 --> 00:00:32.420 line:6% position:50% align:center
-They can edit the reply, then approve it.
+7
+00:00:21.493 --> 00:00:23.306
+and looks up the booking with a tool.
 
-00:00:32.420 --> 00:00:35.770 line:6% position:50% align:center
-Nothing is really sent: it goes to a simulated outbox.
+8
+00:00:24.156 --> 00:00:27.015
+Here's that step, and the booking record it got back.
 
-00:00:36.250 --> 00:00:40.080 line:6% position:50% align:center
-Only now are the tasks created, for the teams that will do them.
+9
+00:00:27.625 --> 00:00:31.422
+Then it checks each policy with the search from my first project.
 
-00:00:41.280 --> 00:00:46.990 line:6% position:50% align:center
-An angry refund demand goes straight to a manager, with the reason and a polite holding reply.
+10
+00:00:32.272 --> 00:00:34.576
+The draft quotes the hotel's own policy,
 
-00:00:46.990 --> 00:00:49.050 line:6% position:50% align:center
-The agent never promises a refund.
+11
+00:00:35.426 --> 00:00:39.245
+and every price and date is checked against what the tools returned.
 
-00:00:49.900 --> 00:00:52.750 line:6% position:50% align:center
-This email tries to take over the assistant.
+12
+00:00:39.859 --> 00:00:41.288
+Now I'm the staff member.
 
-00:00:52.750 --> 00:00:56.760 line:6% position:50% align:center
-It's treated as data: no refund, and no other guest's booking.
+13
+00:00:42.138 --> 00:00:44.058
+I add a line, and I approve it.
 
-00:01:00.280 --> 00:01:11.550 line:6% position:50% align:center
-It's measured on forty labelled emails, three runs each: every escalation caught, every injection resisted, no forbidden promises, at about a dollar thirty per thousand emails.
+14
+00:00:44.908 --> 00:00:48.172
+Nothing's really sent, it goes to a pretend outbox,
 
-00:01:11.760 --> 00:01:18.640 line:6% position:50% align:center
-The owner sees every request: each agent step, the draft, and exactly what staff changed before sending.
+15
+00:00:49.022 --> 00:00:51.134
+and only now are the tasks created.
 
-00:01:27.830 --> 00:01:30.800 line:6% position:50% align:center
-Try the live app, or read the code and the decisions.
+16
+00:00:51.734 --> 00:00:54.123
+This email tries to take over the agent.
 
-00:01:30.800 --> 00:01:32.150 line:6% position:50% align:center
-The links are on screen.
+17
+00:00:54.973 --> 00:00:56.424
+It's treated as data.
+
+18
+00:00:57.274 --> 00:00:59.663
+No refund, and no other guest's booking.
+
+19
+00:01:00.513 --> 00:01:06.828
+On forty test emails, three runs each, it caught every escalation and
+resisted every injection.
+
+20
+00:01:07.437 --> 00:01:09.186
+It's live, with no sign-in.
+
+21
+00:01:10.036 --> 00:01:11.807
+The link and the code are below.
