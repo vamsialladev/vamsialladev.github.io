@@ -1,5 +1,5 @@
 {
-  "_comment": "The one place to change project status. status: Live (the card has at least one verified live link, labelled \"<name> (live)\") | Built (code and case study public, no live link yet) | Next | Planned. Rendered by assets/site.js on Home and Projects (site_sync.py writes the no-JavaScript copy). Stage numbers follow CLAUDE.md section 18.",
+  "_comment": "The one place to change project status. status: Live (the card has at least one verified live link, labelled \"<name> (live)\") | Published (a document-only stage with no app) | Built (code and case study public, no live link yet) | Next | Planned. Rendered by assets/site.js on Home and Projects (site_sync.py writes the no-JavaScript copy). Stage numbers follow CLAUDE.md section 18.",
   "engagement": "One independent, simulated engagement for a fictional hotel group with two properties and synthetic data.",
   "stages": [
     {
@@ -22,7 +22,7 @@
     {
       "stage": 0,
       "name": "Discovery & Scoping",
-      "status": "Built",
+      "status": "Published",
       "summary": "Stakeholder sessions, use cases scored with a four-check test, SOW, pricing, security answers.",
       "delivers": "The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.",
       "links": [
