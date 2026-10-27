@@ -82,8 +82,8 @@
       "stage": 3,
       "name": "Eval Harness",
       "status": "Live",
-      "summary": "One eval harness for both assistants: 181 cases, gates in CI, a judge checked against hand labels.",
-      "delivers": "One evaluation system for stages 1 and 2: 181 labelled cases, the projects' own metrics, regression gates in both repos' CI, and an LLM judge that counts only once it agrees with hand labels.",
+      "summary": "One eval harness for both assistants: 195 cases, gates in CI, a judge checked against hand labels.",
+      "delivers": "One evaluation system for stages 1 and 2: 195 labelled cases (181, plus 14 added in stage 4), the projects' own metrics, regression gates in both repos' CI, and an LLM judge that counts only once it agrees with hand labels.",
       "links": [
         {
           "label": "Case study",
