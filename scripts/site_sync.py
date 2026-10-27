@@ -1,5 +1,6 @@
 """Keep every page in step with data/site.json: the nav and More menu, the footer pages, the Home cards and latest
-notes, the Notes list, sitemap.xml and feed.xml. Standard library only.
+notes, the Notes list, sitemap.xml and feed.xml; and the no-JavaScript stage cards with data/projects.json.
+Standard library only.
 
     python scripts/site_sync.py          # rewrite the shared blocks, sitemap.xml and feed.xml
     python scripts/site_sync.py --check  # exit 1 if anything is out of date (used in CI)
@@ -153,6 +154,33 @@ def feed() -> str:
 """
 
 
+PROJECTS = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
+WAKE = "Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds."
+
+
+def is_live_link(label: str) -> bool:
+    return label.endswith("(live)") or label in ("Live app", "Dashboard")
+
+
+def stages(root: str, compact: bool) -> str:
+    """The no-JavaScript copy of the stage cards: the same markup assets/site.js builds from data/projects.json."""
+    items = []
+    for s in PROJECTS["stages"]:
+        tag = "tag live" if s["status"] == "Live" else "tag"
+        li = (f'<li class="stage" data-status="{esc(s["status"])}"><div class="stage-top">'
+              f'<span class="stage-num">{esc(str(s["stage"]))}</span><span class="{tag}">{esc(s["status"])}</span></div>'
+              f'<h3>{esc(s["name"])}</h3><p>{esc(s["summary"] if compact else s["delivers"])}</p>')
+        if not compact and s.get("links"):
+            links = "".join(
+                f'<a href="{esc(l["url"])}" rel="noopener noreferrer">{esc(l["label"])} →</a>' if l["url"].startswith("http")
+                else f'<a href="{esc(root + l["url"])}">{esc(l["label"])} →</a>' for l in s["links"])
+            li += f'<div class="links">{links}</div>'
+            if any(is_live_link(l["label"]) for l in s["links"]):
+                li += f'<p class="small wake-note">{WAKE}</p>'
+        items.append(li + "</li>")
+    return "".join(items)
+
+
 def sync_page(path: Path) -> str:
     rel = path.relative_to(ROOT).as_posix()
     root = "/" if rel == "404.html" else "../" * rel.count("/")
@@ -160,6 +188,8 @@ def sync_page(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
     for name, render in BLOCKS.items():
         text = re.sub(rf"<!--s:{name}-->.*?<!--/s:{name}-->", lambda m: wrap(name, render(root, active)), text, flags=re.S)
+    text = re.sub(r'(<ol class="stages( compact)?" data-stages>).*?(</ol>)',
+                  lambda m: m.group(1) + stages(root, bool(m.group(2))) + m.group(3), text, flags=re.S)
     return text
 
 

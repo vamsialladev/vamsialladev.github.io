@@ -156,7 +156,7 @@
               links.appendChild(a);
             });
             li.appendChild(links);
-            if (s.links.some(function (l) { return l.label === "Live app" || l.label === "Dashboard"; })) {
+            if (s.links.some(function (l) { return /\(live\)$/.test(l.label) || l.label === "Live app" || l.label === "Dashboard"; })) {
               li.appendChild(el("p", "small wake-note", "Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds."));
             }
           }
