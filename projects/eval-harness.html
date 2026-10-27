@@ -60,11 +60,12 @@
         <track kind="captions" src="../videos/eval-harness-demo.vtt" srclang="en" label="English">
         <a href="../videos/eval-harness-demo.mp4">Download the demo video (MP4)</a>
       </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
       <p class="demo-summary" id="demo-summary">Recorded on the live dashboard: a deliberate regression the gate catches by name, the failing case with its expected passage, and why the AI judge isn't trusted yet.</p>
       <details class="transcript"><summary>Read the narration</summary><p>I had two AI assistants for a hotel group,</p><p>and nothing told me when a change made either one worse.</p><p>So I built one eval harness for both.</p><p>It's a simulated client, with synthetic data.</p><p>Here's a bad change I made on purpose.</p><p>I cut the search from five passages to two.</p><p>The average barely moved,</p><p>but the gate failed, and it names the cases that broke.</p><p>This is one of them.</p><p>The question needs a passage the smaller search no longer finds.</p><p>You can see the expected policy text,</p><p>and the answers, wrong the same way every run.</p><p>I also tried an AI judge,</p><p>and checked it against my own labels.</p><p>The agreement was too low, a kappa of about point three,</p><p>so nothing is gated on it.</p><p>It's live and read-only.</p><p>The link and the code are below.</p></details>
       <div class="actions">
         <a class="btn primary" href="https://eval-harness.streamlit.app" rel="noopener noreferrer">Open the live dashboard</a>
-        <span class="small">AI-narrated screen recording (an AI voice, Kokoro) with captions · my own-voice version will replace it</span>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
       </div>
       <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
     </section>
