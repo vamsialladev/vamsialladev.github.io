@@ -1,5 +1,5 @@
 {
-  "_comment": "The one place to change project status. status: Live (a public app or published pack) | Built (code and case study public, no hosted app yet) | Next | Planned. Rendered by assets/site.js on Home and Projects. Stage numbers follow CLAUDE.md section 18.",
+  "_comment": "The one place to change project status. status: Live (the card has at least one verified live link, labelled \"<name> (live)\") | Built (code and case study public, no live link yet) | Next | Planned. Rendered by assets/site.js on Home and Projects (site_sync.py writes the no-JavaScript copy). Stage numbers follow CLAUDE.md section 18.",
   "engagement": "One independent, simulated engagement for a fictional hotel group with two properties and synthetic data.",
   "stages": [
     {
@@ -22,7 +22,7 @@
     {
       "stage": 0,
       "name": "Discovery & Scoping",
-      "status": "Live",
+      "status": "Built",
       "summary": "Stakeholder sessions, use cases scored with a four-check test, SOW, pricing, security answers.",
       "delivers": "The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.",
       "links": [
@@ -48,7 +48,7 @@
           "url": "projects/hotel-ops-assistant.html"
         },
         {
-          "label": "Live app",
+          "label": "Assistant (live)",
           "url": "https://hotel-ops-assistant.streamlit.app"
         },
         {
@@ -69,7 +69,7 @@
           "url": "projects/guest-request-agent.html"
         },
         {
-          "label": "Live app",
+          "label": "Agent (live)",
           "url": "https://guest-request-agent.streamlit.app"
         },
         {
@@ -90,7 +90,7 @@
           "url": "projects/eval-harness.html"
         },
         {
-          "label": "Dashboard",
+          "label": "Dashboard (live)",
           "url": "https://eval-harness.streamlit.app"
         },
         {
@@ -130,6 +130,18 @@
         {
           "label": "Case study",
           "url": "projects/production-and-handoff.html"
+        },
+        {
+          "label": "Assistant (live)",
+          "url": "https://hotel-ops-assistant.streamlit.app"
+        },
+        {
+          "label": "Agent (live)",
+          "url": "https://guest-request-agent.streamlit.app"
+        },
+        {
+          "label": "Daily health check (live)",
+          "url": "https://github.com/vamsialladev/hotel-ai-handoff/actions/workflows/health-check.yml"
         },
         {
           "label": "GitHub",
