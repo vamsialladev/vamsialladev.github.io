@@ -33,11 +33,11 @@
       "url": "projects.html",
       "nav": "main",
       "published": true,
-      "description": "One independent, simulated hotel engagement with synthetic data, built in five stages.",
+      "description": "One independent, simulated hotel engagement with synthetic data, from account research to handoff.",
       "card": {
         "n": 2,
         "label": "Projects",
-        "headline": "A simulated client engagement, built in five stages."
+        "headline": "A simulated client engagement, from first research to handoff."
       }
     },
     {
@@ -140,7 +140,9 @@
     "projects/production-and-handoff.html",
     "projects/hotel-ai-discovery.html",
     "projects/hotel-tools-mcp.html",
-    "projects/hotel-ops-analytics-agent.html"
+    "projects/hotel-ops-analytics-agent.html",
+    "projects/resort-activities-concierge.html",
+    "projects/fde-account-research-agent.html"
   ],
   "note_categories": [
     "Evals",

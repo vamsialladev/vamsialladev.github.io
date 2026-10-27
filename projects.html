@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Projects | Vamsi Alla</title>
-<meta name="description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta name="description" content="One independent, simulated engagement for a fictional hotel group, from account research to handoff: each stage with code, evals and a case study, and three of them live.">
 <link rel="canonical" href="https://vamsialla.com/projects.html">
 <meta property="og:title" content="Projects | Vamsi Alla">
-<meta property="og:description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta property="og:description" content="One independent, simulated engagement for a fictional hotel group, from account research to handoff: each stage with code, evals and a case study, and three of them live.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vamsialla.com/projects.html">
 <meta property="og:site_name" content="Vamsi Alla">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 307 tests">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects | Vamsi Alla">
-<meta name="twitter:description" content="One independent, simulated engagement for a fictional hotel group, built stage by stage. Stage 1, the Hotel Operations Knowledge Assistant, is live with a case study, demo video and code.">
+<meta name="twitter:description" content="One independent, simulated engagement for a fictional hotel group, from account research to handoff: each stage with code, evals and a case study, and three of them live.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-ops.png">
 <meta name="twitter:image:alt" content="Hotel Operations Knowledge Assistant: 98% answer accuracy on the live app, first-question success 43% to 100%, 307 tests">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
@@ -57,7 +57,53 @@
   </section>
   <section class="section" aria-labelledby="live-h">
     <div class="wrap">
-      <div class="section-head"><span class="eyebrow">01 · Live now</span><h2 id="live-h">Live now</h2></div>
+      <div class="section-head"><span class="eyebrow">01 · Newest first</span><h2 id="live-h">Every stage, newest first</h2></div>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <figure class="slip" aria-label="Real output for a company that doesn't exist">
+            <p class="q">“Seabright Coastal Resorts” (a fictional company in the eval, real output)</p>
+            <p>Snapshot: Nothing reliable found. · Sources: None: no reliable public information was found. · Removed for having no source: 11</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · pre-sales for the simulated hotel group</p>
+          <h3>Account Research Agent</h3>
+          <p>Type a hotel company's name and get a brief for a first client meeting. A planner, web-search researchers, a critic in plain code that re-checks every quote on its page, and a writer that may only cite what the critic kept.</p>
+          <dl class="stats">
+            <div><dt>17/18</dt><dd>dev briefs pass every check, 3 runs (4/6 held out; fictional near-namesakes are the weak spot)</dd></div>
+            <div><dt>88%</dt><dd>of cited quotes found on their page (312/355)</dd></div>
+            <div><dt>$0.14</dt><dd>per brief, mostly web search; p95 109 s</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/fde-account-research-agent.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/fde-account-research-agent" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
+      <article class="feature">
+        <div class="feature-media">
+          <!-- DEMO-VIDEO -->
+          <figure class="slip" aria-label="How a booking request works in the concierge">
+            <p class="q">“Yes, please request the kids club for our two kids.”</p>
+            <p>Request sent · PENDING · staff approve it on the Staff page, and the guest sees the decision in the chat</p>
+          </figure>
+        </div>
+        <div>
+          <p class="label">Independent project · simulated hotel group, synthetic data</p>
+          <h3>Resort Activities Concierge</h3>
+          <p>Guests scan a QR code in their room, see what's on today and ask a concierge that knows the real schedule and the resort's rules. It sends a booking request only after the guest says yes, and staff approve it.</p>
+          <dl class="stats">
+            <div><dt>183/183</dt><dd>dev checks, 61 cases × 3 runs (42/45 held out, one real miss reported)</dd></div>
+            <div><dt>5/6</dt><dd>guest-style paraphrases found with hybrid search (0/6 with keyword search alone)</dd></div>
+            <div><dt>$0.66</dt><dd>per 1,000 messages, p95 7.7 s</dd></div>
+          </dl>
+          <div class="links">
+            <a href="projects/resort-activities-concierge.html">Case study →</a>
+            <a href="https://github.com/vamsialladev/resort-activities-concierge" rel="noopener noreferrer">GitHub →</a>
+          </div>
+        </div>
+      </article>
       <article class="feature">
         <div class="feature-media">
           <!-- DEMO-VIDEO -->
@@ -232,7 +278,7 @@
     <div class="wrap">
       <div class="section-head"><span class="eyebrow">02 · One engagement, stage by stage</span><h2 id="stages-h">One engagement, stage by stage</h2></div>
       <p class="lede">Each stage builds on the last and delivers something a client could use on its own. Stages 0–5, 7 and 8 are published.</p>
-      <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">0</span></div><h3>Discovery &amp; Scoping</h3><p>The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3><p>Front-desk staff ask policy questions and get cited, property-specific answers, or an honest &quot;check with a manager&quot;.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3><p>An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool) and drafts a reply that staff approve before anything is sent.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3><p>One evaluation system for stages 1 and 2: 181 labelled cases, the projects&#x27; own metrics, regression gates in both repos&#x27; CI, and an LLM judge that counts only once it agrees with hand labels.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3><p>Both live apps hardened: four gaps the evals found fixed and measured, personal data redacted before storage, a staff role, latency and cost budgets gated in CI, a kill switch and an Operations page.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3><p>A handoff package for the hotel group&#x27;s IT and operations teams: architecture, decision index, eight runbooks, SLOs and budgets, staff and admin guides, a readiness checklist, a 30/60/90-day plan and a daily health check.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">7</span></div><h3>Hotel Tools MCP Server</h3><p>An MCP server where an API key&#x27;s role decides which tools exist and which fields come back, hotel groups can&#x27;t see each other&#x27;s data, and every call is audited.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">8</span></div><h3>Ops Analytics Agent</h3><p>Managers ask the bookings database in plain English and see the SQL behind every answer; a daily check posts anomalies to Slack.</p></li></ol>
+      <ol class="stages" data-stages><li class="stage"><div class="stage-top"><span class="stage-num">PS</span></div><h3>Account Research Agent (pre-sales)</h3><p>Before the first meeting: a brief on a hotel company from public web pages, where every line has a source and every quote was checked on its page, plus ten questions, three use-case guesses and a short email.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">0</span></div><h3>Discovery &amp; Scoping</h3><p>The discovery, problem selection, statement of work, pricing model and security questionnaire that came before any code.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">1</span></div><h3>Hotel Operations Knowledge Assistant</h3><p>Front-desk staff ask policy questions and get cited, property-specific answers, or an honest &quot;check with a manager&quot;.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">2</span></div><h3>Guest Request Agent</h3><p>An agent that reads guest emails, checks bookings and policy (using stage 1 as a tool) and drafts a reply that staff approve before anything is sent.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">3</span></div><h3>Eval Harness</h3><p>One evaluation system for stages 1 and 2: 181 labelled cases, the projects&#x27; own metrics, regression gates in both repos&#x27; CI, and an LLM judge that counts only once it agrees with hand labels.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">4</span></div><h3>Production Deployment</h3><p>Both live apps hardened: four gaps the evals found fixed and measured, personal data redacted before storage, a staff role, latency and cost budgets gated in CI, a kill switch and an Operations page.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">5</span></div><h3>Client Handoff</h3><p>A handoff package for the hotel group&#x27;s IT and operations teams: architecture, decision index, eight runbooks, SLOs and budgets, staff and admin guides, a readiness checklist, a 30/60/90-day plan and a daily health check.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">6</span></div><h3>Resort Activities Concierge</h3><p>A schedule page and a concierge that answers from the real schedule and policies with citations, sends a booking request only after the guest says yes, and waits for staff to approve it.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">7</span></div><h3>Hotel Tools MCP Server</h3><p>An MCP server where an API key&#x27;s role decides which tools exist and which fields come back, hotel groups can&#x27;t see each other&#x27;s data, and every call is audited.</p></li><li class="stage"><div class="stage-top"><span class="stage-num">8</span></div><h3>Ops Analytics Agent</h3><p>Managers ask the bookings database in plain English and see the SQL behind every answer; a daily check posts anomalies to Slack.</p></li></ol>
       <p class="small updated">Last updated: October 2026</p>
     </div>
   </section>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Account Research Agent | Case study | Vamsi Alla</title>
+<meta name="description" content="Independent, simulated engagement: a research agent that writes a cited brief for a first client meeting, re-checks every quote on its page, and says so when a company has no public information. 17 of 18 dev briefs pass every check; about $0.14 a brief.">
+<link rel="canonical" href="https://vamsialla.com/projects/fde-account-research-agent.html">
+<meta property="og:title" content="Account Research Agent | Case study | Vamsi Alla">
+<meta property="og:description" content="Independent, simulated engagement: a research agent that writes a cited brief for a first client meeting, re-checks every quote on its page, and says so when a company has no public information. 17 of 18 dev briefs pass every check; about $0.14 a brief.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vamsialla.com/projects/fde-account-research-agent.html">
+<meta property="og:site_name" content="Vamsi Alla">
+<meta property="og:image" content="https://vamsialla.com/assets/og-fde-account-research-agent.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Account research agent case study: 17 of 18 dev briefs pass every check, 88% of cited quotes found on their page, 5 of 6 fictional-company briefs invent nothing, $0.14 per brief">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Account Research Agent | Case study | Vamsi Alla">
+<meta name="twitter:description" content="Independent, simulated engagement: a research agent that writes a cited brief for a first client meeting, re-checks every quote on its page, and says so when a company has no public information. 17 of 18 dev briefs pass every check; about $0.14 a brief.">
+<meta name="twitter:image" content="https://vamsialla.com/assets/og-fde-account-research-agent.png">
+<meta name="twitter:image:alt" content="Account research agent case study: 17 of 18 dev briefs pass every check, 88% of cited quotes found on their page, 5 of 6 fictional-company briefs invent nothing, $0.14 per brief">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preconnect" href="https://gc.zgo.at">
+<link rel="preconnect" href="https://vamsialla.goatcounter.com">
+<link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Account Research Agent", "description": "Independent, simulated engagement: a research agent that writes a cited brief for a first client meeting, re-checks every quote on its page, and says so when a company has no public information. 17 of 18 dev briefs pass every check; about $0.14 a brief.", "url": "https://vamsialla.com/projects/fde-account-research-agent.html", "codeRepository": "https://github.com/vamsialladev/fde-account-research-agent", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "version": "1.0.0", "dateModified": "2026-10-25", "image": "https://vamsialla.com/assets/og-fde-account-research-agent.png", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/", "jobTitle": "Senior Software Engineer"}}</script>
+</head>
+<body data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="../index.html"><span class="brand-name">Vamsi Alla</span><span class="brand-tag">Build · Measure · Ship · Share</span></a>
+    <button class="icon-btn theme-btn" type="button" aria-label="Switch color theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul><!--s:nav--><li><a href="../index.html">Home</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li class="more"><span class="more-title" aria-hidden="true">More</span><button class="more-btn" type="button" aria-expanded="false" aria-controls="more-menu">More<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><ul id="more-menu" class="more-menu"><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li></ul></li><!--/s:nav--></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="narrow">
+    <p class="crumb"><a href="../projects.html">Projects</a> › Account Research</p>
+    <!-- DEMO-VIDEO -->
+    <span class="eyebrow">Case study · pre-sales</span>
+    <h1>Account Research Agent</h1>
+    <p class="lede">Type a hotel company's name and get a brief for a first client meeting: who they are, recent news, what guests say, tech hints, ten questions, three use-case guesses and a short email. Every line has a source, and every quote was checked on its page.</p>
+    <p class="note">Independent project: the pre-sales stage of the same simulated hotel engagement. The agent reads real public web pages about real companies; the eval also uses fictional companies on purpose. No private individuals are researched. Every number below comes from a saved report in the repository. The app isn't hosted yet, so there's no live link.</p>
+    <div class="actions"><a class="btn primary" href="https://github.com/vamsialladev/fde-account-research-agent" rel="noopener noreferrer">Code on GitHub</a></div>
+  </div>
+  <section class="section" id="problem" aria-labelledby="problem-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">01 · Problem</span><h2 id="problem-h">Problem</h2></div>
+      <p>There's a first call with a resort group on Monday. I open their website, an annual report, three news articles and a review site, and an hour later I have a page of notes, half of them without a link to where I read them. On Monday someone asks “where did you see that?” and I can't say. Or the company is small, there's almost nothing public, and the notes fill the gap with guesses.</p>
+    </div>
+  </section>
+  <section class="section" id="approach" aria-labelledby="approach-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">02 · Approach</span><h2 id="approach-h">Approach</h2></div>
+      <ul>
+        <li><strong>Four small steps:</strong> a planner writes six questions; a researcher answers each with Anthropic's web search (at most two searches); a critic keeps only sentences web search cited; a writer builds the brief from what was kept.</li>
+        <li><strong>The critic is plain code, not a model:</strong> it can't be talked into keeping a claim. It removes uncited sentences, scrubs personal data, flags news older than a year, and re-reads each cited page (robots.txt first) to find the quoted text.</li>
+        <li><strong>The writer can only cite what was kept:</strong> any line that cites nothing, or a finding that doesn't exist, is dropped in code.</li>
+        <li><strong>Visible and capped:</strong> every step shows its time and cost; a run stops researching near $0.25; 3 briefs per visit, 30 briefs and $3 a day.</li>
+        <li><strong>Then a chat about the brief</strong> (answers only from its findings, no new searches) and a read-only share link.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="results" aria-labelledby="results-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Results</span><h2 id="results-h">Results</h2></div>
+      <section class="scroll" tabindex="0" aria-label="Table: eval results (scrolls sideways)"><table>
+        <caption>Eval, 3 runs per company: 4 real and 2 fictional (dev), 1 real and 1 fictional (held-out)</caption>
+        <thead><tr><th scope="col">Check</th><th scope="col" class="n">Dev</th><th scope="col" class="n">Held-out</th></tr></thead>
+        <tbody>
+          <tr><td>Briefs passing every check</td><td class="n">17/18</td><td class="n">4/6</td></tr>
+          <tr><td>Lines sourced, no personal data, email honest</td><td class="n">18/18</td><td class="n">6/6</td></tr>
+          <tr><td>Fictional companies: nothing invented</td><td class="n">5/6</td><td class="n">1/3</td></tr>
+          <tr><td>Cited quotes found on their page</td><td class="n">88%</td><td class="n">68%</td></tr>
+          <tr><td>Research sentences kept (with a source)</td><td class="n">49%</td><td class="n">44%</td></tr>
+          <tr><td>Time per brief, p95</td><td class="n">109 s</td><td class="n">106 s</td></tr>
+          <tr><td>Cost per brief</td><td class="n">$0.14</td><td class="n">$0.14</td></tr>
+        </tbody>
+      </table></section>
+      <p>As measured, before two fixes to my own checks: dev 15/18, held-out 3/6. The weak spot is fictional companies with near-namesakes. On held-out, one brief stated a pizza pop-up with the same name as if it were the company, and another left a similarly named company's acquisition as “unconfirmed” instead of setting it aside. I reported both and haven't tuned for them. Still to measure: whether each sentence says what its source says, which needs a person; 30 sampled claims are ready to label.</p>
+    </div>
+  </section>
+  <section class="section" id="lessons" aria-labelledby="lessons-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <p>Read the briefs, not just the scores. I stopped the first run after five briefs: four passed every check, but one outreach email opened “I'm a Forward Deployed Engineer” and two said “I'm Vamsi, an engineer…”, signed with my name. My title is Senior Software Engineer, and no check looked at that. The writer no longer describes the sender, and a new check fails any email that does. Reading the final run then found two bugs in my own checks: a hype-word check that fired on a cited page's title (“seamless travel experience”), and a fictional-company check that failed an honest “the closest matches are different businesses”. Both are fixed with the real phrasings as tests, and the as-measured reports are kept.</p>
+    </div>
+  </section>
+  <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
+        <caption>Trade-offs</caption>
+        <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
+        <tbody>
+          <tr><td>A critic in code</td><td class="n">Can't be talked into keeping an uncited claim</td><td class="n">Can't judge whether a sentence says what its source says: that needs a person</td></tr>
+          <tr><td>Anthropic's web search</td><td class="n">Citations come attached to the text</td><td class="n">Most of the cost: about 12 searches, 12 cents a brief</td></tr>
+          <tr><td>robots.txt before every fetch</td><td class="n">Only read what sites allow</td><td class="n">Some quotes can't be verified and are marked so</td></tr>
+          <tr><td>Researchers one after another</td><td class="n">Simple, and the cost cap is exact</td><td class="n">About 90 seconds a brief; parallel is next</td></tr>
+        </tbody>
+      </table></section>
+    </div>
+  </section>
+  <section class="section" id="engineering" aria-labelledby="engineering-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <ul>
+        <li><strong>Tests:</strong> 31, 92% coverage, with the model and the web replaced: the pipeline, the cost cap, the critic, the fetcher's robots.txt handling, the chat, the share link and the eval's grader.</li>
+        <li><strong>CI:</strong> ruff, pytest with a coverage gate, re-scoring the saved eval runs (any changed verdict fails), pip-audit, a link check and gitleaks.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" id="business" aria-labelledby="business-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
+      <p>A projection from stated assumptions, not a result: for a team of 8 engineers, about $27,000 a year of prep time in the base case, from $1,200 (pessimistic) to $66,000 (optimistic). The AI cost per brief is measured; review time is the swing factor, since checking a brief can cost as much as the prep it replaced. A four-week pilot would time prep with and without it and mark each brief line used, unused or wrong.</p>
+    </div>
+  </section>
+  <section class="section" id="next" aria-labelledby="next-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">08 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <ul>
+        <li>Label 30 sampled claims by hand for the unsupported-claim rate</li>
+        <li>Run the six researchers in parallel (about 90 seconds to about 20)</li>
+        <li>Host it on Streamlit Community Cloud with a spending limit</li>
+      </ul>
+      <p><a class="arrow-link" href="../projects.html#stages">See every stage →</a></p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-line">Work, writing, and the life around it.</p>
+    <ul class="footer-pages"><!--s:footer-pages--><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li><!--/s:footer-pages--></ul>
+    <ul>
+      <li>© <span data-year>2026</span> Vamsi Alla</li>
+      <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://vamsialla.com/feed.xml">RSS</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+    </ul>
+    <p>Projects use a simulated hotel group and synthetic data.</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+<script>(function(){var skip=false;try{if(location.hash==='#toggle-goatcounter'){if(localStorage.getItem('skipgc')){localStorage.removeItem('skipgc');alert('GoatCounter: visits from this browser are counted again.');}else{localStorage.setItem('skipgc','t');alert('GoatCounter: visits from this browser are no longer counted.');}}skip=!!localStorage.getItem('skipgc');}catch(e){}var local=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);if(skip||local||navigator.doNotTrack==='1'){window.goatcounter={no_onload:true};}})();</script>
+<script data-goatcounter="https://vamsialla.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
