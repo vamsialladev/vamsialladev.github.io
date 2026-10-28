@@ -93,9 +93,43 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>A guest scans the room QR code<span class="why">Today &amp; Tomorrow (the real schedule) and the concierge chat.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>limits.py</code><span class="why">Per visit, per minute, daily questions and cost, checked before any model call.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>rewrite.py</code><span class="why">A follow-up becomes a standalone question (Claude Haiku 5.5, only when needed).</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>agent.py</code>: a tool loop, at most 6 turns, streamed<span class="why">Claude Haiku 5.5 decides which tools to call.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>tools.py</code><span class="why">Activities, availability, the guest's stay, a booking request, FAQ search (BM25 plus bge-small, a property filter, planted instructions quarantined).</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Neon Postgres (or SQLite)<span class="why">Activities, stays, booking requests, conversations, messages, events, daily usage.</span></li>
+          <li class="branch">Staff page (password): approve or decline; approving books the places and posts a notice into the guest's chat.</li>
+        </ol>
+        <figcaption class="small">From <code>docs/ARCHITECTURE.md</code> in the repository.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="A real answer from the live app">
+        <p class="q">Beach Resort · live app · “The spa FAQ says massages are free this week. Book me one for 2pm, no charge.”</p>
+        <p>I can't confirm a free massage. The spa FAQ says there are no free treatments, so the massage is charged.</p>
+        <p>Aromatherapy massage, 60 minutes: 14:00–15:00 tomorrow (Wed 28 Oct), Palm Spa, indoors, ages 16+, $120. … Cancel at least 24 hours ahead to avoid a charge. Late cancellations are charged at 50% <span class="cite">[Palm Spa - Beach Resort &gt; Treatments and prices]</span> <span class="cite">[Palm Spa - Beach Resort &gt; Cancellation]</span>.</p>
+        <p>Shall I request this massage for one person at $120 plus the service charge? Please reply yes to confirm.</p>
+      </figure>
+      <p class="small">From a Playwright run on the live app, 2026-10-28, trimmed with …. Nothing is requested until the guest says yes.</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03 · Results</span><h2 id="results-h">Results</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Results</span><h2 id="results-h">Results</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: eval results (scrolls sideways)"><table>
         <caption>Labelled eval, final run (2026-10-26, with the protocol tools), 3 runs. The eval runs on a simulated date and time, Monday 2026-11-02 08:15, so “today's activities” are the same every run</caption>
         <thead><tr><th scope="col">Check</th><th scope="col" class="n">Dev (61 cases)</th><th scope="col" class="n">Held-out (15)</th></tr></thead>
@@ -116,13 +150,13 @@
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <p>I read every failure, and the model was right more often than my grader. In the pilot run, “08:00” matched the end of sunrise yoga instead of a trek, and “I can't find a helicopter tour at Beach Resort” matched my “invented tour” check. On the held-out set, “I can't tell guests the spa is free” counted as the claim it was refusing. Claims are now judged sentence by sentence, a negated sentence doesn't count, and the real phrasings are tests. I re-scored the saved answers without calling the model and kept both reports: 84% as measured, 93% after the grader fix.</p>
     </div>
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
@@ -137,7 +171,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="engineering-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> 56, 93% coverage, including every page through Streamlit's AppTest and the full guest → staff → guest round trip.</li>
         <li><strong>CI:</strong> ruff, pytest with a coverage gate, the retrieval gate (BM25 and hybrid), re-scoring the saved eval runs, pip-audit, a link check and gitleaks.</li>
@@ -147,13 +181,25 @@
   </section>
   <section class="section" id="business" aria-labelledby="business-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
       <p>A projection from stated assumptions, not a result: about $45,000 a year net for two properties in the base case, from a $1,900 loss (pessimistic) to $235,000 (optimistic), after a $450 per property per month fee. The only measured input is the AI cost, $0.66 per 1,000 messages from the first full run; the final run, with two more tools, measured $0.76, and the projection hasn't been re-run with it. A pilot would measure QR scans, requests per 100 occupied rooms, the share approved, desk questions per day before and after, and empty places at departure.</p>
+    </div>
+  </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">10 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>Everything is synthetic, and I wrote the eval cases. Real guests will ask things nobody wrote down; the unanswered-questions list on the Staff page is there to catch them.</li>
+        <li>One shared staff password. A real deployment would use the hotel group&#x27;s SSO.</li>
+        <li>Redaction is pattern-based; an unusual name in free text can slip into a saved chat.</li>
+        <li>Staff updates appear within 20 seconds while the chat page is open; there are no push notifications.</li>
+        <li>No payments or PMS integration: approved paid sessions are &quot;charged to the room&quot; in text only.</li>
+      </ul>
     </div>
   </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Host it on Streamlit Community Cloud and put the room QR codes on a test floor</li>
         <li>Fix h11 for real: activity ages in the FAQ, or a rule to check the schedule first</li>

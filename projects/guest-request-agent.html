@@ -136,9 +136,21 @@
       </table></section>
     </div>
   </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="A real draft reply from the eval run">
+        <p class="q">Elena's email (case E01): her dog Biscuit, late check-out on a Monday, a pickup from MIA</p>
+        <p>1. Dogs: Biscuit is welcome. Dogs up to 40 lbs are allowed, with a maximum of two dogs per room. The pet fee is $75 per stay and is non-refundable [P1]. …</p>
+        <p>2. Late check-out: As a Gold member, you are entitled to check-out until 2:00 PM, subject to availability [P8]. Weekend late check-out is capped at 12:00 PM [P7], but Monday is not a weekend day. We have noted your request, and the team will confirm.</p>
+        <p>3. Airport pickup from MIA: … Transfers must be booked at least 24 hours in advance [P9]. We have sent your request to our reservations team, who will confirm the vehicle, price and pickup time with you.</p>
+      </figure>
+      <p class="small">The agent's draft in the v1.1.0 release run (2026-10-15, run 1), trimmed with …; staff approve, edit or reject it before anything is sent.</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · Results</span><h2 id="results-h">Results</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Results</span><h2 id="results-h">Results</h2></div>
       <p class="note"><strong>Update, 15 October 2026 (stage 4, v1.1.0):</strong> correct tool use 96% → 100%, citation accuracy 94% → 100%, cost $1.30 → $1.24 per 1,000 emails and p95 8.4 s → 8.3 s; the wrong-hotel email (E12) is now answered for the guest's own hotel (0/6 → 6/6); the hard gates stay at 100%. <a href="production-and-handoff.html#changes">What changed in production →</a> The numbers below are from 14 October.</p>
       <p>40 labelled synthetic emails in 15 categories (multi-request, availability, policy, task routing, 8 must-escalate, 6 prompt injections, unknown guests, the wrong hotel, the impossible, Spanish, typos, angry tone), 3 runs with Claude Haiku 5.5, measured on 2026-10-14. Then 8 held-out emails written after all tuning, run once.</p>
       <section class="scroll" tabindex="0" aria-label="Table: Measure (scrolls sideways)"><table>
@@ -162,7 +174,7 @@
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <ul>
         <li><strong>Most failures were the grader's, not the model's.</strong> Eight bugs in my own checks and labels failed safe drafts, including “I'm not able to offer a free upgrade myself” and “I can't confirm that we can match the price”. The runtime guard had even removed the first one from the draft staff saw. Each is now a regression test with the exact sentence.</li>
         <li><strong>The model's own label can be wrong.</strong> A reply written in Spanish came back labelled English; the metric now reads the text.</li>
@@ -174,7 +186,7 @@
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: Choice (scrolls sideways)"><table>
         <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
         <tbody>
@@ -190,7 +202,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="eng-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> 237 tests at 98% coverage with a scripted stand-in for the model, including every exit of the agent loop, the approval flow (nothing sent or created without approval) and every page rendered in a test harness.</li>
         <li><strong>CI on every commit:</strong> lint and format, a dependency audit, a 90% coverage gate, a check that stage 1's copied code is unchanged, and the escalation, injection and no-promise gates re-scored from the recorded final and held-out runs, without calling the model.</li>
@@ -202,7 +214,7 @@
   </section>
   <section class="section" id="value" aria-labelledby="value-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
       <p>Projected from stated assumptions and shown as a range. Nothing here is a measured saving. The base case assumes 30 guest emails a day per property, 4 minutes saved per email by starting from a reviewed draft, $22 an hour staff cost and one unapproved $100 comp avoided every two weeks. Only the AI cost per email is measured.</p>
       <section class="scroll" tabindex="0" aria-label="Table: Projected net value per year (scrolls sideways)"><table>
         <thead><tr><th scope="col">Projected net value per year</th><th scope="col" class="n">2 properties</th><th scope="col" class="n">100 properties</th></tr></thead>
@@ -215,9 +227,21 @@
       <p>Minutes saved per email drives almost all of it, so that's the first thing a pilot measures. <a href="https://github.com/vamsialladev/guest-request-agent/blob/main/docs/BUSINESS_CASE.md" rel="noopener noreferrer">Full business case, pilot plan and go / no-go KPIs →</a></p>
     </div>
   </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">10 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li><strong>Known gap:</strong> replies don&#x27;t always state a loyalty tier&#x27;s late check-out (H03 key facts 0/3 in v1.1.0).</li>
+        <li>The escalation rules alone missed both held-out escalations; the model caught them. A missed escalation by both is possible; Project 3 adds more held-out cases written by other people.</li>
+        <li>Planted instructions are removed when they are addressed to an automated reader; an instruction written as if from the guest (&quot;please waive my fee&quot;) is a normal request and goes to a manager, never a promise.</li>
+        <li>Tone and helpfulness aren&#x27;t scored; an LLM judge calibrated on human labels is Project 3.</li>
+        <li>Name redaction is pattern-based and can miss a bare name with no cue; the Staff role is a shared password.</li>
+      </ul>
+    </div>
+  </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">09 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Look up the sender's booking before the model runs, so the property is always known (the one known miss)</li>
         <li>Held-out emails written by people who haven't seen the code or the documents</li>

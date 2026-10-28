@@ -106,9 +106,39 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>Staff: front desk, guest services, owner / IT<span class="why">Two apps on Streamlit Community Cloud.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Knowledge Assistant (stage 1)<span class="why">Scope and safety check with language detection → BM25 search with English and Spanish vocabulary → Claude Haiku 5.5 cited answer → grounding and manager rules.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Guest Request Agent (stage 2)<span class="why">Triage (escalation, injection, language) → booking lookup before the model → Claude tool loop (at most 6 turns, 6 tools) → guards → staff approve, edit or reject.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Neon Postgres <code>app_log</code><span class="why">Secrets and personal data redacted before any write; 30-day retention.</span></li>
+          <li class="branch">Daily health check (GitHub Action): up, asleep or down; opens an issue when an app is down.</li>
+          <li class="branch">Stage 3's gate runs as a CI job in each app's repository.</li>
+        </ol>
+        <figcaption class="small">From <code>hotel-ai-handoff/docs/ARCHITECTURE.md</code>.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="A held-out answer before and after the fixes">
+        <p class="q">Mountain Lodge · held-out case a07 · “¿Se permiten gatos en el hotel?”</p>
+        <p>Before the stage 4 fixes: failed (run <code>p1-p4before</code>, when the scope check blocked Spanish questions).</p>
+        <p>After, v1.6.0 (2026-10-15): “No, los gatos no están permitidos en Mountain Lodge. Solo se admiten perros, hasta 2 por habitación, y los demás animales tampoco están permitidos [1].”</p>
+      </figure>
+      <p class="small">From the eval harness: <code>reports/p1-p4before-2026-10-15.md</code> and <code>runs/p1-v1.6.0-2026-10-15.jsonl</code> (run 1).</p>
+    </div>
+  </section>
   <section class="section" id="handoff" aria-labelledby="handoff-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03 · The handoff package</span><h2 id="handoff-h">The handoff package</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · The handoff package</span><h2 id="handoff-h">The handoff package</h2></div>
       <p>Everything the hotel's IT and operations teams need, in Markdown in one repo, built from the real code and linking back to it:</p>
       <ul>
         <li><strong>Architecture</strong> across all three systems: data flows, where each secret lives, what is logged and what is redacted.</li>
@@ -122,7 +152,7 @@
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · What production taught me</span><h2 id="lessons-h">What production taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What production taught me</span><h2 id="lessons-h">What production taught me</h2></div>
       <ul>
         <li><strong>A fixed rule wasn't a fixed answer.</strong> After the safety rule caught “smoke under a door”, the model still answered it with the smoking policy and a $250 cleaning fee. Emergencies now skip the model entirely.</li>
         <li><strong>The prompt-injection gap I found had no warning sign.</strong> A held-out note “to the automated system” matched none of the agent's patterns, so it passed the planted request on to a manager. Planted text is now removed before the model reads the email; I wrote three new injection cases first, and they passed before the fix too: that case was flaky, not systematic.</li>
@@ -133,7 +163,7 @@
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
@@ -149,7 +179,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="eng-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> assistant 378 and agent 276 (97% coverage each), plus 8 per app that run against a real Postgres in CI; the harness 92; the health check 12, including asleep vs down.</li>
         <li><strong>CI:</strong> each app gates its release's saved live run with latency and cost budgets; the harness checks that the previous releases <em>fail</em> against the new baselines, so a rollback would be caught.</li>
@@ -159,9 +189,20 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">09 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>Alerts are GitHub issues, not pages; nobody is woken up.</li>
+        <li>Staff sign-in is a shared password; SSO (OIDC) is documented, not built.</li>
+        <li>The health check knows up / asleep / down, not &quot;slow&quot;.</li>
+        <li>Roadmap: outside testers, a second labeler for the judge, a paging integration.</li>
+      </ul>
+    </div>
+  </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">10 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Outside testers: questions and emails written by people who haven't seen the documents</li>
         <li>A second labeler and written examples before any AI-judge score counts</li>

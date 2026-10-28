@@ -75,9 +75,47 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>A manager asks in the Streamlit app<span class="why">Chat, history, a share link and the steps shown.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>limits.py</code><span class="why">Per visit, per minute, daily questions and cost.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>rewrite.py</code> (Claude Haiku 5.5)<span class="why">A follow-up becomes a standalone question.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>retrieval.py</code>: BM25 over 19 documents<span class="why">Schema notes and definitions the planner needs.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>agent.plan_and_run</code> (Claude Haiku 5.5, JSON)<span class="why">Plans the query.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>sqlguard.py</code><span class="why">Parser-based: reads only, no personal-data columns unless the role is manager, a row limit.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>SQLite, read-only<span class="why">The query runs on a read-only connection.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>agent.stream_answer</code> (Claude Haiku 5.5, streamed)<span class="why">The answer is written from the rows, with the SQL shown.</span></li>
+          <li class="branch">A redacted request log; a daily GitHub Action runs <code>anomaly.py</code> and posts to Slack.</li>
+        </ol>
+        <figcaption class="small">From <code>docs/ARCHITECTURE.md</code> in the repository.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="A real query and answer from the eval run">
+        <p class="q">“What was total revenue at Beach Resort in October 2026?” (dev case q04)</p>
+        <pre tabindex="0"><code>SELECT SUM(b.total_usd) AS total_revenue_usd FROM bookings AS b JOIN properties AS p ON b.property_id = p.id
+WHERE p.name = 'Beach Resort' AND b.status &lt;&gt; 'cancelled' AND STRFTIME('%Y-%m', b.check_in) = '2026-10' LIMIT 500</code></pre>
+        <p>Total revenue at Beach Resort in October 2026 was $334,216.</p>
+      </figure>
+      <p class="small">The agent's SQL and answer in the version 1.3.0 run (<code>eval/reports/sql-2026-10-26-dev-protocols.jsonl</code>, run 1); the result matches the reference query's.</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03 · Results</span><h2 id="results-h">Results</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Results</span><h2 id="results-h">Results</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: text-to-SQL results (scrolls sideways)"><table>
         <caption>Text-to-SQL eval, Claude Haiku 5.5, version 1.3.0 (with the hotel-policy step, 2026-10-26), 3 runs each</caption>
         <thead><tr><th scope="col">Metric</th><th scope="col" class="n">Dev</th><th scope="col" class="n">Held-out</th></tr></thead>
@@ -104,14 +142,14 @@
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <p>The first recorded run scored 84%. Half the failures were the grader: the model answered “Beach Resort” where the reference said <code>beach-resort</code>, returned a full ranking with the right answer first, and gave a share as 34.21% instead of 0.342. I fixed the grader and re-scored the saved queries without calling the model: 84% → 92% on the same answers. The rest were real, and some were mine: my prompt told the model to ask for a time frame and used “cancellations” as the example, so it asked instead of answering.</p>
       <p>Before any model run, a free check that every reference query passes the guard found a guard bug: <code>COUNT(*)</code> looked like <code>SELECT *</code> over the guests table.</p>
     </div>
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
@@ -126,7 +164,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="engineering-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> 49, 85% coverage: the guard, the read-only connection and time limit, the agent with the model replaced, each planted anomaly, the Slack job without network, and the app via Streamlit AppTest.</li>
         <li><strong>CI gates without an API key:</strong> every reference query passes the guard, the detector catches 5/5 on both years with at most one false alarm a month, and the saved dev run re-scores to the same verdicts.</li>
@@ -136,13 +174,25 @@
   </section>
   <section class="section" id="business" aria-labelledby="business-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
       <p>A projection, not a result: a custom question in seconds instead of half a day, and a mispriced room caught in a day instead of at month-end. In this data the Suite was loaded at $50 instead of $515 for five nights, about $2,300 of lost revenue per room sold. A pilot would measure report hours per week and days from an anomaly starting to someone acting on it.</p>
+    </div>
+  </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">10 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>SQLite only. Postgres via <code>DATABASE_URL</code> is designed (sqlglot can transpile the guarded SQL), not built.</li>
+        <li>Demo roles without sign-in. A real deployment would use the stage 7 tool server&#x27;s roles or SSO.</li>
+        <li>I wrote the eval questions with the schema in front of me. A client&#x27;s real questions will be messier.</li>
+        <li>Conversation history lives in the browser tab (session state), not a database. Stage 6 stores it in Postgres.</li>
+        <li>On Streamlit Cloud the request log and daily counters reset when the app restarts.</li>
+      </ul>
     </div>
   </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Deploy on Streamlit Community Cloud and connect a Slack channel</li>
         <li>Postgres with a read-only role per hotel group</li>

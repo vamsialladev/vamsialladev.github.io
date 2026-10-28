@@ -171,9 +171,20 @@
       <figure class="shot"><picture><source srcset="../assets/img/eh-case-600.webp 600w, ../assets/img/eh-case-800.webp 800w, ../assets/img/eh-case.webp 1280w" sizes="(max-width: 800px) 100vw, 780px" type="image/webp"><img src="../assets/img/eh-case.png" alt="The Cases page: q13 in the demo run, the expected passage about age 18, and three runs that each refused" width="1280" height="640" loading="lazy" decoding="async"></picture><figcaption>q13 drilled down: the age rule dropped out of the search results, so every run refused.</figcaption></figure>
     </div>
   </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">07 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="The gate&#x27;s real output for a deliberate regression">
+        <p class="q">A throwaway branch changes top-k from 5 to 2; the gate runs against the published baseline</p>
+        <p><strong>FAILED.</strong> Answer accuracy (dev): 2 case(s) passed in every baseline run and now fail: q13, q35. Citation accuracy and numeric grounding (dev): q13. Strict retrieval (dev): q13, q35.</p>
+        <p>Answer accuracy was 94% (84%–98%), inside the baseline's interval; the stable flips are what failed the build.</p>
+      </figure>
+      <p class="small">From <code>reports/p1-demo-topk2-live.md</code>; the branch was deleted, never merged.</p>
+    </div>
+  </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <ul>
         <li><strong>Agreement isn't evidence.</strong> 95% agreement with kappa 0.00 meant my first sample had nothing to disagree about. A second round built to contain failures gave kappa 0.20–0.29: the judge is much stricter than I am, and I passed most of the replies I had degraded myself.</li>
         <li><strong>An interval alone misses small, real regressions.</strong> Two lost questions out of 45 stay inside it; “always passed, now always fails” caught them.</li>
@@ -184,7 +195,7 @@
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col">Why</th><th scope="col">What it costs</th></tr></thead>
@@ -200,7 +211,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="eng-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">09 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">10 · Engineering</span><h2 id="eng-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> 87 tests at 93% coverage, including every metric passing and failing, kappa and interval math, gates, the judge with a stand-in model, and every dashboard page.</li>
         <li><strong>CI:</strong> lint and format, a dependency audit, a 90% coverage gate, recorded-mode gates and a re-score of every saved report. Stages 1 and 2 each gained one CI job that installs the harness at v1.0.0; their own tests and numbers are unchanged.</li>
@@ -211,7 +222,7 @@
   </section>
   <section class="section" id="value" aria-labelledby="value-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">10 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · Business case (projection)</span><h2 id="value-h">Business case (a projection)</h2></div>
       <p>Projected from stated assumptions and shown as a range; nothing here is a measured saving. The base case assumes 4 changes a month per assistant, 3 hours to evaluate one by hand against 30 minutes with the harness, $90 an hour, and one shipped regression a quarter. Only the API cost of a full re-run ($0.29) is measured.</p>
       <section class="scroll" tabindex="0" aria-label="Table: projected net value per year (scrolls sideways)"><table>
         <caption>Projected net value per year, two assistants</caption>
@@ -225,9 +236,20 @@
       <p><a href="https://github.com/vamsialladev/eval-harness/blob/main/docs/BUSINESS_CASE.md" rel="noopener noreferrer">Full business case, pilot plan and go / no-go KPIs →</a></p>
     </div>
   </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">12 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>The judge is untrusted (best kappa 0.29 on 70 labels); next: written pass/fail examples per quality, a second labeler and fresh labels.</li>
+        <li>I wrote every case, including the held-out ones; cases from front-desk staff are next.</li>
+        <li>Floors don&#x27;t apply to groups under 10 cases; a real drop there must be a stable flip to fail a build.</li>
+        <li>Project 4: persistent run history, monitoring, sign-in and redaction.</li>
+      </ul>
+    </div>
+  </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">13 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Written pass and fail examples for each quality, a second labeler, and fresh labels before any judge metric counts</li>
         <li>Held-out questions and emails written by front-desk staff</li>
