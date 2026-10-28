@@ -245,7 +245,7 @@ td.n, th.n { text-align: right; white-space: nowrap; }
 .post { max-width: var(--measure); }
 .post h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
 .post h2 { font-size: var(--text-xl); margin-top: var(--s4); }
-.post pre { overflow-x: auto; padding: var(--s2); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-btn); font-size: 0.9rem; line-height: 1.5; }
+.post pre, .section pre { overflow-x: auto; padding: var(--s2); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-btn); font-size: 0.9rem; line-height: 1.5; }
 .post code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
 .note-card { display: block; text-decoration: none; color: inherit; }
 .note-card:hover h2 { text-decoration: underline; }

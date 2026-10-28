@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Connect to the Hotel Tools MCP server | Vamsi Alla</title>
+<meta name="description" content="A public, read-only demo MCP endpoint for a fictional hotel group with synthetic data: one made-up guest, three read-only tools, no key. How to connect from Claude Code, Claude, Cursor, the MCP Inspector or curl.">
+<link rel="canonical" href="https://vamsialla.com/projects/hotel-tools-mcp-connect.html">
+<meta property="og:title" content="Connect to the Hotel Tools MCP server | Vamsi Alla">
+<meta property="og:description" content="A public, read-only demo MCP endpoint for a fictional hotel group with synthetic data: one made-up guest, three read-only tools, no key. How to connect from Claude Code, Claude, Cursor, the MCP Inspector or curl.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://vamsialla.com/projects/hotel-tools-mcp-connect.html">
+<meta property="og:site_name" content="Vamsi Alla">
+<meta property="og:image" content="https://vamsialla.com/assets/og-hotel-tools-mcp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MCP tools case study: roles decide which tools exist, tenant isolation, tamper-evident audit log, 99 of 99 checks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Connect to the Hotel Tools MCP server | Vamsi Alla">
+<meta name="twitter:description" content="A public, read-only demo MCP endpoint for a fictional hotel group with synthetic data: one made-up guest, three read-only tools, no key. How to connect from Claude Code, Claude, Cursor, the MCP Inspector or curl.">
+<meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-tools-mcp.png">
+<meta name="twitter:image:alt" content="MCP tools case study: roles decide which tools exist, tenant isolation, tamper-evident audit log, 99 of 99 checks">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Notes | Vamsi Alla" href="https://vamsialla.com/feed.xml">
+<link rel="preconnect" href="https://gc.zgo.at">
+<link rel="preconnect" href="https://vamsialla.goatcounter.com">
+<link rel="preload" href="../assets/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Connect to the Hotel Tools MCP server", "description": "A public, read-only demo MCP endpoint for a fictional hotel group with synthetic data: one made-up guest, three read-only tools, no key. How to connect from Claude Code, Claude, Cursor, the MCP Inspector or curl.", "url": "https://vamsialla.com/projects/hotel-tools-mcp-connect.html", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/"}}</script>
+</head>
+<body data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="../index.html"><span class="brand-name">Vamsi Alla</span><span class="brand-tag">Build · Measure · Ship · Share</span></a>
+    <button class="icon-btn theme-btn" type="button" aria-label="Switch color theme"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul><!--s:nav--><li><a href="../index.html">Home</a></li><li><a href="../experience.html">Experience</a></li><li><a href="../projects.html" aria-current="page">Projects</a></li><li><a href="../notes.html">Notes</a></li><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li class="more"><span class="more-title" aria-hidden="true">More</span><button class="more-btn" type="button" aria-expanded="false" aria-controls="more-menu">More<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><ul id="more-menu" class="more-menu"><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li></ul></li><!--/s:nav--></ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="narrow">
+    <p class="crumb"><a href="../projects.html">Projects</a> › <a href="hotel-tools-mcp.html">MCP Tools + RBAC</a> › Connect</p>
+    <span class="eyebrow">Stage 7 · public demo endpoint</span>
+    <h1>Connect to the Hotel Tools MCP server</h1>
+    <p class="lede">A public, read-only copy of the stage 7 server that any MCP client can call. It's part of a simulated engagement for a fictional hotel group, and all the data is synthetic.</p>
+    <p class="note">Endpoint: <code>https://hotel-tools-mcp.vercel.app/mcp</code> (Streamable HTTP, no key). Free hosting: the first call after a quiet spell may need a moment to wake.</p>
+  </div>
+
+  <section class="section narrow" aria-labelledby="what-h">
+    <h2 id="what-h">What you can do</h2>
+    <p>You're connected as one made-up guest, Elena, with three read-only tools:</p>
+    <ul>
+      <li><code>search_policy</code>: search a property's policies (<code>beach-resort</code> or <code>mountain-lodge</code>). Passages come back with their source and a note that they're reference data, not instructions.</li>
+      <li><code>list_activities</code>: a property's activities, optionally for one date and a minimum age.</li>
+      <li><code>lookup_booking</code>: Elena's own bookings (try <code>BR-1042</code>). Another guest's booking, like <code>BR-1043</code>, comes back as “not found”.</li>
+    </ul>
+  </section>
+
+  <section class="section narrow" aria-labelledby="how-h">
+    <h2 id="how-h">How to connect</h2>
+    <p><strong>Claude Code:</strong></p>
+    <pre tabindex="0"><code>claude mcp add --transport http hotel-tools https://hotel-tools-mcp.vercel.app/mcp</code></pre>
+    <p><strong>Claude (desktop or web):</strong> add a custom connector with the endpoint URL above (Settings → Connectors).</p>
+    <p><strong>Cursor</strong> (<code>.cursor/mcp.json</code>), and other clients that take a URL:</p>
+    <pre tabindex="0"><code>{"mcpServers": {"hotel-tools": {"url": "https://hotel-tools-mcp.vercel.app/mcp"}}}</code></pre>
+    <p><strong>MCP Inspector</strong> (the official test client; this demo was filmed with 2.10.1): run <code>npx -y @modelcontextprotocol/inspector@2.10.1</code>, then add a server with the Streamable HTTP transport and the endpoint URL.</p>
+    <p><strong>Plain HTTP</strong>, to see it answer without a client:</p>
+    <pre tabindex="0"><code>curl -s https://hotel-tools-mcp.vercel.app/mcp \
+  -H "Content-Type: application/json" -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'</code></pre>
+  </section>
+
+  <section class="section narrow" aria-labelledby="rules-h">
+    <h2 id="rules-h">Rules and honest limits</h2>
+    <ul>
+      <li><strong>Read-only.</strong> The guest's booking-request tool isn't registered here, so nothing can be written.</li>
+      <li><strong>One fixed guest, no key.</strong> Staff tools and staff-only documents never appear; the role check runs on every call.</li>
+      <li><strong>10 calls a minute.</strong> The limit and the audit log live in each running instance (<a href="https://github.com/vamsialladev/hotel-tools-mcp/blob/main/docs/DECISIONS.md" rel="noopener noreferrer">decision 15</a>), so they reset when an idle instance restarts and aren't shared if two instances run at once. That's acceptable for a read-only, synthetic demo that calls no model.</li>
+      <li><strong>No model behind it.</strong> The server returns data; any reasoning happens in your MCP client.</li>
+    </ul>
+    <p>Checked on 2026-10-28 with the official MCP Python SDK client: 8 of 8 checks passed (guest tools only, answers with sources, 0 staff-only passages on 3 targeted searches, another guest's booking hidden, the guest's own booking with guest fields only, the write tool unknown, the 11th call in a minute rate-limited).</p>
+    <div class="actions"><a class="btn primary" href="hotel-tools-mcp.html">Read the case study</a><a class="btn" href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">Code on GitHub</a></div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-line">Work, writing, and the life around it.</p>
+    <ul class="footer-pages"><!--s:footer-pages--><li><a href="../now.html">Now</a></li><li><a href="../life.html">Life</a></li><li><a href="../learning.html">Learning</a></li><li><a href="../uses.html">Uses</a></li><!--/s:footer-pages--></ul>
+    <ul>
+      <li>© <span data-year>2026</span> Vamsi Alla</li>
+      <li><a href="mailto:vamsialla.dev@gmail.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/vamsi-alla/" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/vamsialladev" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://vamsialla.com/feed.xml">RSS</a></li>
+      <li><a href="../privacy.html">Privacy</a></li>
+    </ul>
+    <p>Projects use a simulated hotel group and synthetic data.</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+<script>(function(){var skip=false;try{if(location.hash==='#toggle-goatcounter'){if(localStorage.getItem('skipgc')){localStorage.removeItem('skipgc');alert('GoatCounter: visits from this browser are counted again.');}else{localStorage.setItem('skipgc','t');alert('GoatCounter: visits from this browser are no longer counted.');}}skip=!!localStorage.getItem('skipgc');}catch(e){}var local=location.protocol==='file:'||/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);if(skip||local||navigator.doNotTrack==='1'){window.goatcounter={no_onload:true};}})();</script>
+<script data-goatcounter="https://vamsialla.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
