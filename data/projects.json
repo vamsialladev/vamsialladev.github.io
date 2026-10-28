@@ -169,13 +169,17 @@
     {
       "stage": 7,
       "name": "Hotel Tools MCP Server",
-      "status": "Built",
+      "status": "Live",
       "summary": "The group's tools for any MCP client, with roles, tenant isolation and an audit log.",
       "delivers": "An MCP server where an API key's role decides which tools exist and which fields come back, hotel groups can't see each other's data, and every call is audited.",
       "links": [
         {
           "label": "Case study",
           "url": "projects/hotel-tools-mcp.html"
+        },
+        {
+          "label": "MCP endpoint (live)",
+          "url": "projects/hotel-tools-mcp-connect.html"
         },
         {
           "label": "GitHub",
