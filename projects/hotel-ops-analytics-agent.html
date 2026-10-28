@@ -6,22 +6,22 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o79U98mSonxUvDkqUhfri07kWq61HcDtV8t3ftYFIlY=' 'sha256-JLpx5CfaK6waZ0Y2x5NuG7yR1PnJjlfaRCBxq4ZAVqU=' gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' data: https://vamsialla.goatcounter.com; connect-src 'self' https://vamsialla.goatcounter.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Hotel Ops Analytics Agent | Case study | Vamsi Alla</title>
-<meta name="description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (98% execution accuracy) and a daily anomaly check that caught 5 of 5.">
+<meta name="description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (99% execution accuracy) and a daily anomaly check that caught 5 of 5.">
 <link rel="canonical" href="https://vamsialla.com/projects/hotel-ops-analytics-agent.html">
 <meta property="og:title" content="Hotel Ops Analytics Agent | Case study | Vamsi Alla">
-<meta property="og:description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (98% execution accuracy) and a daily anomaly check that caught 5 of 5.">
+<meta property="og:description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (99% execution accuracy) and a daily anomaly check that caught 5 of 5.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://vamsialla.com/projects/hotel-ops-analytics-agent.html">
 <meta property="og:site_name" content="Vamsi Alla">
 <meta property="og:image" content="https://vamsialla.com/assets/og-hotel-ops-analytics-agent.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ops analytics case study: 98% execution accuracy, unsafe requests refused, 5 of 5 planted anomalies caught">
+<meta property="og:image:alt" content="Ops analytics case study: 99% execution accuracy, unsafe requests refused, 5 of 5 planted anomalies caught">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hotel Ops Analytics Agent | Case study | Vamsi Alla">
-<meta name="twitter:description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (98% execution accuracy) and a daily anomaly check that caught 5 of 5.">
+<meta name="twitter:description" content="Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (99% execution accuracy) and a daily anomaly check that caught 5 of 5.">
 <meta name="twitter:image" content="https://vamsialla.com/assets/og-hotel-ops-analytics-agent.png">
-<meta name="twitter:image:alt" content="Ops analytics case study: 98% execution accuracy, unsafe requests refused, 5 of 5 planted anomalies caught">
+<meta name="twitter:image:alt" content="Ops analytics case study: 99% execution accuracy, unsafe requests refused, 5 of 5 planted anomalies caught">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
@@ -34,7 +34,7 @@
 <link rel="preload" href="../assets/fonts/newsreader-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/style.css">
 <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){d.dataset.theme=t;}}catch(e){}})();</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Hotel Ops Analytics Agent", "description": "Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (98% execution accuracy) and a daily anomaly check that caught 5 of 5.", "url": "https://vamsialla.com/projects/hotel-ops-analytics-agent.html", "codeRepository": "https://github.com/vamsialladev/hotel-ops-analytics-agent", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "version": "1.0.0", "dateModified": "2026-10-24", "image": "https://vamsialla.com/assets/og-hotel-ops-analytics-agent.png", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/", "jobTitle": "Senior Software Engineer"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Hotel Ops Analytics Agent", "description": "Independent, simulated engagement with synthetic data: plain-English questions over a bookings database with the SQL always shown (99% execution accuracy) and a daily anomaly check that caught 5 of 5.", "url": "https://vamsialla.com/projects/hotel-ops-analytics-agent.html", "codeRepository": "https://github.com/vamsialladev/hotel-ops-analytics-agent", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "version": "1.0.0", "dateModified": "2026-10-24", "image": "https://vamsialla.com/assets/og-hotel-ops-analytics-agent.png", "author": {"@type": "Person", "name": "Vamsi Alla", "url": "https://vamsialla.com/", "jobTitle": "Senior Software Engineer"}}</script>
 </head>
 <body data-root="../">
 <a class="skip" href="#main">Skip to content</a>
@@ -79,16 +79,19 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">03 · Results</span><h2 id="results-h">Results</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: text-to-SQL results (scrolls sideways)"><table>
-        <caption>Text-to-SQL eval, Claude Haiku 5.5, 3 runs</caption>
-        <thead><tr><th scope="col">Metric</th><th scope="col" class="n">Dev</th><th scope="col" class="n">Held-out (run once)</th></tr></thead>
+        <caption>Text-to-SQL eval, Claude Haiku 5.5, version 1.3.0 (with the hotel-policy step, 2026-10-26), 3 runs each</caption>
+        <thead><tr><th scope="col">Metric</th><th scope="col" class="n">Dev</th><th scope="col" class="n">Held-out</th></tr></thead>
         <tbody>
-          <tr><td>Execution accuracy (the query's result matches the reference query's)</td><td class="n">98% (144/147)</td><td class="n">95% (20/21)</td></tr>
-          <tr><td>Unsafe requests refused (writes, schema changes, personal data, injection)</td><td class="n">100% (24/24)</td><td class="n">100% (6/6)</td></tr>
+          <tr><td>Execution accuracy (the query's result matches the reference query's)</td><td class="n">99% (167/168)</td><td class="n">100% (27/27)</td></tr>
+          <tr><td>Unsafe requests refused (writes, schema changes, personal data, injection)</td><td class="n">100% (27/27)</td><td class="n">100% (9/9)</td></tr>
           <tr><td>Clarifying question asked when needed</td><td class="n">100% (9/9)</td><td class="n">100% (3/3)</td></tr>
-          <tr><td>Latency per question, p95</td><td class="n">4.00 s</td><td class="n">4.86 s</td></tr>
-          <tr><td>Cost per 1,000 questions</td><td class="n">$0.30</td><td class="n">$0.31</td></tr>
+          <tr><td>Follow-up questions (multi-turn)</td><td class="n">100% (24/24)</td><td class="n">100% (9/9)</td></tr>
+          <tr><td>Latency per question, p95</td><td class="n">4.31 s</td><td class="n">4.53 s</td></tr>
+          <tr><td>Cost per 1,000 questions</td><td class="n">$0.28</td><td class="n">$0.29</td></tr>
+          <tr><td>Hotel-policy questions (new, 5 × 3)</td><td class="n">15/15 (11/15 before a grader fix)</td><td class="n"></td></tr>
         </tbody>
       </table></section>
+      <p class="small">The first published run (version 1.0, 2026-10-24) was 98% dev (144/147) and 95% held-out (20/21, run once) at $0.30 per 1,000 questions. Reports: <code>eval/reports/sql-2026-10-26-dev-protocols.md</code>, <code>sql-2026-10-26-heldout-protocols.md</code> and <code>sql-2026-10-26-policy-rescored.md</code> in the repository.</p>
       <section class="scroll" tabindex="0" aria-label="Table: anomaly results (scrolls sideways)"><table>
         <caption>Anomaly check, every day of two synthetic years</caption>
         <thead><tr><th scope="col">Year</th><th scope="col" class="n">Planted anomalies caught</th><th scope="col" class="n">False alarms</th></tr></thead>
@@ -114,7 +117,7 @@
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
         <tbody>
           <tr><td>A parser-based guard plus a read-only connection</td><td class="n">The prompt is a request; the guard is a control</td><td class="n">An unusual valid query can be rejected (one retry)</td></tr>
-          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.30 per 1,000 questions, p95 4.0 s</td></tr>
+          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.28 per 1,000 questions, p95 4.3 s</td></tr>
           <tr><td>Deterministic anomaly rules</td><td class="n">Every alert can be explained line by line</td><td class="n">A new kind of anomaly needs a new rule</td></tr>
           <tr><td>SQLite shipped with the app</td><td class="n">Deploys free with nothing to set up</td><td class="n">Postgres with a read-only role is the scale path</td></tr>
         </tbody>
