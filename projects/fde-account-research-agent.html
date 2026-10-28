@@ -174,7 +174,7 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
-        <li><strong>Tests:</strong> 45, 91% coverage (main's CI, 2026-10-28), with the model and the web replaced: the pipeline, the cost cap, the critic, the fetcher's robots.txt handling, the chat, the share link and the eval's grader.</li>
+        <li><strong>Tests:</strong> 46, 91% coverage (main's CI, 2026-10-28), with the model and the web replaced: the pipeline, the cost cap, the critic, the fetcher's robots.txt handling, the chat, the share link and the eval's grader.</li>
         <li><strong>CI:</strong> ruff, pytest with a coverage gate, re-scoring the saved eval runs (any changed verdict fails), pip-audit, a link check and gitleaks.</li>
       </ul>
     </div>
@@ -192,7 +192,7 @@
         <li>No hand labels yet: the checks prove each line has a source and each quote is on its page, not that the sentence says what the source says.</li>
         <li>Fictional companies with real near-namesakes are the weak spot: on the held-out ones it stayed honest in 1 of 3 runs.</li>
         <li>A quote “not found” isn't always wrong: some pages load their text with JavaScript, which the fetcher doesn't run (68% found on held-out).</li>
-        <li>The saved example briefs are from the 2026-10-25 eval run and aren't refreshed; they keep the brief and findings but not the steps, so their Steps tab is empty.</li>
+        <li>The saved example briefs are from the 2026-10-25 eval run and aren't refreshed; the eval runs never recorded their steps, so a saved example has no Steps tab, and a caption says so (live briefs show theirs).</li>
         <li>The daily limits are per app instance and reset when the app restarts; the $10 monthly cap is read from the ops log and doesn't.</li>
         <li>Researchers run one after another, so a live brief takes about 90 to 110 seconds; name redaction is pattern-based.</li>
       </ul>
@@ -204,7 +204,6 @@
       <ul>
         <li>Label 30 sampled claims by hand for the unsupported-claim rate</li>
         <li>Run the six researchers in parallel (about 90 seconds to about 20)</li>
-        <li>Keep the steps with the saved example briefs, so the Steps tab shows how they were made</li>
       </ul>
       <p><a class="arrow-link" href="../projects.html#stages">See every stage →</a></p>
     </div>
