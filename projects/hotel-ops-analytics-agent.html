@@ -56,7 +56,8 @@
     <h1>Hotel Ops Analytics Agent</h1>
     <p class="lede">Managers ask the bookings database questions in plain English and get a table, a chart and a short answer, always with the SQL that produced it. A daily check finds anomalies and posts them to Slack.</p>
     <p class="note">Independent project: a simulated client engagement for the same fictional hotel group as the other stages, with synthetic data. Every number below comes from a saved report or test run in the repository. The database has 12 months of synthetic bookings with five anomalies planted on purpose.</p>
-    <div class="actions"><a class="btn primary" href="https://github.com/vamsialladev/hotel-ops-analytics-agent" rel="noopener noreferrer">Code on GitHub</a></div>
+    <div class="actions"><a class="btn primary" href="https://hotel-ops-analytics-agent.streamlit.app" rel="noopener noreferrer">Try the live app</a><a class="btn" href="https://github.com/vamsialladev/hotel-ops-analytics-agent" rel="noopener noreferrer">Code on GitHub</a></div>
+    <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
   </div>
   <section class="section" id="problem" aria-labelledby="problem-h">
     <div class="narrow">
@@ -124,11 +125,12 @@ WHERE p.name = 'Beach Resort' AND b.status &lt;&gt; 'cancelled' AND STRFTIME('%Y
           <tr><td>Unsafe requests refused (writes, schema changes, personal data, injection)</td><td class="n">100% (27/27)</td><td class="n">100% (9/9)</td></tr>
           <tr><td>Clarifying question asked when needed</td><td class="n">100% (9/9)</td><td class="n">100% (3/3)</td></tr>
           <tr><td>Follow-up questions (multi-turn)</td><td class="n">100% (24/24)</td><td class="n">100% (9/9)</td></tr>
-          <tr><td>Latency per question, p95</td><td class="n">4.31 s</td><td class="n">4.53 s</td></tr>
+          <tr><td>Plan + query + answer time per question, p95</td><td class="n">4.31 s</td><td class="n">4.53 s</td></tr>
           <tr><td>Cost per 1,000 questions</td><td class="n">$0.28</td><td class="n">$0.29</td></tr>
           <tr><td>Hotel-policy questions (new, 5 × 3)</td><td class="n">15/15 (11/15 before a grader fix)</td><td class="n"></td></tr>
         </tbody>
       </table></section>
+      <p class="small">In the browser on the live app (2026-10-28, 20 dev questions in one visit, Enter pressed → answer finished rendering): p50 4.28 s, p95 5.47 s. The browser adds streaming and rendering to the eval's plan + query + answer time.</p>
       <p class="small">The first published run (version 1.0, 2026-10-24) was 98% dev (144/147) and 95% held-out (20/21, run once) at $0.30 per 1,000 questions. Reports: <code>eval/reports/sql-2026-10-26-dev-protocols.md</code>, <code>sql-2026-10-26-heldout-protocols.md</code> and <code>sql-2026-10-26-policy-rescored.md</code> in the repository.</p>
       <section class="scroll" tabindex="0" aria-label="Table: anomaly results (scrolls sideways)"><table>
         <caption>Anomaly check, every day of two synthetic years</caption>
@@ -155,7 +157,7 @@ WHERE p.name = 'Beach Resort' AND b.status &lt;&gt; 'cancelled' AND STRFTIME('%Y
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
         <tbody>
           <tr><td>A parser-based guard plus a read-only connection</td><td class="n">The prompt is a request; the guard is a control</td><td class="n">An unusual valid query can be rejected (one retry)</td></tr>
-          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.28 per 1,000 questions, p95 4.3 s</td></tr>
+          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.28 per 1,000 questions, p95 4.3 s plan + query + answer</td></tr>
           <tr><td>Deterministic anomaly rules</td><td class="n">Every alert can be explained line by line</td><td class="n">A new kind of anomaly needs a new rule</td></tr>
           <tr><td>SQLite shipped with the app</td><td class="n">Deploys free with nothing to set up</td><td class="n">Postgres with a read-only role is the scale path</td></tr>
         </tbody>

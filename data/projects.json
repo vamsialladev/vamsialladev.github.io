@@ -194,13 +194,17 @@
     {
       "stage": 8,
       "name": "Ops Analytics Agent",
-      "status": "Built",
+      "status": "Live",
       "summary": "Plain-English questions over the bookings database, SQL always shown; a daily anomaly check.",
       "delivers": "Managers ask the bookings database in plain English and see the SQL behind every answer; a daily check posts anomalies to Slack.",
       "links": [
         {
           "label": "Case study",
           "url": "projects/hotel-ops-analytics-agent.html"
+        },
+        {
+          "label": "Ops Analytics (live)",
+          "url": "https://hotel-ops-analytics-agent.streamlit.app"
         },
         {
           "label": "GitHub",
