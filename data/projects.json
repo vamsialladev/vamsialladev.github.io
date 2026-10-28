@@ -5,13 +5,17 @@
     {
       "stage": "PS",
       "name": "Account Research Agent (pre-sales)",
-      "status": "Built",
+      "status": "Live",
       "summary": "A cited brief for a first client meeting; every quote re-checked on its page.",
       "delivers": "Before the first meeting: a brief on a hotel company from public web pages, where every line has a source and every quote was checked on its page, plus ten questions, three use-case guesses and a short email.",
       "links": [
         {
           "label": "Case study",
           "url": "projects/fde-account-research-agent.html"
+        },
+        {
+          "label": "Account Research (live)",
+          "url": "https://fde-account-research-agent.streamlit.app"
         },
         {
           "label": "GitHub",
