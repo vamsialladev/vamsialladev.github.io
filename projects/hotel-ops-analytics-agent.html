@@ -52,12 +52,27 @@
   <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › Ops Analytics</p>
     <!-- DEMO-VIDEO -->
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo (AI-narrated, 1:28)</h2>
+      <video controls playsinline preload="none" poster="../videos/hotel-ops-analytics-agent-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/hotel-ops-analytics-agent-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/hotel-ops-analytics-agent-demo.vtt" srclang="en" label="English">
+        <a href="../videos/hotel-ops-analytics-agent-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
+      <p class="demo-summary" id="demo-summary">Recorded on the live app with real answers: a revenue question with its steps and the SQL guard's verdict, the sources and SQL behind the answer, a follow-up for the other property, guest phone numbers refused, and the daily check catching a mispriced suite.</p>
+      <details class="transcript"><summary>Read the narration</summary><p>A revenue manager told me a custom question costs her half a day of pivot tables.</p><p>So I built this: she just asks.</p><p>It's a simulated hotel group, and all the data's made up.</p><p>Which room type at Mountain Lodge earned the most this year?</p><p>It writes one SQL query,</p><p>and before anything runs, a guard checks it.</p><p>Here's the guard's verdict: read-only, and only these tables.</p><p>And here's where the answer came from.</p><p>The tables it read, and the revenue definition the hotel agreed on.</p><p>It didn't guess what revenue means.</p><p>It looked it up.</p><p>And the SQL's right there to check.</p><p>Now a follow-up.</p><p>And at Beach Resort?</p><p>It works out I mean the same question for the other property,</p><p>shows me how it read it, and answers.</p><p>If I ask for guest phone numbers as an analyst, it says no,</p><p>and even if the model slipped, the guard would stop the query.</p><p>Every morning a check runs five rules with no model at all.</p><p>Here it caught a suite priced at fifty dollars instead of about five hundred.</p><p>On my test questions it gets ninety-nine percent right,</p><p>and every held-out one,</p><p>for about twenty-eight cents per thousand questions.</p><p>It's live, with no sign-in.</p><p>The link's below, and so is the code.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://hotel-ops-analytics-agent.streamlit.app" rel="noopener noreferrer">Try the live app</a>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
+      </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    </section>
     <span class="eyebrow">Case study · stage 8</span>
     <h1>Hotel Ops Analytics Agent</h1>
     <p class="lede">Managers ask the bookings database questions in plain English and get a table, a chart and a short answer, always with the SQL that produced it. A daily check finds anomalies and posts them to Slack.</p>
     <p class="note">Independent project: a simulated client engagement for the same fictional hotel group as the other stages, with synthetic data. Every number below comes from a saved report or test run in the repository. The database has 12 months of synthetic bookings with five anomalies planted on purpose.</p>
-    <div class="actions"><a class="btn primary" href="https://hotel-ops-analytics-agent.streamlit.app" rel="noopener noreferrer">Try the live app</a><a class="btn" href="https://github.com/vamsialladev/hotel-ops-analytics-agent" rel="noopener noreferrer">Code on GitHub</a></div>
-    <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    <div class="actions"><a class="btn primary" href="https://github.com/vamsialladev/hotel-ops-analytics-agent" rel="noopener noreferrer">Code on GitHub</a></div>
   </div>
   <section class="section" id="problem" aria-labelledby="problem-h">
     <div class="narrow">
