@@ -63,15 +63,17 @@
       <p class="demo-summary" id="demo-summary">The server inside the official MCP Inspector, connected as a guest: four tools, a policy search with its sources, another guest's booking reported as not found, and the guest's own booking with guest fields only. Recorded against a local copy with synthetic data.</p>
       <details class="transcript"><summary>Read the narration</summary><p>This is the hotel group&#x27;s tool server, inside the official MCP Inspector,</p><p>a standard client anyone can use.</p><p>I&#x27;m connecting with a guest&#x27;s key, and all the data is made up.</p><p>A guest sees four tools.</p><p>Front-desk staff would see five, and a manager six.</p><p>The role decides which tools even exist.</p><p>I&#x27;ll ask the policy search whether I can bring my dog to the beach resort.</p><p>It returns the passages with their source,</p><p>and a note that the text is reference data, never instructions.</p><p>Now I&#x27;ll try someone else&#x27;s booking.</p><p>The server says it doesn&#x27;t exist,</p><p>so a guest can&#x27;t even find out that it&#x27;s there.</p><p>My own booking works,</p><p>and it shows only what a guest is allowed to see.</p><p>No name, no email, no phone number.</p><p>Every call is checked against the role and written to an audit log.</p><p>In the eval, ninety-nine out of ninety-nine checks pass, across three runs.</p><p>And the server calls no model, so a call costs nothing.</p><p>The code is on GitHub, and the link&#x27;s below.</p></details>
       <div class="actions">
-        <a class="btn primary" href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">Code on GitHub</a>
+        <a class="btn primary" href="hotel-tools-mcp-connect.html">Connect to the live endpoint</a>
         <span class="small">My own-voice recording will replace the generated narration.</span>
       </div>
+      <p class="small wake-note">Free hosting: the first call after a quiet spell may need a moment to wake.</p>
     </section>
     <span class="eyebrow">Case study · stage 7</span>
     <h1>Hotel Tools MCP Server</h1>
     <p class="lede">The hotel group's tools for any MCP client, such as Claude Desktop or Claude Code: the caller's role decides which tools even exist and which fields come back, another hotel group's data looks like it isn't there, and every call lands in a tamper-evident audit log.</p>
     <p class="note">Independent project: a simulated client engagement for the same fictional hotel group as the other stages, with synthetic data. Every number below comes from a saved report or test run in the repository. A second synthetic hotel group exists only to prove tenant isolation.</p>
-    <div class="actions"><a class="btn primary" href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">Code on GitHub</a></div>
+    <p><strong>Live:</strong> a public, read-only copy at <code>https://hotel-tools-mcp.vercel.app/mcp</code>, connected as one made-up guest with no key and 10 calls a minute. On 2026-10-28 it passed 8 of 8 checks with the official MCP Python SDK client. <a href="hotel-tools-mcp-connect.html">How to connect →</a></p>
+    <div class="actions"><a class="btn primary" href="hotel-tools-mcp-connect.html">Connect to the live endpoint</a><a class="btn" href="https://hotel-tools-mcp.vercel.app/" rel="noopener noreferrer">Endpoint home (live)</a><a class="btn" href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">Code on GitHub</a></div>
   </div>
   <section class="section" id="problem" aria-labelledby="problem-h">
     <div class="narrow">
@@ -180,7 +182,7 @@
     <div class="narrow">
       <div class="section-head"><span class="eyebrow">10 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
-        <li>Streamable HTTP with OAuth tokens from the hotel's identity provider instead of API keys</li>
+        <li>OAuth tokens from the hotel's identity provider instead of API keys (the public endpoint already speaks Streamable HTTP)</li>
         <li>Postgres with row-level security as a second wall between hotel groups</li>
       </ul>
       <p><a class="arrow-link" href="../projects.html#stages">See every stage →</a></p>
