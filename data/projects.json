@@ -152,13 +152,17 @@
     {
       "stage": 6,
       "name": "Resort Activities Concierge",
-      "status": "Built",
+      "status": "Live",
       "summary": "Guests ask about today's activities; the agent sends booking requests that staff approve.",
       "delivers": "A schedule page and a concierge that answers from the real schedule and policies with citations, sends a booking request only after the guest says yes, and waits for staff to approve it.",
       "links": [
         {
           "label": "Case study",
           "url": "projects/resort-activities-concierge.html"
+        },
+        {
+          "label": "Concierge (live)",
+          "url": "https://resort-activities-concierge.streamlit.app"
         },
         {
           "label": "GitHub",

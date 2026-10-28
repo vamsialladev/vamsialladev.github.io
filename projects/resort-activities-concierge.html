@@ -52,6 +52,22 @@
   <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › Activities Concierge</p>
     <!-- DEMO-VIDEO -->
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo (AI-narrated, 1:30)</h2>
+      <video controls playsinline preload="none" poster="../videos/resort-activities-concierge-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/resort-activities-concierge-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/resort-activities-concierge-demo.vtt" srclang="en" label="English">
+        <a href="../videos/resort-activities-concierge-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
+      <p class="demo-summary" id="demo-summary">Recorded on the live app: the schedule filtered for kids, a cited answer about tomorrow morning, a booking request sent only after the guest says yes and left pending for staff, and the free-massage trick answered with the real price.</p>
+      <details class="transcript"><summary>Read the narration</summary><p>At a resort, the activities desk gets the same questions all day.</p><p>What&#x27;s on, is it OK for kids, is there space.</p><p>Here a guest sees today&#x27;s and tomorrow&#x27;s real schedule,</p><p>and can filter it for kids.</p><p>Now I ask the concierge.</p><p>My family has two kids, what can we do tomorrow morning?</p><p>It checks tomorrow&#x27;s schedule,</p><p>and answers with real sessions: times, ages, prices and places left.</p><p>For the kids club it also reads the policy,</p><p>and cites the exact section it used.</p><p>It&#x27;s a fictional resort, and all the data is made up.</p><p>I say yes, please request it.</p><p>Only now does it send a booking request,</p><p>and the request stays pending until staff approve it on their own page.</p><p>What if a guest says the FAQ promised a free massage?</p><p>It won&#x27;t promise that.</p><p>It quotes the real price, and asks before it requests anything.</p><p>On my test set it passes all one hundred eighty-three dev checks,</p><p>and forty-three of forty-five held-out ones,</p><p>for about seventy-six cents per thousand messages.</p><p>It&#x27;s live, with no sign-in.</p><p>The link&#x27;s below, and so is the code.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://resort-activities-concierge.streamlit.app" rel="noopener noreferrer">Try the live app</a>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
+      </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    </section>
     <span class="eyebrow">Case study · stage 6</span>
     <h1>Resort Activities Concierge</h1>
     <p class="lede">A guest scans the QR code in their room, sees what's on today, and asks a concierge that knows the real schedule and the resort's rules. It can send a booking request, and a person on staff approves it.</p>
@@ -88,11 +104,12 @@
           <tr><td>Safety cases: injection, booking flow, wrong property, stay lookup</td><td class="n">57/57</td><td class="n">15/15</td></tr>
           <tr><td>Booking request created exactly when it should be</td><td class="n">45/45</td><td class="n">12/12</td></tr>
           <tr><td>No promise of anything confirmed, free or waived</td><td class="n">36/36</td><td class="n">9/9</td></tr>
-          <tr><td>Latency per message, p50 / p95</td><td class="n">3.2 s / 6.7 s</td><td class="n">3.5 s / 7.9 s</td></tr>
+          <tr><td>Model + tools time per message, p50 / p95</td><td class="n">3.2 s / 6.7 s</td><td class="n">3.5 s / 7.9 s</td></tr>
           <tr><td>Cost per 1,000 messages</td><td class="n">$0.76</td><td class="n">$0.80</td></tr>
           <tr><td>Guest-style paraphrases found: BM25 alone vs hybrid</td><td class="n">0/6 vs 5/6</td><td class="n"></td></tr>
         </tbody>
       </table></section>
+      <p class="small">In the browser on the live app (2026-10-28, Enter pressed → answer finished rendering): first message 7.9 s with the app already awake (a cold start took 18.1 s); five more messages 4.4–12.3 s, median 7.8 s. The 12.3 s was the “yes” step, which makes three tool calls.</p>
       <p class="small">The first full run (2026-10-25, before the protocol tools) was 183/183 dev and 42/45 held-out at $0.66 per 1,000 messages; the two extra tool definitions add about $0.10 per 1,000 on every question. Reports: <code>eval/reports/agent-2026-10-26-dev-final.md</code> and <code>agent-2026-10-26-heldout-final.md</code> in the repository.</p>
       <p>The one real miss is held-out h11, “Is there a minimum age for the cooking class?”, wrong in 2 of the 3 final runs (all 3 in the first round). The age is on the activity, not in the FAQ; the concierge searched the FAQ, found nothing and said it didn't know. That's honest rather than invented, but it should have checked the schedule. It's held-out, so I reported it and didn't tune for it.</p>
     </div>
