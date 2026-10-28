@@ -52,6 +52,22 @@
   <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › Ops Analytics</p>
     <!-- DEMO-VIDEO -->
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo (AI-narrated, 1:28)</h2>
+      <video controls playsinline preload="none" poster="../videos/hotel-ops-analytics-agent-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/hotel-ops-analytics-agent-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/hotel-ops-analytics-agent-demo.vtt" srclang="en" label="English">
+        <a href="../videos/hotel-ops-analytics-agent-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
+      <p class="demo-summary" id="demo-summary">Recorded on the live app with real answers: a revenue question with its steps and the SQL guard's verdict, the sources and SQL behind the answer, a follow-up for the other property, guest phone numbers refused, and the daily check catching a mispriced suite.</p>
+      <details class="transcript"><summary>Read the narration</summary><p>A revenue manager told me a custom question costs her half a day of pivot tables.</p><p>So I built this: she just asks.</p><p>It's a simulated hotel group, and all the data's made up.</p><p>Which room type at Mountain Lodge earned the most this year?</p><p>It writes one SQL query,</p><p>and before anything runs, a guard checks it.</p><p>Here's the guard's verdict: read-only, and only these tables.</p><p>And here's where the answer came from.</p><p>The tables it read, and the revenue definition the hotel agreed on.</p><p>It didn't guess what revenue means.</p><p>It looked it up.</p><p>And the SQL's right there to check.</p><p>Now a follow-up.</p><p>And at Beach Resort?</p><p>It works out I mean the same question for the other property,</p><p>shows me how it read it, and answers.</p><p>If I ask for guest phone numbers as an analyst, it says no,</p><p>and even if the model slipped, the guard would stop the query.</p><p>Every morning a check runs five rules with no model at all.</p><p>Here it caught a suite priced at fifty dollars instead of about five hundred.</p><p>On my test questions it gets ninety-nine percent right,</p><p>and every held-out one,</p><p>for about twenty-eight cents per thousand questions.</p><p>It's live, with no sign-in.</p><p>The link's below, and so is the code.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://hotel-ops-analytics-agent.streamlit.app" rel="noopener noreferrer">Try the live app</a>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
+      </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    </section>
     <span class="eyebrow">Case study · stage 8</span>
     <h1>Hotel Ops Analytics Agent</h1>
     <p class="lede">Managers ask the bookings database questions in plain English and get a table, a chart and a short answer, always with the SQL that produced it. A daily check finds anomalies and posts them to Slack.</p>
@@ -124,11 +140,12 @@ WHERE p.name = 'Beach Resort' AND b.status &lt;&gt; 'cancelled' AND STRFTIME('%Y
           <tr><td>Unsafe requests refused (writes, schema changes, personal data, injection)</td><td class="n">100% (27/27)</td><td class="n">100% (9/9)</td></tr>
           <tr><td>Clarifying question asked when needed</td><td class="n">100% (9/9)</td><td class="n">100% (3/3)</td></tr>
           <tr><td>Follow-up questions (multi-turn)</td><td class="n">100% (24/24)</td><td class="n">100% (9/9)</td></tr>
-          <tr><td>Latency per question, p95</td><td class="n">4.31 s</td><td class="n">4.53 s</td></tr>
+          <tr><td>Plan + query + answer time per question, p95</td><td class="n">4.31 s</td><td class="n">4.53 s</td></tr>
           <tr><td>Cost per 1,000 questions</td><td class="n">$0.28</td><td class="n">$0.29</td></tr>
           <tr><td>Hotel-policy questions (new, 5 × 3)</td><td class="n">15/15 (11/15 before a grader fix)</td><td class="n"></td></tr>
         </tbody>
       </table></section>
+      <p class="small">In the browser on the live app (2026-10-28, 20 dev questions in one visit, Enter pressed → answer finished rendering): p50 4.28 s, p95 5.47 s. The browser adds streaming and rendering to the eval's plan + query + answer time.</p>
       <p class="small">The first published run (version 1.0, 2026-10-24) was 98% dev (144/147) and 95% held-out (20/21, run once) at $0.30 per 1,000 questions. Reports: <code>eval/reports/sql-2026-10-26-dev-protocols.md</code>, <code>sql-2026-10-26-heldout-protocols.md</code> and <code>sql-2026-10-26-policy-rescored.md</code> in the repository.</p>
       <section class="scroll" tabindex="0" aria-label="Table: anomaly results (scrolls sideways)"><table>
         <caption>Anomaly check, every day of two synthetic years</caption>
@@ -155,7 +172,7 @@ WHERE p.name = 'Beach Resort' AND b.status &lt;&gt; 'cancelled' AND STRFTIME('%Y
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
         <tbody>
           <tr><td>A parser-based guard plus a read-only connection</td><td class="n">The prompt is a request; the guard is a control</td><td class="n">An unusual valid query can be rejected (one retry)</td></tr>
-          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.28 per 1,000 questions, p95 4.3 s</td></tr>
+          <tr><td>Two model calls</td><td class="n">The answer is written from the rows, not guessed</td><td class="n">$0.28 per 1,000 questions, p95 4.3 s plan + query + answer</td></tr>
           <tr><td>Deterministic anomaly rules</td><td class="n">Every alert can be explained line by line</td><td class="n">A new kind of anomaly needs a new rule</td></tr>
           <tr><td>SQLite shipped with the app</td><td class="n">Deploys free with nothing to set up</td><td class="n">Postgres with a read-only role is the scale path</td></tr>
         </tbody>
