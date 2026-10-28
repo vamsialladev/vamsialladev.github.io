@@ -52,6 +52,21 @@
   <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › MCP Tools + RBAC</p>
     <!-- DEMO-VIDEO -->
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo (AI-narrated, 1:11)</h2>
+      <video controls playsinline preload="none" poster="../videos/hotel-tools-mcp-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/hotel-tools-mcp-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/hotel-tools-mcp-demo.vtt" srclang="en" label="English">
+        <a href="../videos/hotel-tools-mcp-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
+      <p class="demo-summary" id="demo-summary">The server inside the official MCP Inspector, connected as a guest: four tools, a policy search with its sources, another guest's booking reported as not found, and the guest's own booking with guest fields only. Recorded against a local copy with synthetic data.</p>
+      <details class="transcript"><summary>Read the narration</summary><p>This is the hotel group&#x27;s tool server, inside the official MCP Inspector,</p><p>a standard client anyone can use.</p><p>I&#x27;m connecting with a guest&#x27;s key, and all the data is made up.</p><p>A guest sees four tools.</p><p>Front-desk staff would see five, and a manager six.</p><p>The role decides which tools even exist.</p><p>I&#x27;ll ask the policy search whether I can bring my dog to the beach resort.</p><p>It returns the passages with their source,</p><p>and a note that the text is reference data, never instructions.</p><p>Now I&#x27;ll try someone else&#x27;s booking.</p><p>The server says it doesn&#x27;t exist,</p><p>so a guest can&#x27;t even find out that it&#x27;s there.</p><p>My own booking works,</p><p>and it shows only what a guest is allowed to see.</p><p>No name, no email, no phone number.</p><p>Every call is checked against the role and written to an audit log.</p><p>In the eval, ninety-nine out of ninety-nine checks pass, across three runs.</p><p>And the server calls no model, so a call costs nothing.</p><p>The code is on GitHub, and the link&#x27;s below.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/vamsialladev/hotel-tools-mcp" rel="noopener noreferrer">Code on GitHub</a>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
+      </div>
+    </section>
     <span class="eyebrow">Case study · stage 7</span>
     <h1>Hotel Tools MCP Server</h1>
     <p class="lede">The hotel group's tools for any MCP client, such as Claude Desktop or Claude Code: the caller's role decides which tools even exist and which fields come back, another hotel group's data looks like it isn't there, and every call lands in a tamper-evident audit log.</p>
