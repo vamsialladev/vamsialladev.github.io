@@ -113,9 +113,22 @@
       </figure>
     </div>
   </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="The same request through the real tool code as each role">
+        <p class="q">“Booking BR-1042: the room was noisy last night. Can we get a $75 credit and a late check-out?”</p>
+        <p><strong>guest:</strong> <code>lookup_booking</code> found, 6 fields · <code>issue_credit_request</code> refused: the guest role may not use issue_credit_request · <code>create_booking_request</code> PENDING</p>
+        <p><strong>front_desk:</strong> <code>lookup_booking</code> found, 9 fields · <code>issue_credit_request</code> pending_manager_approval · <code>create_booking_request</code> PENDING</p>
+        <p><strong>manager:</strong> <code>lookup_booking</code> found, 11 fields (incl. phone, rate, notes) · <code>issue_credit_request</code> approved · <code>create_booking_request</code> PENDING</p>
+        <p><strong>auditor:</strong> <code>get_audit_log</code> 9 records, chain intact: True</p>
+      </figure>
+      <p class="small">The output of <code>python scripts/demo_roles.py</code> (the real tool code, no model, no keys), re-run on main (3e3e700) on 2026-10-28 with the same results as the README; request IDs left out. The role decides the outcome: a $75 credit is over the front desk's $50 limit, so it waits for a manager.</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · Results</span><h2 id="results-h">Results</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Results</span><h2 id="results-h">Results</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: eval results (scrolls sideways)"><table>
         <caption>Labelled eval, 3 runs (no model in the server, so every run agreed)</caption>
         <thead><tr><th scope="col">Check</th><th scope="col" class="n">Result</th></tr></thead>
@@ -126,18 +139,17 @@
           <tr><td>Cost per 1,000 tool calls</td><td class="n">$0.00</td></tr>
         </tbody>
       </table></section>
-      <p>The same request as three roles (real output of the demo script): a guest's $75 credit request is refused because the guest has no credit tool; the front desk's goes to <code>pending_manager_approval</code>; the manager's is approved. All three can file a late check-out, and it is always <code>PENDING</code>.</p>
     </div>
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <p>The first run scored 97%. The three failures were one case run three times, and the server was right: an auditor of the second hotel group had no audit records yet, so my check compared an empty list with the expected group. An empty result can pass or fail a check for the wrong reason, so the check now fails on an empty list and the case first makes a call in each group.</p>
     </div>
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
@@ -152,7 +164,7 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="engineering-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
         <li><strong>Tests:</strong> 81, 90% coverage, including every role × every tool and a stdio round trip with the server as a separate process, the way Claude Desktop starts it.</li>
         <li><strong>CI:</strong> ruff, pytest, the eval gate at 100%, a check that the copy of stage 1's search matches its pinned commit, pip-audit, a link check and gitleaks.</li>
@@ -162,13 +174,13 @@
   </section>
   <section class="section" id="business" aria-labelledby="business-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
       <p>A projection, not a result: each new AI client connects to tools that already enforce the hotel's limits instead of re-building them, and IT gets one place to grant, limit and audit AI access. A pilot would measure time to connect a new client and the denied calls and removed instructions per week in the audit log.</p>
     </div>
   </section>
   <section class="section" id="limitations" aria-labelledby="limits-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">09 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <div class="section-head"><span class="eyebrow">10 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
       <ul>
         <li>Demo authentication: API keys in a local file. docs/AUTH.md shows how OAuth / SSO replaces it.</li>
         <li>JSON files and one process per key: fine for a pilot, not for scale (see Design at scale).</li>
@@ -180,7 +192,7 @@
   </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">10 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>OAuth tokens from the hotel's identity provider instead of API keys (the public endpoint already speaks Streamable HTTP)</li>
         <li>Postgres with row-level security as a second wall between hotel groups</li>
