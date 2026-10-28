@@ -90,9 +90,38 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>Staff in a browser: front desk, reservations, manager<span class="why">Each role uses only the app it needs.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Three apps, one container each<span class="why">Knowledge Assistant (stage 1), Guest Request Agent (stage 2), Ops Analytics (stage 8); each calls Claude Haiku 5.5.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Stage 7 tool server (MCP), with roles and an audit log<span class="why"><code>search_policy</code>, <code>lookup_booking</code>, credit and booking requests; the Guest Request Agent goes through it.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Data<span class="why">Policy documents per property feed a search index (BM25 plus optional embeddings); bookings come from a read-only export.</span></li>
+          <li class="branch">Every app and the tool server write a redacted request log (Postgres, 30 days).</li>
+          <li class="branch">Stage 3's eval harness gates every change in CI.</li>
+        </ol>
+        <figcaption class="small">The system this pack proposed, from <code>docs/ARCHITECTURE_PROPOSAL.md</code>. Stages 1–8 then built it.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="Use case A in the four-check test">
+        <p class="q">Use case A · Knowledge assistant</p>
+        <p>Someone has felt the problem: yes, the front-desk lead's 4-minute radio call. Someone would pay: yes, the GM owns the pilot budget. V1 buildable in a week: yes. First customer known: yes, the Mountain Lodge front desk. <strong>Pass.</strong></p>
+      </figure>
+      <p class="small">From <code>docs/PROBLEM_SELECTION.md</code>: six use cases scored the same way; four passed (A, B, D, E) and became stages 1, 2, 7 and 8.</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03 · What came out of it</span><h2 id="results-h">What came out of it</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · What came out of it</span><h2 id="results-h">What came out of it</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: the four-check test (scrolls sideways)"><table>
         <caption>The four-check test</caption>
         <thead><tr><th scope="col">Use case</th><th scope="col" class="n">Result</th></tr></thead>
@@ -110,23 +139,34 @@
   </section>
   <section class="section" id="pricing" aria-labelledby="pricing-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · Pricing, from measured costs</span><h2 id="pricing-h">Pricing, from measured costs</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · Pricing, from measured costs</span><h2 id="pricing-h">Pricing, from measured costs</h2></div>
       <p>The pricing script uses two measured inputs: <strong>$0.18 per 1,000 questions</strong> (stage 1, v1.6.0 release run) and <strong>$1.24 per 1,000 emails</strong> (stage 2, v1.1.0). Everything else is an assumption, shown as pessimistic / base / optimistic. The lesson in the numbers: model tokens are a few dollars a month for two properties, so support time, not tokens, is what a price has to track. All prices are projections, not quotes.</p>
       <p><a class="arrow-link" href="https://github.com/vamsialladev/hotel-ai-discovery/blob/main/docs/PRICING.md" rel="noopener noreferrer">Pricing model and scenarios →</a></p>
     </div>
   </section>
   <section class="section" id="engineering" aria-labelledby="engineering-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
         <li><strong>Docs that can't drift:</strong> the pricing tables are written by the script, and a test fails if the document and the script disagree.</li>
         <li><strong>Checks:</strong> 25 tests; a doc check for required documents, broken links and placeholders; CI with ruff, pip-audit, gitleaks, markdownlint and a link check.</li>
       </ul>
     </div>
   </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">08 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>The answers are simulated. A real engagement would replace them with notes from real sessions.</li>
+        <li>Written after stages 1–5, so the selection explains an order that was already built.</li>
+        <li>Pricing assumptions (support hours, rate, hosting) are not measured; a pilot&#x27;s time log and invoices would replace them.</li>
+        <li>Roadmap: SSO, region pinning and a third-party pen test are marked as such in the security answers.</li>
+      </ul>
+    </div>
+  </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Replace the simulated answers with notes from real sessions in a real engagement</li>
         <li>Replace pricing assumptions with a pilot's time log and invoices</li>
