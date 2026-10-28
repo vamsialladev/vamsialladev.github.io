@@ -52,10 +52,27 @@
   <div class="narrow">
     <p class="crumb"><a href="../projects.html">Projects</a> › Account Research</p>
     <!-- DEMO-VIDEO -->
+    <section class="demo-hero" id="demo" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Watch the demo (AI-narrated, 1:32)</h2>
+      <video controls playsinline preload="none" poster="../videos/fde-account-research-agent-demo-poster.webp" width="1280" height="720" aria-describedby="demo-summary">
+        <source src="../videos/fde-account-research-agent-demo.mp4" type="video/mp4">
+        <track kind="captions" src="../videos/fde-account-research-agent-demo.vtt" srclang="en" label="English">
+        <a href="../videos/fde-account-research-agent-demo.mp4">Download the demo video (MP4)</a>
+      </video>
+      <p class="small">Narrated with a generated voice; captions included.</p>
+      <p class="demo-summary" id="demo-summary">Recorded on the live app with a saved example brief (no live run): Club Med's brief with numbered sources and quotes checked on their pages, the meeting questions, use-case guesses and email, a question answered only from the findings, and the limits on live briefs.</p>
+      <details class="transcript"><summary>Read the narration</summary><p>Before a first client meeting, I spend a couple of hours reading about the company.</p><p>This does the gathering for me,</p><p>and every line it writes has a source.</p><p>It's a simulated engagement, and it only reads public web pages.</p><p>Here's a saved brief for Club Med.</p><p>A planner wrote six questions, researchers searched the web for each,</p><p>and a critic in plain code checked the work.</p><p>Forty-one findings made it through.</p><p>Every line cites a numbered source.</p><p>For each source, it went back to the page</p><p>and checked the quote is really there:</p><p>thirty-two of thirty-seven here.</p><p>Then ten questions for the meeting,</p><p>three use-case guesses with what we don't know yet,</p><p>and a short email asking for a call.</p><p>I can ask about the brief.</p><p>What do guests complain about most?</p><p>It answers only from the findings, with their IDs.</p><p>No new searches.</p><p>A live brief costs about fourteen cents in searches,</p><p>so without a demo code there are three a day for everyone,</p><p>and all live runs stop at ten dollars a month.</p><p>In the eval, seventeen of eighteen briefs pass every check.</p><p>The weak spot is made-up companies:</p><p>on the held-out ones it stayed honest in only one of three.</p><p>That's written down, not hidden.</p><p>It's live, the link's below, and so is the code.</p></details>
+      <div class="actions">
+        <a class="btn primary" href="https://fde-account-research-agent.streamlit.app" rel="noopener noreferrer">Try the live app</a>
+        <span class="small">My own-voice recording will replace the generated narration.</span>
+      </div>
+      <p class="small wake-note">Free hosting: if the app is asleep, click ‘wake up’ and give it about 30 seconds.</p>
+    </section>
     <span class="eyebrow">Case study · pre-sales</span>
     <h1>Account Research Agent</h1>
     <p class="lede">Type a hotel company's name and get a brief for a first client meeting: who they are, recent news, what guests say, tech hints, ten questions, three use-case guesses and a short email. Every line has a source, and every quote was checked on its page.</p>
-    <p class="note">Independent project: the pre-sales stage of the same simulated hotel engagement. The agent reads real public web pages about real companies; the eval also uses fictional companies on purpose. No private individuals are researched. Every number below comes from a saved report in the repository. The app isn't hosted yet, so there's no live link.</p>
+    <p class="note">Independent project: the pre-sales stage of the same simulated hotel engagement. The agent reads real public web pages about real companies; the eval also uses fictional companies on purpose. No private individuals are researched. Every number below comes from a saved report in the repository, except the live brief's cost and time, which come from the app's own log.</p>
+    <p>Live on free hosting: three saved example briefs are free to open; live briefs need a demo code, or are limited to three a day across everyone, and all live runs stop at $10 a month.</p>
     <div class="actions"><a class="btn primary" href="https://github.com/vamsialladev/fde-account-research-agent" rel="noopener noreferrer">Code on GitHub</a></div>
   </div>
   <section class="section" id="problem" aria-labelledby="problem-h">
@@ -76,9 +93,46 @@
       </ul>
     </div>
   </section>
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">03 · Architecture</span><h2 id="arch-h">Architecture</h2></div>
+      <figure class="diagram">
+        <ol class="flow">
+          <li>A company name (and optional website) in the Streamlit app<span class="why">Three saved example briefs open free; a live brief needs a demo code or one of three public briefs a day.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li><code>limits.py</code><span class="why">Per visit, per day, public briefs, $3 a day, $10 a month (the monthly total read from the Neon ops log, so a restart doesn't reset it).</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Planner (Claude Haiku 5.5, JSON)<span class="why">Six questions: overview, properties, news, guest themes, technology, AI.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Researchers (Claude Haiku 5.5 + web search)<span class="why">One per question, at most two searches each, stopped near $0.25 a brief.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Critic, plain code<span class="why">Keeps only cited sentences, removes personal data, flags old news, and re-reads each cited page (robots.txt first) to find the quote.</span></li>
+          <li class="branch">Topics with nothing usable: researched once more with a hint, if budget is left.</li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>Writer (Claude Haiku 5.5, JSON)<span class="why">Builds the brief only from kept findings; lines that cite nothing are dropped in code.</span></li>
+          <li class="down" aria-hidden="true">↓</li>
+          <li>The brief, its steps and cost<span class="why">Then “Ask about it” (answers from the findings, no new searches) and a read-only share link.</span></li>
+        </ol>
+        <figcaption class="small">From <code>docs/ARCHITECTURE.md</code> in the repository.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="example" aria-labelledby="example-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">04 · A real output</span><h2 id="example-h">A real output</h2></div>
+      <figure class="slip" aria-label="Part of a real brief from the eval run">
+        <p class="q">Club Med, “What guests say (themes)” and “How this brief was checked”</p>
+        <p>Guests praise warm, attentive service and staff who remember them, especially for children. [21][39]</p>
+        <p>Food variety and buffet quality draw repeated criticism. [22][23]</p>
+        <p>Value for money, extra costs, and room upkeep recur as concerns. [21][24]</p>
+        <p>Findings kept: 41; removed for having no source: 22; brief lines dropped for citing nothing: 0. Cited quotes found on their page: 32 of 37 checked. Cost 0.140 USD (12 web searches, 8 model calls), 108 s.</p>
+      </figure>
+      <p class="small">From the saved Club Med example (the 2026-10-25 dev eval run, run 1), the same brief the live app opens for free; trimmed to four lines. A live public brief for Club Med on 2026-10-28 cost $0.140 and took 112 s (the app's ops log).</p>
+    </div>
+  </section>
   <section class="section" id="results" aria-labelledby="results-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">03 · Results</span><h2 id="results-h">Results</h2></div>
+      <div class="section-head"><span class="eyebrow">05 · Results</span><h2 id="results-h">Results</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: eval results (scrolls sideways)"><table>
         <caption>Eval, 3 runs per company: 4 real and 2 fictional (dev), 1 real and 1 fictional (held-out)</caption>
         <thead><tr><th scope="col">Check</th><th scope="col" class="n">Dev</th><th scope="col" class="n">Held-out</th></tr></thead>
@@ -97,13 +151,13 @@
   </section>
   <section class="section" id="lessons" aria-labelledby="lessons-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">04 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
+      <div class="section-head"><span class="eyebrow">06 · What the eval taught me</span><h2 id="lessons-h">What the eval taught me</h2></div>
       <p>Read the briefs, not just the scores. I stopped the first run after five briefs: four passed every check, but one outreach email opened “I'm a Forward Deployed Engineer” and two said “I'm Vamsi, an engineer…”, signed with my name. My title is Senior Software Engineer, and no check looked at that. The writer no longer describes the sender, and a new check fails any email that does. Reading the final run then found two bugs in my own checks: a hype-word check that fired on a cited page's title (“seamless travel experience”), and a fictional-company check that failed an honest “the closest matches are different businesses”. Both are fixed with the real phrasings as tests, and the as-measured reports are kept.</p>
     </div>
   </section>
   <section class="section" id="tradeoffs" aria-labelledby="tradeoffs-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">05 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
+      <div class="section-head"><span class="eyebrow">07 · Trade-offs</span><h2 id="tradeoffs-h">Trade-offs</h2></div>
       <section class="scroll" tabindex="0" aria-label="Table: trade-offs (scrolls sideways)"><table>
         <caption>Trade-offs</caption>
         <thead><tr><th scope="col">Choice</th><th scope="col" class="n">Why</th><th scope="col" class="n">What it costs</th></tr></thead>
@@ -118,26 +172,39 @@
   </section>
   <section class="section" id="engineering" aria-labelledby="engineering-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">06 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
+      <div class="section-head"><span class="eyebrow">08 · Engineering</span><h2 id="engineering-h">Engineering</h2></div>
       <ul>
-        <li><strong>Tests:</strong> 31, 92% coverage, with the model and the web replaced: the pipeline, the cost cap, the critic, the fetcher's robots.txt handling, the chat, the share link and the eval's grader.</li>
+        <li><strong>Tests:</strong> 45, 91% coverage (main's CI, 2026-10-28), with the model and the web replaced: the pipeline, the cost cap, the critic, the fetcher's robots.txt handling, the chat, the share link and the eval's grader.</li>
         <li><strong>CI:</strong> ruff, pytest with a coverage gate, re-scoring the saved eval runs (any changed verdict fails), pip-audit, a link check and gitleaks.</li>
       </ul>
     </div>
   </section>
   <section class="section" id="business" aria-labelledby="business-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">07 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
+      <div class="section-head"><span class="eyebrow">09 · Business case (projection)</span><h2 id="business-h">Business case (projection)</h2></div>
       <p>A projection from stated assumptions, not a result: for a team of 8 engineers, about $27,000 a year of prep time in the base case, from $1,200 (pessimistic) to $66,000 (optimistic). The AI cost per brief is measured; review time is the swing factor, since checking a brief can cost as much as the prep it replaced. A four-week pilot would time prep with and without it and mark each brief line used, unused or wrong.</p>
+    </div>
+  </section>
+  <section class="section" id="limitations" aria-labelledby="limits-h">
+    <div class="narrow">
+      <div class="section-head"><span class="eyebrow">10 · Limitations</span><h2 id="limits-h">Limitations</h2></div>
+      <ul>
+        <li>No hand labels yet: the checks prove each line has a source and each quote is on its page, not that the sentence says what the source says.</li>
+        <li>Fictional companies with real near-namesakes are the weak spot: on the held-out ones it stayed honest in 1 of 3 runs.</li>
+        <li>A quote “not found” isn't always wrong: some pages load their text with JavaScript, which the fetcher doesn't run (68% found on held-out).</li>
+        <li>The saved example briefs are from the 2026-10-25 eval run and aren't refreshed; they keep the brief and findings but not the steps, so their Steps tab is empty.</li>
+        <li>The daily limits are per app instance and reset when the app restarts; the $10 monthly cap is read from the ops log and doesn't.</li>
+        <li>Researchers run one after another, so a live brief takes about 90 to 110 seconds; name redaction is pattern-based.</li>
+      </ul>
     </div>
   </section>
   <section class="section" id="next" aria-labelledby="next-h">
     <div class="narrow">
-      <div class="section-head"><span class="eyebrow">08 · What's next</span><h2 id="next-h">What's next</h2></div>
+      <div class="section-head"><span class="eyebrow">11 · What's next</span><h2 id="next-h">What's next</h2></div>
       <ul>
         <li>Label 30 sampled claims by hand for the unsupported-claim rate</li>
         <li>Run the six researchers in parallel (about 90 seconds to about 20)</li>
-        <li>Host it on Streamlit Community Cloud with a spending limit</li>
+        <li>Keep the steps with the saved example briefs, so the Steps tab shows how they were made</li>
       </ul>
       <p><a class="arrow-link" href="../projects.html#stages">See every stage →</a></p>
     </div>
